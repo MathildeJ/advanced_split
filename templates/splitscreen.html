@@ -113,7 +113,7 @@ function ignoreFriend() {
     	ignoreButton.innerHTML = "Acknowledge Friend";
 	document.getElementById('form_wrapper').style.left="-20%";
  	// update feed
-	friendsFrame.postMessage(JSON.stringify({"command": "message", "data": "The leader is ignoring you!"}), '*');
+	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader is ignoring you!"}), '*');
     } else {
 	// we show our friend's iframe
 	friendsFrame.style.visibility = "visible";
