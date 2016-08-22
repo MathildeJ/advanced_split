@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		.on('relocated', function(session) {
 			console.log(session.url);
 			update_feed("User 1 relocated to: " + session.url);
-		}).
+		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
 		}).startLeader('#ifrm1');
