@@ -40,9 +40,9 @@ window.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('exit_button').style.visibility="visible";
 			sess = session;	
 		})
-		.on('relocated', function(session) {
-			console.log(session.url);
-			update_feed("User 1 relocated to: " + session.url);
+		.on('relocated', function(session, event) {
+			console.log(event.url);
+			update_feed("User 1 relocated to: " + event.url);
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";

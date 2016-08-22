@@ -134,7 +134,12 @@ body {
 #feed {
 	position: relative;
 	float: right;
-	text-align:center;
+	border: 2px double black;
+	color: black;
+	padding: 3px 7px;
+	text-align: center;
+	text-decoration: none;
 	display: inline-block;
 	font-size: 18px;
+	margin: 4 auto;
 }
