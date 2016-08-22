@@ -58,7 +58,7 @@ window.addEventListener('message', function(e){
 	if (e.origin == "https://surfly-s1.com") {
 		var string = JSON.stringify(e.data);
 		console.log(string);
-		if(string.indexOf('cobro_event') && string.indexOf("feed_relo_leader")){
+		if(string.indexOf("feed_relo_leader")){
 			console.log('ok');
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	

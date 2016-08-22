@@ -75,17 +75,15 @@ window.addEventListener('message', function(e){
 		}
 	}
 
-	if(string.indexOf('cobro_event')){
+	if(string.indexOf('cobro_event')&&string.indexOf("feed_relo_follower")){
+		console.log("match?" + string.match(/feed_relo_follower/));
 		var index = string.indexOf('data');
 		var indexEnd = string.indexOf('origin');	
 		var info = string.substring(index+7, indexEnd-4);
-		console.log("pre info: " + info);
-		if(info.indexOf("feed_relo_follower")){
-			console.log('ok');
-			if(info.indexOf('\\')){ info = info.substring(0, info.length);};
-			console.log(info);
-                        update_feed(info);
-		}
+		console.log('ok');
+		//if(info.indexOf('\\')){ info = info.substring(0, info.length);};
+		console.log(info);
+                update_feed(info);
 	}
     }
 })
