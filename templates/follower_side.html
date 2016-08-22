@@ -63,14 +63,12 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.indexOf('\\')){ info = info.substring(0, info.length);};
-			//console.log(info);
                         update_feed(info);
 		}
-		if(string.indexOf('cobro_event') && string.indexOf("The leader is ignoring you!")!==-1){
+		if(string.indexOf('cobro_event') && (string.indexOf("The leader is ignoring you!")!==-1||string.indexOf("The leader stopped ignoring you!")!==-1)){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			console.log(info);
                         update_feed(info);
 		}
 	}
@@ -104,6 +102,8 @@ function ignoreFriend() {
     	// we change the button to ignore friend 
     	ignoreButton.innerHTML = "Ignore Friend";
 	document.getElementById('form_wrapper').style.left="-32%";
+	// update
+	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The follower stopped ignoring you!"}), '*');
     }
 }
 
