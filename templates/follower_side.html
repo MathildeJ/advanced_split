@@ -59,11 +59,17 @@ window.addEventListener('message', function(e){
 		var string = JSON.stringify(e.data);
 		console.log(string);
 		if(string.indexOf('cobro_event') && string.indexOf("The leader relocated")!==-1){
-			console.log('ok');
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.indexOf('\\')){ info = info.substring(0, info.length);};
+			//console.log(info);
+                        update_feed(info);
+		}
+		if(string.indexOf('cobro_event') && string.indexOf("The leader is ignoring you!")!==-1){
+			var index = string.indexOf('data');
+			var indexEnd = string.indexOf('origin');	
+			var info = string.substring(index+9, indexEnd-5);
 			console.log(info);
                         update_feed(info);
 		}
@@ -76,8 +82,8 @@ function exitSession(){
 
 // ignore friend button
 function ignoreFriend() {
-    var friendsFrame = document.getElementById("ifrm2");
-    var yourFrame = document.getElementById("ifrm1");
+    var yourFrame = document.getElementById("ifrm2");
+    var friendsFrame = document.getElementById("ifrm1");
     var ignoreButton = document.getElementById("ignore");
 
     if(ignoreButton.innerHTML=="Ignore Friend"){
@@ -88,6 +94,7 @@ function ignoreFriend() {
 	// change button to acknowledge friend
     	ignoreButton.innerHTML = "Acknowledge Friend";
 	document.getElementById('form_wrapper').style.left="-30%";
+	friendsFrame.postMessage(JSON.stringify({"command": "message", "data": "The follower is ignoring you!"}), '*');
     } else {
 	// we show our friend's iframe
 	friendsFrame.style.visibility = "visible";

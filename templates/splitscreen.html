@@ -75,11 +75,18 @@ window.addEventListener('message', function(e){
 		}
 	
 		if(string.indexOf("The follower relocated")!==-1){
-			console.log('ok');
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
-			var info = string.substring(index+7, indexEnd-4);
-			//if(info.indexOf('\\')){ info = info.substring(0, info.length);};
+			var info = string.substring(index+9, indexEnd-5);
+			if(info.indexOf('\\')){ info = info.substring(0, info.length);};
+			//console.log(info);
+                        update_feed(info);
+		}
+
+		if(string.indexOf("The leader is ignoring you!")!==-1){
+			var index = string.indexOf('data');
+			var indexEnd = string.indexOf('origin');	
+			var info = string.substring(index+9, indexEnd-5);
 			console.log(info);
                         update_feed(info);
 		}
@@ -105,6 +112,8 @@ function ignoreFriend() {
 	// change button to acknowledge friend
     	ignoreButton.innerHTML = "Acknowledge Friend";
 	document.getElementById('form_wrapper').style.left="-20%";
+ 	// update feed
+	friendsFrame.postMessage(JSON.stringify({"command": "message", "data": "The leader is ignoring you!"}), '*');
     } else {
 	// we show our friend's iframe
 	friendsFrame.style.visibility = "visible";
