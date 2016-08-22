@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		})
 		.on('relocated', function(session, event) {
 			update_feed("You relocated to: " + event.url);
-			document.getElementById('ifrm2').contentWindow.postMessage("The leader relocated to: " + event.url);
+			document.getElementById('ifrm2').contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
@@ -133,7 +133,7 @@ function update_feed(text){
 	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
 	<div id="feed">
 		<div id="info_feed">
-   			<p style="line-height: 0.8; max-width: 100px; text-align: center;">Nothing to say yet...</p> 
+   			<p style="line-height: 0.8; text-align: center;">Nothing to say yet...</p> 
  		</div>
 	</div>
 	<div id="form_wrapper">

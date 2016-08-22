@@ -40,10 +40,11 @@ body {
 #form_wrapper{
 	display: inline-block;
 	width: 400px;
-	position: relative;
+	position: fixed;
 	left: -20%;
 	visibility:visible; 
 	align-items: flex-start;
+	margin-right: 10px;
 }
 
 #url{
@@ -135,7 +136,7 @@ body {
 #feed {
 	position: relative;
 	float: right;
-	border: 2px double #ea2020;
+	border: 2px dotted red;
 	color: black;
 	padding: 3px 7px;
 	text-align: center;
