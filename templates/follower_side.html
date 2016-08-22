@@ -40,16 +40,9 @@ window.addEventListener('DOMContentLoaded', function() {
 			var frame = document.getElementById('ifrm2').contentWindow;
 			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: " + event.url}), '*');
 		})
-		.on('message', function(session, event) {
-			console.log('received message ' + event.data);
-		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
 		}).startLeader('#ifrm2'); 
-	} else {
-		Surfly.currentSession.on('message', function(session, event) {
-			console.log('received message (curr) ' + event.data);
-		})
 	}
     }
    });
@@ -63,10 +56,18 @@ function sendMess(){
 }
 
 window.addEventListener('message', function(e){
-        var string = JSON.stringify(e.data);
-	console.log(string);
-	if(string.indexOf('The leader relocated')){
-		console.log('ok');
+	if (origin == "https://surfly-s1.com") {
+		var string = JSON.stringify(e.data);
+		console.log(string);
+		if(string.indexOf('cobro_event') && string.indexOf("The leader relocated")!==-1){
+			console.log('ok');
+			var index = string.indexOf('data');
+			var indexEnd = string.indexOf('origin');	
+			var info = string.substring(index+8, indexEnd-4);
+			if(info.indexOf('\\')){ info = info.substring(0, info.length);};
+			console.log(info);
+                        update_feed(info);
+		}
 	}
 })
 
