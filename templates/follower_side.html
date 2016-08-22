@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (init.success) {
 	if(!Surfly.currentSession){
 	    	s = Surfly.session();
-	        s._settings.url = "https://intense-cove-96984.herokuapp.com/follower_side_start";
+	        s._settings.url = "https://agile-ocean-85913.herokuapp.com/follower_side_start";
 		s.on('session_started', function(session) {
                         // get the follower link
 			var retrievedLink = session.followerLink;
@@ -34,6 +34,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
 			document.getElementById('exit_button').style.visibility="visible";
 	     	})
+		.on('relocated', function(session, event) {
+			console.log(event.url);
+			update_feed("You relocated to: " + event.url);
+		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
 		}).startLeader('#ifrm2'); 
@@ -51,6 +55,48 @@ function sendMess(){
 function exitSession(){
   sess.end('https://www.surfly.com');
 }
+
+// ignore friend button
+function ignoreFriend() {
+    var friendsFrame = document.getElementById("ifrm2");
+    var yourFrame = document.getElementById("ifrm1");
+    var ignoreButton = document.getElementById("ignore");
+
+    if(ignoreButton.innerHTML=="Ignore Friend"){
+	// we hide our friend's iframe
+	friendsFrame.style.visibility = "hidden";
+	// we make our iframe the size of the screen
+	yourFrame.style.width = "99%";
+	// change button to acknowledge friend
+    	ignoreButton.innerHTML = "Acknowledge Friend";
+	document.getElementById('form_wrapper').style.left="-30%";
+    } else {
+	// we show our friend's iframe
+	friendsFrame.style.visibility = "visible";
+    	// we shrink our frame
+    	yourFrame.style.width = "49%";
+    	// we change the button to ignore friend 
+    	ignoreButton.innerHTML = "Ignore Friend";
+	document.getElementById('form_wrapper').style.left="-32%";
+    }
+}
+
+//update live feed
+function update_feed(text){
+	var feed = document.getElementById("feed");
+	feed.innerHTML = text;
+}
+
+// event listener
+window.addEventListener('message', function(e){
+     var origin = event.origin || event.originalEvent.origin;
+     if (origin == "https://surfly-s1.com") {
+        var string = JSON.stringify(e.data);
+	if(string.indexOf('The leader relocated')){
+		console.log('string');
+	}
+    }
+})
 </script>
 
 <style>
@@ -59,76 +105,33 @@ function exitSession(){
 </head>
 
 <body>
-<div style="text-align:right;">
-	<button class="button" id="exit_button" style="visibility:hidden" onclick="exitSession()">Exit</button>
-        <button class="button" id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
-        <button class="button" id="acknowledge" onclick="acknowledgeFriend()" style="visibility:hidden">Acknowledge friend</button>
+<div id="menu">
+	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
+	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
+	<div id="feed">
+		<div id="info_feed">
+   			<p>Nothing to say yet...</p> 
+ 		</div>
+	</div>
+	<div id="form_wrapper">
+		<form id="nav" action="" method="post">
+			<label style="float:left">
+				<h3 id="title_bar">Nav bar :</h3>
+				<input id="url" type="text" name="url"/>
+			</label>
+			<label>
+			       <input type="button" class="button" id="submit_button" onclick=sendMess() value="Go!" />
+			</label>
+		</form>
+	</div>
 </div>
 
-<div id="form_wrapper" style="visibility:visible;">
-	<form id="nav" action="" method="post">
-		<label>
-			<h3 id="title_bar">Nav bar :</h3>
-		        <input id="url" type="text" name="url" />
-		</label>
-		<label>
-		       <input type="button" class="button" id="submit_button" style="cursor:pointer;" onclick=sendMess() value="Go!" />
-		</label>
-	</form>
-</div>
-
-
-<!-- the iframes -->
-<!-- the follower link is opened in this frame -->
+<!-- the two iframes -->
+<!-- the frame in which the leader link is opened -->
 <div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
-<!-- the leader link is opened in this frame -->
-<div class="box"><iframe id="ifrm2" src="" height="700" width="49%" align='right'></iframe></div>
-
-
-<script>
-// get the current url and the follower link
-pageUrl  = document.location.href;
-var idIndex = pageUrl.indexOf("screen");
-var sessionID = pageUrl.substring(idIndex+6);
-var fullUrl =  "https://surfly-s1.com".concat(sessionID);
-// set the url of the first frame to the follower link
-document.getElementById('ifrm1').src = fullUrl;
-</script>
-
-<script>
-  // ignore friend button
-  function ignoreFriend() {
-    var friendsFrame = document.getElementById("ifrm1");
-    var yourFrame = document.getElementById("ifrm2");
-    var ignoreButton = document.getElementById("ignore");
-    var acknowledgeButton = document.getElementById("acknowledge");
-    // we hide our friends iframe
-    friendsFrame.style.visibilty = "hidden";
-    // we make our iframe the size of the screen
-    yourFrame.style.width = "99%";
-    // we replace the ignore button with an acknowledge friend button
-    ignoreButton.style.visibility = "hidden";
-    acknowledgeButton.style.visibility = "visible";
-  }
-</script>
-
-<script>
-  // acknowlegde friend button 
-  function acknowledgeFriend() {
-    var stretchFriendFrame = document.getElementById("ifrm1");
-    var shrinkYourFrame = document.getElementById("ifrm2");
-    var ignoreButton = document.getElementById("ignore");
-    var acknowledgeButton = document.getElementById("acknowledge");
-    // we make our friends frame visible
-    stretchFriendFrame.style.visibility = "visible";
-    // we shrink our frame
-    shrinkYourFrame.style.width = "49%";
-    // we hide the acknowledge friend button
-    acknowledgeButton.style.visibility = "hidden";
-    // we reveal the ignore friend button
-    ignoreButton.style.visibility = "visible";
-  }
-</script>
-
+<!-- the frame in which the follower link will be opened -->
+<div class="box"><iframe id="ifrm2" src="./fourth_frame" height="700" width="49%" align='right'></iframe></div>
+<!-- the frame in which the invite link is displayed -->
+<iframe id="popupLink" src="./popup_link" height="300" width="45%" style="top: 30%; left: 35%; display: block; position: absolute; visibility:hidden"></iframe>
 </body>
 </html>

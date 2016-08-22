@@ -41,8 +41,8 @@ window.addEventListener('DOMContentLoaded', function() {
 			sess = session;	
 		})
 		.on('relocated', function(session, event) {
-			console.log(event.url);
-			update_feed("User 1 relocated to: " + event.url);
+			update_feed("You relocated to: " + event.url);
+			document.getElementById('ifrm2').contentWindow.postMessage("The leader relocated to: " + event.url);
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
@@ -58,7 +58,6 @@ function sendMess(){
 window.addEventListener('message', function(e){
      var origin = event.origin || event.originalEvent.origin;
      if (origin == "https://surfly-s1.com") {
-        console.log("passed the test");
         var string = JSON.stringify(e.data);
 	if(string.indexOf('cobro_event')){
 		if (string.match(/[0-9]{3}[-][0-9]{3}[-][0-9]{3}/)) {
@@ -133,8 +132,8 @@ function update_feed(text){
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
 	<div id="feed">
-		<div class="discusTitle">
-   			<p>Nothing to say yet...</p> 
+		<div id="info_feed">
+   			<p style="line-height: 0.8;">Nothing to say yet...</p> 
  		</div>
 	</div>
 	<div id="form_wrapper">
