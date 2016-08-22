@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>First frame</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+    <style>
+      body {
+         background-image: url('../static/sunset.jpg');
+      }
+      
+      #inviteButt {
+         background-color: white;
+      }
+    
+      .titleText {
+         color: white;
+      }
+      .mainText {
+         color: white;
+      }       
+ 
+    </style>
+
+</head>
+
+
+<body id="page-top">
+
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1 class="titleText" style="color: white;">Welcome</h1>
+            <h3 class="mainText">Use the nav bar above to start browsing</h3>
+            <br>
+        </div>
+    </header>
+    
+    <script>
+       function showLink() {
+         parent.inviteFriend();
+         document.getElementById("inviteButton").visibility="hidden";
+       }
+    </script>
+
+
+</body>
+</html> 

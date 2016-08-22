@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>follower side</title>
+
+<link href="../static/splitscreen.css" rel="stylesheet">
+<link href="../static/page_top.css" rel="stylesheet">
+
+<script>
+(function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
+l=u.createElement(r);y=u.getElementsByTagName(r)[0];l.async=1;
+l.src='https://surfly-s1.com/surfly.js';y.parentNode.insertBefore(l,y);})
+(window,document,'script','Surfly');
+</script>
+
+<script>
+var sess;
+var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, docked_only: true, ui_off: true};
+window.addEventListener('DOMContentLoaded', function() {
+  Surfly.init(settings, function(init) {
+    if (init.success) {
+	if(!Surfly.currentSession){
+	    	s = Surfly.session();
+	        s._settings.url = "https://intense-cove-96984.herokuapp.com/follower_side_start";
+		s.on('session_started', function(session) {
+                        // get the follower link
+			var retrievedLink = session.followerLink;
+			var frame = document.getElementById('ifrm1').contentWindow;
+			// we send the link to the first frame (where a Surfly session is already started)
+			frame.postMessage(JSON.stringify({"command": "message", "data": retrievedLink}), '*');
+			sess = session;
+
+			document.getElementById('exit_button').style.visibility="visible";
+	     	})
+		.on('session_ended', function(session) {
+			document.getElementById('exit_button').style.visibility="hidden";
+		}).startLeader('#ifrm2'); 
+	}
+    }
+   });
+ });
+
+function sendMess(){
+        // relocate to the url entered in the form
+	var url = document.getElementById('url').value;
+	sess.relocate(url);
+}
+
+function exitSession(){
+  sess.end('https://www.surfly.com');
+}
+</script>
+
+<style>
+</style>
+
+</head>
+
+<body>
+<div style="text-align:right;">
+	<button class="button" id="exit_button" style="visibility:hidden" onclick="exitSession()">Exit</button>
+        <button class="button" id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
+        <button class="button" id="acknowledge" onclick="acknowledgeFriend()" style="visibility:hidden">Acknowledge friend</button>
+</div>
+
+<div id="form_wrapper" style="visibility:visible;">
+	<form id="nav" action="" method="post">
+		<label>
+			<h3 id="title_bar">Nav bar :</h3>
+		        <input id="url" type="text" name="url" />
+		</label>
+		<label>
+		       <input type="button" class="button" id="submit_button" style="cursor:pointer;" onclick=sendMess() value="Go!" />
+		</label>
+	</form>
+</div>
+
+
+<!-- the iframes -->
+<!-- the follower link is opened in this frame -->
+<div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
+<!-- the leader link is opened in this frame -->
+<div class="box"><iframe id="ifrm2" src="" height="700" width="49%" align='right'></iframe></div>
+
+
+<script>
+// get the current url and the follower link
+pageUrl  = document.location.href;
+var idIndex = pageUrl.indexOf("screen");
+var sessionID = pageUrl.substring(idIndex+6);
+var fullUrl =  "https://surfly-s1.com".concat(sessionID);
+// set the url of the first frame to the follower link
+document.getElementById('ifrm1').src = fullUrl;
+</script>
+
+<script>
+  // ignore friend button
+  function ignoreFriend() {
+    var friendsFrame = document.getElementById("ifrm1");
+    var yourFrame = document.getElementById("ifrm2");
+    var ignoreButton = document.getElementById("ignore");
+    var acknowledgeButton = document.getElementById("acknowledge");
+    // we hide our friends iframe
+    friendsFrame.style.visibilty = "hidden";
+    // we make our iframe the size of the screen
+    yourFrame.style.width = "99%";
+    // we replace the ignore button with an acknowledge friend button
+    ignoreButton.style.visibility = "hidden";
+    acknowledgeButton.style.visibility = "visible";
+  }
+</script>
+
+<script>
+  // acknowlegde friend button 
+  function acknowledgeFriend() {
+    var stretchFriendFrame = document.getElementById("ifrm1");
+    var shrinkYourFrame = document.getElementById("ifrm2");
+    var ignoreButton = document.getElementById("ignore");
+    var acknowledgeButton = document.getElementById("acknowledge");
+    // we make our friends frame visible
+    stretchFriendFrame.style.visibility = "visible";
+    // we shrink our frame
+    shrinkYourFrame.style.width = "49%";
+    // we hide the acknowledge friend button
+    acknowledgeButton.style.visibility = "hidden";
+    // we reveal the ignore friend button
+    ignoreButton.style.visibility = "visible";
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <title>Popup link</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <style>
+      body {
+         background-image: url('../static/ride.jpg');
+      }
+      
+      #exitButton {
+         background-color: white;
+      }
+    
+      .mainText {
+         color: white;
+      }       
+        
+      a {
+        color: white;
+      }
+ 
+    </style>
+
+</head>
+
+<body>
+
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h3 class="mainText">Copy-paste the link below to share with a friend!</h3>
+            <div id="invite" style="color:white" onclick="selectText('invite')">Invite link</div>
+            <br>
+            <button id="exitButton" class="btn btn-dark btn-lg" onclick="exitPopup()">Close</button>
+        </div>
+    </header>
+
+    <script type="text/javascript">
+    function selectText(containerid) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(containerid));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(containerid));
+            window.getSelection().addRange(range);
+        }
+    }
+   </script>
+
+    <script>
+        function exitPopup() {
+           parent.closeIFrame();
+        }
+    </script>
+
+   <script>
+	var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+	var eventer = window[eventMethod];
+	var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+	// Listen to message from child IFrame window
+	eventer(messageEvent, function (e) {
+	   var info = JSON.stringify(e.data);
+	   console.log("the iframe recieves the message ", e.data);
+           document.getElementById("invite").innerHTML = e.data;
+	}, false);
+   </script>
+
+</body>
+</html>

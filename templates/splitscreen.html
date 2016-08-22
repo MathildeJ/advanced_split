@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Splitscreen</title>
+
+<link href="../static/splitscreen.css" rel="stylesheet">
+<link href="../static/page_top.css" rel="stylesheet">
+
+<script>
+(function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
+l=u.createElement(r);y=u.getElementsByTagName(r)[0];l.async=1;
+l.src='https://surfly-s1.com/surfly.js';y.parentNode.insertBefore(l,y);})
+(window,document,'script','Surfly');
+</script>
+
+<script>
+var sess;
+var inviteLink;
+var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true};
+window.addEventListener('DOMContentLoaded', function() {
+  Surfly.init(settings, function(init) {
+    if (init.success) {
+      	if(!Surfly.currentSession){
+	      s = Surfly.session();
+	      s._settings.url = "https://murmuring-sierra-68089.herokuapp.com/start_page";
+	      s.on('session_started', function(session) {
+		       // get the session id from the follower link
+			var followerLink = session.followerLink;
+			var linkIndex = followerLink.indexOf(".com");
+			var sessionID = followerLink.substring(linkIndex+4, linkIndex+16);
+			// get the page url
+			var pageUrl = document.location.href;
+			// append the page url to the session id
+			var res = pageUrl.concat(sessionID);
+
+			var inviteButton = document.getElementById("invite");
+			inviteButton.style.visibility = 'visible';
+			document.getElementById('exit_button').style.visibility="visible";
+			sess = session;	
+		})
+		.on('session_ended', function(session) {
+			document.getElementById('exit_button').style.visibility="hidden";
+		}).startLeader('#ifrm1');
+	} 
+     }
+   });
+ });
+function sendMess(){
+	var url = document.getElementById('url').value;
+	sess.relocate(url);
+}
+window.addEventListener('message', function(e){
+     var origin = event.origin || event.originalEvent.origin;
+     if (origin == "https://surfly-s1.com") {
+        console.log("passed the test");
+        var string = JSON.stringify(e.data);
+	if(string.indexOf('cobro_event')){
+		if (string.match(/[0-9]{3}[-][0-9]{3}[-][0-9]{3}/)) {
+                        // extract the follower link from the message 
+			var index = string.indexOf('https');
+			var indexEnd = string.indexOf('origin');	
+			var flink = string.substring(index, indexEnd-4);
+			if(flink.indexOf('\\')){ flink = flink.substring(0, flink.length);};
+                        // set the source of the second iframe to the follower link
+			document.getElementById('ifrm2').src = flink;
+		}
+	}
+    }
+})
+function exitSession(){
+  sess.end('https://www.surfly.com');
+}
+
+// ignore friend button
+function ignoreFriend() {
+    var friendsFrame = document.getElementById("ifrm2");
+    var yourFrame = document.getElementById("ifrm1");
+    var ignoreButton = document.getElementById("ignore");
+
+    if(ignoreButton.innerHTML=="Ignore Friend"){
+	console.log('ok');
+	// we hide our friend's iframe
+	friendsFrame.style.visibility = "hidden";
+	// we make our iframe the size of the screen
+	yourFrame.style.width = "99%";
+	// change button to acknowledge friend
+    	ignoreButton.innerHTML = "Acknowledge Friend";
+	document.getElementById('form_wrapper').style.left="-30%";
+    } else {
+	// we show our friend's iframe
+	friendsFrame.style.visibility = "visible";
+    	// we shrink our frame
+    	yourFrame.style.width = "49%";
+    	// we change the button to ignore friend 
+    	ignoreButton.innerHTML = "Ignore Friend";
+	document.getElementById('form_wrapper').style.left="-32%";
+    }
+}
+
+function inviteFriend(){
+  console.log("the inviteLink is", inviteLink);
+  // we hide the invite button
+  document.getElementById("invite").style.visibility = "hidden";
+  // we display a popup with the invite link
+  var popupWindow = document.getElementById("popupLink").contentWindow;
+  popupWindow.postMessage(inviteLink, "*");
+  document.getElementById("popupLink").style.visibility="visible";
+}
+</script>
+
+<script>
+//close popup
+function closeIFrame(){
+     document.getElementById("popupLink").style.visibility="hidden";
+}
+</script>
+
+
+</head>
+
+<body>
+<div id="menu">
+	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
+	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
+	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
+	<div id="form_wrapper">
+		<form id="nav" action="" method="post">
+			<label style="float:left">
+				<h3 id="title_bar">Nav bar :</h3>
+				<input id="url" type="text" name="url"/>
+			</label>
+			<label>
+			       <input type="button" class="button" id="submit_button" onclick=sendMess() value="Go!" />
+			</label>
+		</form>
+	</div>
+</div>
+
+<!-- the two iframes -->
+<!-- the frame in which the leader link is opened -->
+<div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
+<!-- the frame in which the follower link will be opened -->
+<div class="box"><iframe id="ifrm2" src="./fourth_frame" height="700" width="49%" align='right'></iframe></div>
+<!-- the frame in which the invite link is displayed -->
+<iframe id="popupLink" src="./popup_link" height="300" width="45%" style="top: 30%; left: 35%; display: block; position: absolute; visibility:hidden"></iframe>
+</body>
+
+</html>
+
