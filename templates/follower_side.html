@@ -46,6 +46,15 @@ window.addEventListener('DOMContentLoaded', function() {
    });
  });
 
+// get the current url and the follower link
+pageUrl  = document.location.href;
+var idIndex = pageUrl.indexOf("screen");
+var sessionID = pageUrl.substring(idIndex+6);
+var fullUrl =  "https://surfly-s1.com".concat(sessionID);
+// set the url of the first frame to the follower link
+document.getElementById('ifrm1').src = fullUrl;
+
+
 function sendMess(){
         // relocate to the url entered in the form
 	var url = document.getElementById('url').value;
