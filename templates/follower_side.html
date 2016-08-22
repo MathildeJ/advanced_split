@@ -31,16 +31,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			// we send the link to the first frame (where a Surfly session is already started)
 			frame.postMessage(JSON.stringify({"command": "message", "data": retrievedLink}), '*');
 
-			// get the current url and the follower link
-			pageUrl  = document.location.href;
-			var idIndex = pageUrl.indexOf("screen");
-			var sessionID = pageUrl.substring(idIndex+6);
-			var fullUrl =  "https://surfly-s1.com".concat(sessionID);
-			// set the url of the first frame to the follower link
-			document.getElementById('ifrm1').src = fullUrl;
-
 			sess = session;
-
 			document.getElementById('exit_button').style.visibility="visible";
 	     	})
 		.on('relocated', function(session, event) {
@@ -147,5 +138,16 @@ window.addEventListener('message', function(e){
 <div class="box"><iframe id="ifrm2" src="./fourth_frame" height="700" width="49%" align='right'></iframe></div>
 <!-- the frame in which the invite link is displayed -->
 <iframe id="popupLink" src="./popup_link" height="300" width="45%" style="top: 30%; left: 35%; display: block; position: absolute; visibility:hidden"></iframe>
+
+<script>
+// get the current url and the follower link
+pageUrl  = document.location.href;
+var idIndex = pageUrl.indexOf("screen");
+var sessionID = pageUrl.substring(idIndex+6);
+var fullUrl =  "https://surfly-s1.com".concat(sessionID);
+// set the url of the first frame to the follower link
+document.getElementById('ifrm1').src = fullUrl;
+</script>
+
 </body>
 </html>
