@@ -135,7 +135,7 @@ body {
 #feed {
 	position: relative;
 	float: right;
-	border: 2px dotted #ea2020;
+	border: 2px double #ea2020;
 	color: black;
 	padding: 3px 7px;
 	text-align: center;
@@ -143,5 +143,6 @@ body {
 	display: inline-block;
 	font-size: 16px;
 	margin: 4 auto;
-	width: 100px;	
+	height: 27px;
+	
 }
