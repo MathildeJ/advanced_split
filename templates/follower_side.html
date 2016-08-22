@@ -62,7 +62,7 @@ window.addEventListener('message', function(e){
 			console.log('ok');
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
-			var info = string.substring(index+7, indexEnd-4);
+			var info = string.substring(index+9, indexEnd-5);
 			if(info.indexOf('\\')){ info = info.substring(0, info.length);};
 			console.log(info);
                         update_feed(info);
