@@ -41,7 +41,7 @@ body {
 	display: inline-block;
 	width: 400px;
 	position: relative;
-	left: -32%;
+	left: -20%;
 	visibility:visible; 
 	align-items: flex-start;
 }
@@ -122,6 +122,7 @@ body {
 	cursor: pointer;
 	margin-top: 3px;
 	margin-right: 5px;
+	margin-left: 10px;
         font-weight: bold;
 	border-radius: 8px;
 	height: 27px;
@@ -134,7 +135,7 @@ body {
 #feed {
 	position: relative;
 	float: right;
-	border: 2px double #ea2020;
+	border: 2px dotted #ea2020;
 	color: black;
 	padding: 3px 7px;
 	text-align: center;
@@ -142,5 +143,5 @@ body {
 	display: inline-block;
 	font-size: 16px;
 	margin: 4 auto;
-	height: 30px;
+	width: 100px;	
 }
