@@ -35,8 +35,11 @@ window.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('exit_button').style.visibility="visible";
 	     	})
 		.on('relocated', function(session, event) {
-			console.log(event.url);
 			update_feed("You relocated to: " + event.url);
+			document.getElementById('ifrm2').contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
+		})
+		.on('message', function(session, event) {
+			console.log('received message ' + event.data);
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
@@ -89,23 +92,7 @@ function update_feed(text){
 	var feed = document.getElementById("feed");
 	feed.innerHTML = text;
 }
-
-// event listener
-window.addEventListener('message', function(e){
-     console.log(e);	
-     console.log(e.origin);
-     var origin = event.origin || event.originalEvent.origin;
-     if (origin == "https://surfly-s1.com") {
-        var string = JSON.stringify(e.data);
-	if(string.indexOf('The leader relocated')){
-		console.log('string');
-	}
-    }
-})
 </script>
-
-<style>
-</style>
 
 </head>
 
@@ -135,7 +122,7 @@ window.addEventListener('message', function(e){
 <!-- the frame in which the leader link is opened -->
 <div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
 <!-- the frame in which the follower link will be opened -->
-<div class="box"><iframe id="ifrm2" src="./fourth_frame" height="700" width="49%" align='right'></iframe></div>
+<div class="box"><iframe id="ifrm2" src="" height="700" width="49%" align='right'></iframe></div>
 <!-- the frame in which the invite link is displayed -->
 <iframe id="popupLink" src="./popup_link" height="300" width="45%" style="top: 30%; left: 35%; display: block; position: absolute; visibility:hidden"></iframe>
 
@@ -147,6 +134,23 @@ var sessionID = pageUrl.substring(idIndex+6);
 var fullUrl =  "https://surfly-s1.com".concat(sessionID);
 // set the url of the first frame to the follower link
 document.getElementById('ifrm1').src = fullUrl;
+</script>
+
+<script>
+// event listener
+window.addEventListener('message', function(e){
+     console.log(e.data);	
+     console.log(e.origin);
+	/*
+     var origin = event.origin || event.originalEvent.origin;
+     if (origin == "https://surfly-s1.com") {
+        var string = JSON.stringify(e.data);
+	if(string.indexOf('The leader relocated')){
+		console.log('string');
+	}
+    }*/
+})
+
 </script>
 
 </body>

@@ -40,7 +40,7 @@ body {
 #form_wrapper{
 	display: inline-block;
 	width: 400px;
-	position: relative;
+	position: fixed;
 	left: -20%;
 	visibility:visible; 
 	align-items: flex-start;

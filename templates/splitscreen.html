@@ -42,6 +42,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		})
 		.on('relocated', function(session, event) {
 			update_feed("You relocated to: " + event.url);
+			session.sendMessage({foo: "The leader relocated to: " + event.url}, '*');
 			document.getElementById('ifrm2').contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
 		})
 		.on('session_ended', function(session) {
