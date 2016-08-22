@@ -22,7 +22,6 @@ window.addEventListener('DOMContentLoaded', function() {
   Surfly.init(settings, function(init) {
     if (init.success) {
 	if(!Surfly.currentSession){
-		console.log('wat?');
 	    	s = Surfly.session();
 	        s._settings.url = "https://agile-ocean-85913.herokuapp.com/follower_side_start";
 		s.on('session_started', function(session) {
@@ -56,7 +55,7 @@ function sendMess(){
 }
 
 window.addEventListener('message', function(e){
-	if (origin == "https://surfly-s1.com") {
+	if (e.origin == "https://surfly-s1.com") {
 		var string = JSON.stringify(e.data);
 		console.log(string);
 		if(string.indexOf('cobro_event') && string.indexOf("The leader relocated")!==-1){
