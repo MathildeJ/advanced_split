@@ -130,3 +130,9 @@ body {
 #nav {
 	display: inline-block;
 }
+
+#feed {
+	text-align:center;
+	display: inline-block;
+	font-size: 18px;
+}

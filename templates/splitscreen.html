@@ -40,6 +40,10 @@ window.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('exit_button').style.visibility="visible";
 			sess = session;	
 		})
+		.on('relocated', function(session) {
+			console.log(session.url);
+			update_feed("User 1 relocated to: " + session.url);
+		}).
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
 		}).startLeader('#ifrm1');
@@ -107,12 +111,16 @@ function inviteFriend(){
   popupWindow.postMessage(inviteLink, "*");
   document.getElementById("popupLink").style.visibility="visible";
 }
-</script>
 
-<script>
 //close popup
 function closeIFrame(){
      document.getElementById("popupLink").style.visibility="hidden";
+}
+
+//update live feed
+function update_feed(text){
+	var feed = document.getElementById("feed");
+	feed.innerHTML = text;
 }
 </script>
 
@@ -124,6 +132,11 @@ function closeIFrame(){
 	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
+	<div id="feed">
+		<div class="discusTitle">
+   			<p>Nothing to say yet...</p> 
+ 		</div>
+	</div>
 	<div id="form_wrapper">
 		<form id="nav" action="" method="post">
 			<label style="float:left">
