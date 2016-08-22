@@ -38,6 +38,8 @@ window.addEventListener('DOMContentLoaded', function() {
 			var inviteButton = document.getElementById("invite");
 			inviteButton.style.visibility = 'visible';
 			document.getElementById('exit_button').style.visibility="visible";
+			document.getElementById('invite').style.visibility = "visible";
+			document.getElementById('form_wrapper').style.visibility = "visible";
 			sess = session;	
 		})
 		.on('relocated', function(session, event) {
@@ -56,6 +58,7 @@ function sendMess(){
 	var url = document.getElementById('url').value;
 	sess.relocate(url);
 }
+
 window.addEventListener('message', function(e){
      var origin = event.origin || event.originalEvent.origin;
      if (origin == "https://surfly-s1.com") {
@@ -71,8 +74,18 @@ window.addEventListener('message', function(e){
 			document.getElementById('ifrm2').src = flink;
 		}
 	}
+	if(string.indexOf('cobro_event') && string.indexOf("The follower relocated") && !string.indexOf("This event format is deprecated")){
+			console.log('ok');
+			var index = string.indexOf('data');
+			var indexEnd = string.indexOf('origin');	
+			var info = string.substring(index+7, indexEnd-4);
+			//if(info.indexOf('\\')){ info = info.substring(0, info.length);};
+			console.log(info);
+                        update_feed(info);
+	}
     }
 })
+
 function exitSession(){
   sess.end('https://www.surfly.com');
 }
@@ -103,7 +116,6 @@ function ignoreFriend() {
 }
 
 function inviteFriend(){
-  console.log("the inviteLink is", inviteLink);
   // we hide the invite button
   document.getElementById("invite").style.visibility = "hidden";
   // we display a popup with the invite link

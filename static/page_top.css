@@ -42,7 +42,7 @@ body {
 	width: 400px;
 	position: relative;
 	left: -20%;
-	visibility:visible; 
+	visibility: hidden; 
 	align-items: flex-start;
 	margin-right: 10px;
 }
@@ -111,6 +111,7 @@ body {
 #invite {
 	position: relative;
 	float: right;
+	visibility: hidden;
 	background-color: #ea2020;
 	border: 2px solid black;
 	color: black;
