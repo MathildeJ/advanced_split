@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		.on('relocated', function(session, event) {
 			update_feed("You relocated to: " + event.url);
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "feed_relo_leader: " + event.url}), '*');
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
@@ -80,7 +80,7 @@ window.addEventListener('message', function(e){
 		var indexEnd = string.indexOf('origin');	
 		var info = string.substring(index+7, indexEnd-4);
 		console.log("pre info: " + info);
-		if(info.indexOf("The follower relocated")){
+		if(info.indexOf("feed_relo_follower")){
 			console.log('ok');
 			if(info.indexOf('\\')){ info = info.substring(0, info.length);};
 			console.log(info);

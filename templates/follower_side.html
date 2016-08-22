@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		.on('relocated', function(session, event) {
 			update_feed("You relocated to: " + event.url);
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: " + event.url}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "feed_relo_follower: " + event.url}), '*');
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
@@ -58,7 +58,7 @@ window.addEventListener('message', function(e){
 	if (e.origin == "https://surfly-s1.com") {
 		var string = JSON.stringify(e.data);
 		console.log(string);
-		if(string.indexOf('cobro_event') && string.indexOf("The leader relocated")){
+		if(string.indexOf('cobro_event') && string.indexOf("feed_relo_leader")){
 			console.log('ok');
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
