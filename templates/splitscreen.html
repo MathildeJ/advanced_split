@@ -47,6 +47,9 @@ window.addEventListener('DOMContentLoaded', function() {
 			var frame = document.getElementById('ifrm2').contentWindow;
 			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
 		})
+		.on('viewer_joined', function(session, event) {
+			update_feed("Someone joined your session!");
+		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
 		}).startLeader('#ifrm1');
@@ -139,10 +142,22 @@ function closeIFrame(){
      document.getElementById("popupLink").style.visibility="hidden";
 }
 
+var item = true;
 //update live feed
 function update_feed(text){
+	/*
 	var feed = document.getElementById("feed");
 	feed.innerHTML = text;
+	*/
+	var list = document.getElementById("list");
+	if(item){
+		var list_item = document.getElementById("i1");
+		item = false;
+	} else {
+		var list_item = document.getElementById("i2");
+		item = true;
+	}
+	list_item.innerHTML = text;
 }
 </script>
 
@@ -155,9 +170,11 @@ function update_feed(text){
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
 	<div id="feed">
-		<div id="info_feed">
-   			<p style="line-height: 0.8; text-align: center;">Nothing to say yet...</p> 
- 		</div>
+   		<!--<p style="line-height: 0.8; text-align: center; display: inline-block;">Nothing to say yet...</p>-->
+		<ul id="list">
+		  <li id="i1" class="list_item"></li>
+	 	  <li id="i2" class="list_item"></li>
+		</ul>
 	</div>
 	<div id="form_wrapper">
 		<form id="nav" action="" method="post">
