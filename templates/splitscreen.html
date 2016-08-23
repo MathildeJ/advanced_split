@@ -77,10 +77,8 @@ function sendMess(){
 // event listener
 window.addEventListener('message', function(e){
      var origin = event.origin || event.originalEvent.origin;
-     console.log("the origin of the mesages on splitscreen is ", origin);
      if (origin == "https://surfly.com") {
         var string = JSON.stringify(e.data);
-
 	if(string.indexOf('cobro_event')){
 		// the 2nd follower link
 		if (string.match(/[0-9]{3}[-][0-9]{3}[-][0-9]{3}/)) {
@@ -254,7 +252,7 @@ function badReaction() {
 <!-- the frame in which the invite link is displayed -->
 <iframe id="popupLink" src="./popup_link" height="300" width="45%"></iframe>
 <!-- the reaction is seen in this iframe -->
-<div class="box"><iframe align='left' id="reaction" src=""></iframe></div>
+<div class="box"><iframe height="200" align='left' id="reaction" src=""></iframe></div>
 </body>
 
 </html>
