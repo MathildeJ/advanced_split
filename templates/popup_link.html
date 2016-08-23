@@ -80,7 +80,10 @@
 	   var info = JSON.stringify(e.data);
 	   console.log("the iframe recieves the message ", e.data);
            if (string.match(/(https)/)) {
+              console.log("the string was matched");
               document.getElementById("invite").innerHTML = e.data;
+           } else {
+              console.log("the string was not matched");
            }
 	}, false);
    </script>
