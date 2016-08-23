@@ -140,16 +140,15 @@ body {
 	visibility: hidden;
 	border: 2px dotted red;
 	color: black;
-	padding: 0px;
 	/*
 	text-decoration: none;
 	display: inline-block;
 	font-size: 12px;
 	margin: 0px auto;
 	height: 30px;
-	max-width: 450px;*/
+	max-width: 450px;
 	text-align: left;
-	display: inline-block;
+	display: inline-block;*/
 
  	margin: 2em;
  	width: 10em;
