@@ -158,6 +158,13 @@ body {
 	margin: 0 auto;
 }
 */
+
+ul {
+    display: flex;
+    align-items: center;
+}
+
+/*
 #list {
 	position: relative;
 	float: left;
@@ -167,7 +174,7 @@ body {
 	vertical-align: middle; 
 	display:table-row;
 }
-
+*/
 li {
 	position: relative;
     	float: left;
@@ -175,7 +182,6 @@ li {
     	margin: 0 5px;
 	border-bottom: 1px solid red;
     	border-spacing:20px;
-    	display: table-cell;
     	text-align:left;
     	margin-bottom:6px;
 	height: 15px;
