@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			// update feed and send message to the other side
 			update_feed("You relocated to: " + event.url);
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: <a href='"+event.url"'>" + event.url + "</a>"}), '*');
 		})
 		.on('viewer_joined', function(session, event) {
 			// update feed
@@ -69,7 +69,8 @@ window.addEventListener('DOMContentLoaded', function() {
 // navigate to a new url
 function navigate(){
 	var url = document.getElementById('url').value;
-	if(document.getElementById('url').placeholder){
+	console.log(url);
+	if(!url && document.getElementById('url').placeholder){
 		url = document.getElementById('url').placeholder;
 	}
 	if(url.indexOf('https')==-1){
@@ -102,7 +103,7 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.charAt(0)=='T'){
-				var new_ph = info.substring(info.indexOf('https')+8);
+				var new_ph = info.substring(info.indexOf('https')+8, info.length-1);
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
 			}
