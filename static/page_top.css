@@ -137,14 +137,14 @@ body {
 #feed {
 	position: relative;
 	float: right;
-	border: 1px dotted red;
+	border: 2px dotted red;
 	color: black;
 	padding: 0;
 	/*
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;*/
-	font-size: 16px;
+	font-size: 14px;
 	margin: 4px auto;
 	/*height: 25px;
 	max-width: 150px;*/
@@ -192,12 +192,13 @@ ul {
 }
 
 li {
-    min-height : 25px;
-    border-bottom : 2px double black;
+    min-height : 10px;
+    border-bottom : 2px double red;
+    text-align:left;
 }
 
 li div {
-    height:25px;
+    height:10px;
     display:table-cell;
     vertical-align : middle;
 }
