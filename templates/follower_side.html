@@ -85,10 +85,12 @@ window.addEventListener('message', function(e){
 		    // if the data recieved is "good" set the source of reactionFrame to the happy image
 		    if (string.match(/(good)/)) {
 		        reactionFrame.src = "../static/happycow.jpg";
+			update_feed("Your friend likes you!");
 		     }
 		     // if the data recieved is "bad" the src of reactionFrame is the grumpy image
 		     if (string.match(/(bad)/)) {
 		        reactionFrame.src = "../static/grumpy.jpg";
+			update_feed("Your friend hates you!");
 		    }
 		    if (reactionFrame.src != "") {
 		      // check that the src is not empty, and then show the frame
@@ -152,12 +154,14 @@ function goodReaction(){
   // sends a positive message to iframe 1
   frame2 = document.getElementById("ifrm1").contentWindow;
   frame2.postMessage(JSON.stringify({"command": "message", "data": "good"}), '*');
+  update_feed("You like your friend!");
 }
 
 function badReaction() {
   // sends a negative message to iframe 1 
   frame  = document.getElementById("ifrm1").contentWindow;
   frame.postMessage(JSON.stringify({"command": "message", "data": "bad"}), '*');
+  update_feed("You hate your friend!");
 }
 </script>
 
