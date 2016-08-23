@@ -214,6 +214,24 @@ function badReaction() {
 
 </script>
 
+<script type="application/javascript">
+
+function resizeIFrameToFitContent( iFrame ) {
+
+    iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
+    iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+}
+
+window.addEventListener('DOMContentReady', function(e) {
+
+    var iFrame = document.getElementById( 'reaction' );
+    resizeIFrameToFitContent( iFrame );
+
+} );
+
+</script>
+
+<iframe src="usagelogs/default.aspx" id="iFrame1"></iframe>
 
 </head>
 
@@ -244,7 +262,7 @@ function badReaction() {
 	</div>
 </div>
 
-<!-- the two iframes -->
+<!-- the iframes -->
 <!-- the frame in which the leader link is opened -->
 <div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
 <!-- the frame in which the follower link will be opened -->
@@ -252,7 +270,7 @@ function badReaction() {
 <!-- the frame in which the invite link is displayed -->
 <iframe id="popupLink" src="./popup_link" height="300" width="45%" style="top: 30%; left: 35%; display: block; position: absolute; visibility:hidden"></iframe>
 <!-- the reaction is seen in this iframe -->
-<div class="box"><iframe height="700" width="49%" align='left' id="reaction" src=""></iframe></div>
+<div class="box"><iframe align='left' id="reaction" src=""></iframe></div>
 </body>
 
 </html>
