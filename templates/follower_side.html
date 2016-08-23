@@ -31,13 +31,20 @@ window.addEventListener('DOMContentLoaded', function() {
 			// we send the link to the first frame (where a Surfly session is already started)
 			frame.postMessage(JSON.stringify({"command": "message", "data": retrievedLink}), '*');
 
-			sess = session;
 			document.getElementById('exit_button').style.visibility="visible";
+			document.getElementById('form_wrapper').style.visibility = "visible";
+			document.getElementById('feed').style.visibility = "visible";
+			
+			sess = session;
 	     	})
 		.on('relocated', function(session, event) {
 			update_feed("You relocated to: " + event.url);
 			var frame = document.getElementById('ifrm2').contentWindow;
 			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: " + event.url}), '*');
+		})
+		.on('viewer_joined', function(session, event) {
+			update_feed("Someone joined your session!");
+			document.getElementById('ignore').style.visibility = "visible";
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";

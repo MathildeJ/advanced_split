@@ -42,7 +42,7 @@ body {
 	width: 400px;
 	/*position: relative;*/
 	position: fixed;
-	left: -5%;
+	left: -4%;
 	visibility: hidden; 
 	align-items: flex-start;
 	margin-right: 10px;
@@ -219,7 +219,6 @@ li div {
 	float: right;
 	visibility: hidden;
 	max-height: 45px;
-	text-align: center;
 }
 
 h4 {
