@@ -95,11 +95,11 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			if(info.indexOf('\\')){ info = info.substring(0, info.length);};
-			if(info.indexOf('!')!==-1){
-				console.log('ok: ' + info);
+			//if(info.indexOf('\\')){ info = info.substring(0, info.length);};
+			if(info.indexOf('\\')){
                         	update_feed(info);
 			}
+                        update_feed(info);
 		}
 
 		// update feed
