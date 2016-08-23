@@ -114,7 +114,7 @@ function ignoreFriend() {
 	yourFrame.style.width = "99%";
 	// change button to acknowledge friend
     	ignoreButton.innerHTML = "Acknowledge Friend";
-	document.getElementById('form_wrapper').style.left="-14%";
+	//document.getElementById('form_wrapper').style.left="-%";
  	// update feed
 	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader is ignoring you!"}), '*');
     } else {
@@ -124,7 +124,7 @@ function ignoreFriend() {
     	yourFrame.style.width = "49%";
     	// we change the button to ignore friend 
     	ignoreButton.innerHTML = "Ignore Friend";
-	document.getElementById('form_wrapper').style.left="-16%";
+	//document.getElementById('form_wrapper').style.left="-10%";
 	// update
 	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader stopped ignoring you!"}), '*');
     }
@@ -165,8 +165,8 @@ function update_feed(text){
 <body>
 <div id="menu">
 	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
-	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
+	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<div id="feed">
 		<h4>News feed</h4>
    		<!--<p style="line-height: 0.8; text-align: center; display: inline-block;">Nothing to say yet...</p>-->
