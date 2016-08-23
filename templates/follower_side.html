@@ -81,6 +81,22 @@ window.addEventListener('message', function(e){
                         	update_feed(info);
 			}
 		}
+		    // if the data recieved is "good" set the source of reactionFrame to the happy image
+		    if (string.match(/(good)/)) {
+		        reactionFrame.src = "../static/happycow.jpg";
+		     }
+		     // if the data recieved is "bad" the src of reactionFrame is the grumpy image
+		     if (string.match(/(bad)/)) {
+		        reactionFrame.src = "../static/grumpy.jpg";
+		    }
+		    if (reactionFrame.src != "") {
+		      // check that the src is not empty, and then show the frame
+		      reactionFrame.style.visibility="visible";
+		      // the frame is hidden after 3 seconds 
+		      setTimeout(function() {
+		         reactionFrame.style.visibility = "hidden";
+		      }, 3000);
+		    }
 	}
 })
 
@@ -98,8 +114,7 @@ function ignoreFriend() {
 	// we hide our friend's iframe
 	friendsFrame.style.visibility = "hidden";
 	// we make our iframe the size of the screen
-	yourFrame.align='left';
-	yourFrame.style.width = "99%";
+	yourFrame.style.width = "-199%";
 	// change button to acknowledge friend
     	ignoreButton.innerHTML = "Acknowledge Friend";
 
@@ -109,7 +124,6 @@ function ignoreFriend() {
 	// we show our friend's iframe
 	friendsFrame.style.visibility = "visible";
     	// we shrink our frame
-	yourFrame.align='right';
     	yourFrame.style.width = "49%";
     	// we change the button to ignore friend 
     	ignoreButton.innerHTML = "Ignore Friend";
@@ -132,6 +146,18 @@ function update_feed(text){
 	}
 	list_item.innerHTML = text;
 }
+
+function goodReaction(){
+  // sends a positive message to iframe 1
+  frame2 = document.getElementById("ifrm1").contentWindow;
+  frame2.postMessage(JSON.stringify({"command": "message", "data": "good"}), '*');
+}
+
+function badReaction() {
+  // sends a negative message to iframe 1 
+  frame  = document.getElementById("ifrm1").contentWindow;
+  frame.postMessage(JSON.stringify({"command": "message", "data": "bad"}), '*');
+}
 </script>
 
 </head>
@@ -140,6 +166,8 @@ function update_feed(text){
 <div id="menu">
 	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
 	<button id="ignore" style="margin-left: 50px;" onclick="ignoreFriend()">Ignore Friend</button>
+	<button id="goodReaction" style="background: transparent; border: none;" class="reaction" onclick="goodReaction()"><img src="../static/smile.jpg"></button>
+        <button id="badReaction" style="background: transparent; border: none;" class="reaction" onclick="badReaction()"><img src="../static/sad.jpg"></button>
 	<div id="feed">
 		<h4>News feed</h4>
 		<ul id="list">
@@ -165,6 +193,8 @@ function update_feed(text){
 <div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
 <!-- the leader link is opened in this frame -->
 <div class="box"><iframe id="ifrm2" src="" height="700" width="49%" align='right'></iframe></div>
+<!-- the reaction is seen in this iframe -->
+<div class="box"><iframe height="700" width="49%" align='left' id="reaction" src="" style="display: block; position: absolute; frameBorder:'0'; visibility:hidden;"></iframe></div>
 
 <script>
 // get the current url and the follower link

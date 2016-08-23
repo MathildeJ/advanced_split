@@ -110,6 +110,23 @@ window.addEventListener('message', function(e){
                         	update_feed(info);
 			}
 		}
+
+		    // if the data recieved is "good" set the source of reactionFrame to the happy image
+		    if (string.match(/(good)/)) {
+		        reactionFrame.src = "../static/happycow.jpg";
+		     }
+		     // if the data recieved is "bad" the src of reactionFrame is the grumpy image
+		     if (string.match(/(bad)/)) {
+		        reactionFrame.src = "../static/grumpy.jpg";
+		    }
+		    if (reactionFrame.src != "") {
+		      // check that the src is not empty, and then show the frame
+		      reactionFrame.style.visibility="visible";
+		      // the frame is hidden after 3 seconds 
+		      setTimeout(function() {
+		         reactionFrame.style.visibility = "hidden";
+		      }, 3000);
+		    }
     	}
      }
 })
@@ -174,6 +191,19 @@ function update_feed(text){
 	}
 	list_item.innerHTML = text;
 }
+
+function goodReaction(){
+  // send a positive message to iframe1 
+  frame2 = document.getElementById("ifrm1").contentWindow;
+  frame2.postMessage(JSON.stringify({"command": "message", "data": "good"}), '*');
+}
+
+function badReaction() {
+  // send a negative message to iframe1
+  frame  = document.getElementById("ifrm1").contentWindow;
+  frame.postMessage(JSON.stringify({"command": "message", "data": "bad"}), '*');
+}
+
 </script>
 
 
@@ -183,6 +213,8 @@ function update_feed(text){
 <div id="menu">
 	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
+	<button id="goodReaction" class="reaction" onclick="goodReaction()"><img src="../static/smile.jpg"></button>
+        <button id="badReaction" class="reaction" onclick="badReaction()"><img src="../static/sad.jpg"></button>
 	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
 	<div id="feed">
 		<h4>News feed</h4>
@@ -211,6 +243,8 @@ function update_feed(text){
 <div class="box"><iframe id="ifrm2" src="./fourth_frame" height="700" width="49%" align='right'></iframe></div>
 <!-- the frame in which the invite link is displayed -->
 <iframe id="popupLink" src="./popup_link" height="300" width="45%" style="top: 30%; left: 35%; display: block; position: absolute; visibility:hidden"></iframe>
+<!-- the reaction is seen in this iframe -->
+<div class="box"><iframe height="700" width="49%" align='left' id="reaction" src=""></iframe></div>
 </body>
 
 </html>
