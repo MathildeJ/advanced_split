@@ -50,6 +50,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		})
 		.on('viewer_joined', function(session, event) {
 			update_feed("Someone joined your session!");
+			document.getElementById('ignore').style.visibility = "visible";
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
@@ -113,7 +114,7 @@ function ignoreFriend() {
 	yourFrame.style.width = "99%";
 	// change button to acknowledge friend
     	ignoreButton.innerHTML = "Acknowledge Friend";
-	document.getElementById('form_wrapper').style.left="-20%";
+	document.getElementById('form_wrapper').style.left="-14%";
  	// update feed
 	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader is ignoring you!"}), '*');
     } else {
@@ -123,7 +124,7 @@ function ignoreFriend() {
     	yourFrame.style.width = "49%";
     	// we change the button to ignore friend 
     	ignoreButton.innerHTML = "Ignore Friend";
-	document.getElementById('form_wrapper').style.left="-22%";
+	document.getElementById('form_wrapper').style.left="-16%";
 	// update
 	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader stopped ignoring you!"}), '*');
     }
@@ -146,10 +147,6 @@ function closeIFrame(){
 var item = true;
 //update live feed
 function update_feed(text){
-	/*
-	var feed = document.getElementById("feed");
-	feed.innerHTML = text;
-	*/
 	var list = document.getElementById("list");
 	if(item){
 		var list_item = document.getElementById("i1");

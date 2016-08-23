@@ -40,8 +40,9 @@ body {
 #form_wrapper{
 	display: inline-block;
 	width: 400px;
-	position: relative;
-	left: -20%;
+	/*position: relative;*/
+	position: fixed;
+	left: -16%;
 	visibility: hidden; 
 	align-items: flex-start;
 	margin-right: 10px;
@@ -86,12 +87,13 @@ body {
 #menu {
 	align-items: center; 
 	text-align: center;
-	height: 45px;
+	height: 50px;
 }
 
 #ignore {
 	position: relative;
 	float: right;
+	visibility: hidden;
 	background-color: #ea2020;
 	border: 2px solid black;
 	color: black;
@@ -215,7 +217,7 @@ li div {
 	position: relative;
 	float: right;
 	visibility: hidden;
-	max-height: 43px;
+	max-height: 45px;
 }
 
 h4 {
