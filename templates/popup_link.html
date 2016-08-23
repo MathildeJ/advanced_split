@@ -51,6 +51,7 @@
 
     <script type="text/javascript">
     function selectText(containerid) {
+        // function to select the link text on click 
         if (document.selection) {
             var range = document.body.createTextRange();
             range.moveToElementText(document.getElementById(containerid));
@@ -76,17 +77,10 @@
 	// Listen to message from child IFrame window
 	eventer(messageEvent, function (e) {
 	   var string = JSON.stringify(e.data);
-	   console.log("the iframe recieves the message ", e.data);
            if (string.match(/(splitscreen)/g)) {
               console.log("the string was matched", string);
               document.getElementById("invite").innerHTML = string;
-              var linkText = document.createTextNode(string);
-              var linkButton = document.createElement('BUTTON');
-              linkButton.appendChild(linkText);
-              document.body.appendChild(linkButton);
-           } else {
-              console.log("heroku updated and the string was not matched");
-           }
+           } 
 	}, false);
    </script>
 
