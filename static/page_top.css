@@ -140,9 +140,10 @@ body {
 	border: 2px double red;
 	color: black;
 	padding: 3px 7px;
+	/*
 	text-align: center;
 	text-decoration: none;
-	display: inline-block;
+	display: inline-block;*/
 	font-size: 16px;
 	margin: 4px auto;
 	/*height: 25px;
@@ -158,8 +159,6 @@ body {
 }
 */
 #list {
-	/*display: inline-block;
-	text-align: center;*/
 	position: relative;
 	float: left;
 	left: 50%;
@@ -176,8 +175,3 @@ li {
     	margin: 0 5px;
 }
 
-#alignment {
-    height: 100%;
-    vertical-align: middle;
-    display: inline-block; 
-}
