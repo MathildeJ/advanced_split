@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>follower side</title>
 
-<link href="../static/splitscreen.css" rel="stylesheet">
 <link href="../static/page_top.css" rel="stylesheet">
+<link href="../static/splitscreen.css" rel="stylesheet">
 
 <script>
 (function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
@@ -64,7 +64,7 @@ function sendMess(){
 }
 
 window.addEventListener('message', function(e){
-	if (e.origin == "https://surfly-s1.com") {
+	if (e.origin == "https://surfly.com") {
 		var string = JSON.stringify(e.data);
 		console.log(string);
 		if(string.indexOf('cobro_event') && string.indexOf("The leader relocated")!==-1){

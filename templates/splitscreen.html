@@ -81,7 +81,7 @@ function navigate(){
 // event listener
 window.addEventListener('message', function(e){
      var origin = event.origin || event.originalEvent.origin;
-     if (origin == "https://surfly-s1.com") {
+     if (origin == "https://surfly.com") {
         var string = JSON.stringify(e.data);
 
 	if(string.indexOf('cobro_event')){
