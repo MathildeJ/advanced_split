@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		})
 		.on('relocated', function(session, event) {
 			// update feed and send message to the other side
-			update_feed("You relocated to: " + event.url);
+			update_feed("You relocated to: <a href='" + event.url +"'> " + event.url + "</a>");
 			var frame = document.getElementById('ifrm2').contentWindow;
 			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: <a href='" + event.url +"'> " + event.url + "</a>"}), '*');
 		})
@@ -104,7 +104,7 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.charAt(0)=='T'){
-				var new_ph = info.substring(info.indexOf('https')+8, info.length-1);
+				var new_ph = info.substring(info.indexOf('https')+8, info.indexOf('>')-2);
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
 			}
