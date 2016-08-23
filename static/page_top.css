@@ -149,12 +149,13 @@ body {
        position: relative;
        visibility: hidden;
        float: right;
-       margin-top: 0px;
+       margin-top: 3px;
        margin-right: 5px;
-       height: 20px;
-       width: 20px;
+       height: 27px;
+       width: 27px;
        background: transparent;
        border: none;
+       background-image:url('./thumb_down.png');
        background-size: cover;
 }
 
@@ -162,13 +163,13 @@ body {
        position: relative;
        visibility: hidden;
        float: right;
-       margin-top: 0px;
+       margin-top: 3px;
        margin-right: 5px;
-       height: 20px;
-       width: 20px;
+       height: 27px;
+       width: 27px;
        background: transparent;
        border: none;  
-       background-image:url('./thumb_down.png');
+       background-image:url('./thumb_up.png');
        background-size:cover;     
 }
 

@@ -225,7 +225,7 @@ function badReaction() {
 	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<button id="goodReaction" class="reaction" onclick="goodReaction()"></button>
-        <button id="badReaction" class="reaction" onclick="badReaction()"><img src="../static/thumb_down.png"></button>
+        <button id="badReaction" class="reaction" onclick="badReaction()"></button>
 	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
 	<div id="feed">
 		<h4>News feed</h4>
@@ -237,7 +237,7 @@ function badReaction() {
 	<div id="form_wrapper">
 		<form id="nav" action="" method="post">
 			<label style="float:left">
-				<input id="url" type="text" name="url" placeholder="duckduckgo.com"/>
+				<input id="url" type="text" name="url" placeholder="https://duckduckgo.com"/>
 			</label>
 			<label>
 			       <input type="button" class="button" id="submit_button" onclick=sendMess() value="Go!" />
