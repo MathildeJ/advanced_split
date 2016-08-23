@@ -84,14 +84,20 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.indexOf('\\')){ info = info.substring(0, info.length);};
-                        update_feed(info);
+			if(info.indexOf('!')!==-1){
+				console.log('ok: ' + info);
+                        	update_feed(info);
+			}
 		}
 
 		if(string.indexOf("The follower is ignoring you!")!==-1||string.indexOf("The follower stopped ignoring you!")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-                        update_feed(info);
+                        if(info.indexOf('!')!==-1){
+				console.log('ok: ' + info);
+                        	update_feed(info);
+			}
 		}
     	}
      }

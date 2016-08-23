@@ -95,10 +95,10 @@ function ignoreFriend() {
 	// we hide our friend's iframe
 	friendsFrame.style.visibility = "hidden";
 	// we make our iframe the size of the screen
-	yourFrame.style.width = "99%";
+	yourFrame.style.width = "-99%";
 	// change button to acknowledge friend
     	ignoreButton.innerHTML = "Acknowledge Friend";
-	//document.getElementById('form_wrapper').style.left="-30%";
+
 	// update feed
 	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The follower is ignoring you!"}), '*');
     } else {
@@ -108,8 +108,8 @@ function ignoreFriend() {
     	yourFrame.style.width = "49%";
     	// we change the button to ignore friend 
     	ignoreButton.innerHTML = "Ignore Friend";
-	//document.getElementById('form_wrapper').style.left="-32%";
-	// update
+
+	// update feed
 	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The follower stopped ignoring you!"}), '*');
     }
 }
@@ -134,7 +134,7 @@ function update_feed(text){
 <body>
 <div id="menu">
 	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
-	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
+	<button id="ignore" style="margin-left: 50px;" onclick="ignoreFriend()">Ignore Friend</button>
 	<div id="feed">
 		<h4>News feed</h4>
    		<!--<p style="line-height: 0.8; text-align: center; display: inline-block;">Nothing to say yet...</p>-->
@@ -143,7 +143,7 @@ function update_feed(text){
 	 	  <li id="i2" class="list_item"></li>
 		</ul>
 	</div>
-	<div id="form_wrapper" style="left: -2%;">
+	<div id="form_wrapper">
 		<form id="nav" action="" method="post">
 			<label style="float:left">
 				<h3 id="title_bar">Nav bar :</h3>
