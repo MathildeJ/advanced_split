@@ -41,7 +41,7 @@ body {
 	display: inline-block;
 	width: 450px;
 	position: fixed;
-	left: -7%;
+	left: -8%;
 	visibility: hidden; 
 	align-items: flex-start;
 	margin-right: 10px;
@@ -138,9 +138,9 @@ body {
 }
 
 #feed {
-	width: 30%;
+	width: 400%;
 	position: fixed;
-	left: 35%;
+	left: 30%;
 	visibility: hidden;
 	max-height: 45px;
 }
