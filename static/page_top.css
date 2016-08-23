@@ -159,10 +159,6 @@ body {
 }
 */
 
-ul {
-    display: flex;
-    align-items: center;
-}
 
 /*
 #list {
@@ -174,7 +170,7 @@ ul {
 	vertical-align: middle; 
 	display:table-row;
 }
-*/
+
 li {
 	position: relative;
     	float: left;
@@ -186,5 +182,22 @@ li {
     	margin-bottom:6px;
 	height: 15px;
     	line-height: 15px;
+}
+*/
+
+ul {
+    width : 300px;
+    list-style-type: none;
+}
+
+li {
+    min-height : 30px;
+    border-bottom : 1px solid black;
+}
+
+li div {
+    height:30px;
+    display:table-cell;
+    vertical-align : middle;
 }
 
