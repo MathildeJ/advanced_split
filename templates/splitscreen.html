@@ -107,6 +107,7 @@ window.addEventListener('message', function(e){
 				var new_ph = info.substring(info.indexOf('https')+8, info.indexOf('>')-2);
 				if(new_ph.indexOf('/')){ info.substring(0, info.indexOf('/'));}
                         	update_feed(info);
+				console.log(new_ph);
 				document.getElementById('url').placeholder = new_ph;
 			}
 		}
