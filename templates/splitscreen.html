@@ -105,7 +105,7 @@ window.addEventListener('message', function(e){
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.charAt(0)=='T'){
 				var new_ph = info.substring(info.indexOf('https')+8, info.indexOf('>')-2);
-				if(new_ph.indexOf('/'){ info.substring(0, info.indexOf('/'));}
+				if(new_ph.indexOf('/')){ info.substring(0, info.indexOf('/'));}
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
 			}
