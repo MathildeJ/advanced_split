@@ -122,7 +122,7 @@ function ignoreFriend() {
 	// we hide our friend's iframe
 	friendsFrame.style.visibility = "hidden";
 	// we make our iframe the size of the screen
-	yourFrame.style.width = "-199%";
+	yourFrame.style.width = "99%";
 	// change button to acknowledge friend
     	ignoreButton.innerHTML = "Acknowledge Friend";
 
@@ -202,9 +202,9 @@ function badReaction() {
 
 <!-- the iframes -->
 <!-- the follower link is opened in this frame -->
-<div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
+<div class="box"><iframe id="ifrm2" src="" height="700" width="49%" align='left'></iframe></div>
 <!-- the leader link is opened in this frame -->
-<div class="box"><iframe id="ifrm2" src="" height="700" width="49%" align='right'></iframe></div>
+<div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='right'></iframe></div>
 <!-- the reaction is seen in this iframe -->
 <div class="box"><iframe height="700" width="49%" align='left' id="reaction" src="" style="display: block; position: absolute; frameBorder:'0'; visibility:hidden;"></iframe></div>
 
