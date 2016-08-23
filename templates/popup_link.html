@@ -78,8 +78,8 @@
 	   var string = JSON.stringify(e.data);
 	   console.log("the iframe recieves the message ", e.data);
            if (string.match(/(splitscreen)/g)) {
-              console.log("the string was matched");
-              document.getElementById("invite").innerHTML = e.data;
+              console.log("the string was matched", string);
+              document.getElementById("invite").innerHTML = string;
            } else {
               console.log("heroku updated and the string was not matched");
            }
