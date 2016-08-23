@@ -65,7 +65,7 @@ function sendMess(){
 
 window.addEventListener('message', function(e){
         console.log("the origin on the follower side is ", e.origin);
-	if (e.origin == "https://surfly-s1.com") {
+	if (e.origin == "https://surfly.com") {
 		var string = JSON.stringify(e.data);
 		console.log(string);
 		if(string.indexOf('cobro_event') && string.indexOf("The leader relocated")!==-1){
