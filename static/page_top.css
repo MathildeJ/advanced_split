@@ -39,8 +39,7 @@ body {
 
 #form_wrapper{
 	display: inline-block;
-	width: 400px;
-	/*position: relative;*/
+	width: 450px;
 	position: fixed;
 	left: -3%;
 	visibility: hidden; 
@@ -138,87 +137,13 @@ body {
 	display: inline-block;
 }
 
-/*
-#feed {
-	position: relative;
-	float: right;
-	visibility: hidden;
-	border: 2px dotted red;
-	color: black;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 12px;
-	margin: 0px auto;
-	height: 30px;
-	max-width: 450px;
-	text-align: left;
-	display: inline-block;
-
- 	margin: 2em;
- 	width: 10em;
- 	padding: 5px;
-}
-*/
-/*
-#list {
-	list-style-type: none;
-	padding: 0;
-	margin: 0 auto;
-}
-*/
-
-
-/*
-#list {
-	position: relative;
-	float: left;
-	left: 50%;
-	padding: 0;
-	list-style: none;
-	vertical-align: middle; 
-	display:table-row;
-}
-
-li {
-	position: relative;
-    	float: left;
-    	right: 50%;
-    	margin: 0 5px;
-	border-bottom: 1px solid red;
-    	border-spacing:20px;
-    	text-align:left;
-    	margin-bottom:6px;
-	height: 15px;
-    	line-height: 15px;
-}
-*/
-
-/*
-ul {
-    max-width : 450px;
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    max-height : 5px;
-    border-bottom : 1px double red;
-    text-align:left;
-}
-
-li div {
-    height:5px;
-    display:table-cell;
-    vertical-align : middle;
-}
-*/
-
 #feed {
 	width: 30%;
 	position: relative;
 	float: right;
 	visibility: hidden;
 	max-height: 45px;
+	border: 1px double #fe3f5b;
 }
 
 h4 {
@@ -228,7 +153,7 @@ h4 {
   margin: 0px;
   padding: 0px;
   margin-bottom: 0px;
-  background: linear-gradient(to bottom right, red, yellow);
+  background: linear-gradient(to bottom right, #fe3f5b, #190609);
 }
  
 ul {

@@ -76,7 +76,10 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-                        update_feed(info);
+                        if(info.indexOf('!')!==-1){
+				console.log('ok: ' + info);
+                        	update_feed(info);
+			}
 		}
 	}
 })
