@@ -35,21 +35,25 @@ window.addEventListener('DOMContentLoaded', function() {
 			// append the page url to the session id
 			inviteLink = pageUrl.concat(sessionID);
 
-			var inviteButton = document.getElementById("invite");
-			inviteButton.style.visibility = 'visible';
+			// make the elements linked to the session visible
+			document.getElementById("invite").style.visibility = 'visible';
 			document.getElementById('exit_button').style.visibility="visible";
 			document.getElementById('invite').style.visibility = "visible";
 			document.getElementById('form_wrapper').style.visibility = "visible";
 			document.getElementById('feed').style.visibility = "visible";
 			document.getElementById('ignore').style.visibility = "visible";
+
+			// store session
 			sess = session;	
 		})
 		.on('relocated', function(session, event) {
+			// update feed and send message to the other side
 			update_feed("You relocated to: " + event.url);
 			var frame = document.getElementById('ifrm2').contentWindow;
 			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
 		})
 		.on('viewer_joined', function(session, event) {
+			// update feed
 			update_feed("Someone joined your session!");
 		})
 		.on('session_ended', function(session) {
@@ -59,16 +63,21 @@ window.addEventListener('DOMContentLoaded', function() {
      }
    });
  });
+
+// navigate to a new url
 function sendMess(){
 	var url = document.getElementById('url').value;
 	sess.relocate(url);
 }
 
+// event listener
 window.addEventListener('message', function(e){
      var origin = event.origin || event.originalEvent.origin;
      if (origin == "https://surfly-s1.com") {
         var string = JSON.stringify(e.data);
+
 	if(string.indexOf('cobro_event')){
+		// the 2nd follower link
 		if (string.match(/[0-9]{3}[-][0-9]{3}[-][0-9]{3}/)) {
                         // extract the follower link from the message 
 			var index = string.indexOf('https');
@@ -79,6 +88,7 @@ window.addEventListener('message', function(e){
 			document.getElementById('ifrm2').src = flink;
 		}
 	
+		// update feed
 		if(string.indexOf("The follower relocated")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
@@ -90,6 +100,7 @@ window.addEventListener('message', function(e){
 			}
 		}
 
+		// update feed
 		if(string.indexOf("The follower is ignoring you!")!==-1||string.indexOf("The follower stopped ignoring you!")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
@@ -107,7 +118,7 @@ function exitSession(){
   sess.end('https://www.surfly.com');
 }
 
-// ignore friend button
+// ignore/acknowledge friend button
 function ignoreFriend() {
     var friendsFrame = document.getElementById("ifrm2");
     var yourFrame = document.getElementById("ifrm1");

@@ -139,8 +139,10 @@ body {
 
 #feed {
 	width: 30%;
+	position: fixed;
+	/*
 	position: relative;
-	float: right;
+	float: right;*/
 	visibility: hidden;
 	max-height: 45px;
 }
