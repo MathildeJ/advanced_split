@@ -141,7 +141,7 @@ body {
 #feed {
 	width: 50%;
 	position: fixed;
-	left: 21%;
+	left: 25%;
 	visibility: hidden;
 	max-height: 48px;
 }

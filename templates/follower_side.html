@@ -187,7 +187,7 @@ function badReaction() {
 	 	  <li id="i2" class="list_item"></li>
 		</ul>
 	</div>
-	<div id="form_wrapper" style="left: -9%;">
+	<div id="form_wrapper" style="">
 		<form id="nav" action="" method="post">
 			<label style="float:left">
 				<input id="url" type="text" name="url" placeholder="google.com"/>
@@ -212,7 +212,7 @@ function badReaction() {
 pageUrl  = document.location.href;
 var idIndex = pageUrl.indexOf("screen");
 var sessionID = pageUrl.substring(idIndex+6);
-var fullUrl =  "https://surfly-s1.com".concat(sessionID);
+var fullUrl =  "https://surfly.com".concat(sessionID);
 // set the url of the first frame to the follower link
 document.getElementById('ifrm1').src = fullUrl;
 </script>
