@@ -81,6 +81,7 @@ window.addEventListener('message', function(e){
                         	update_feed(info);
 			}
 		}
+			var reactionFrame = document.getElementById('reaction');
 		    // if the data recieved is "good" set the source of reactionFrame to the happy image
 		    if (string.match(/(good)/)) {
 		        reactionFrame.src = "../static/happycow.jpg";
