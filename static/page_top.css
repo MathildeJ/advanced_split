@@ -168,6 +168,7 @@ body {
        width: 20px;
        background: transparent;
        border: none;  
+       background-image:url('./thumb_down.png');
        background-size:cover;     
 }
 
