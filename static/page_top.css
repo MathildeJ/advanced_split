@@ -140,6 +140,7 @@ body {
 #feed {
 	width: 30%;
 	position: fixed;
+	left: 30%;
 	/*
 	position: relative;
 	float: right;*/
@@ -154,7 +155,7 @@ h4 {
   margin: 0px;
   padding: 0px;
   margin-bottom: 0px;
-  background: linear-gradient(to bottom right, red, yellow);
+  background: linear-gradient(to bottom right, #FC2F03, #853726);
 }
  
 ul {
