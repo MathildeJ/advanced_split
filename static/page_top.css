@@ -137,16 +137,17 @@ body {
 #feed {
 	position: relative;
 	float: right;
+	visibility: hidden;
 	border: 2px dotted red;
 	color: black;
-	padding: 0;
+	padding: 0px;
 	/*
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;*/
 	font-size: 14px;
-	margin: 4px auto;
-	height: 25px;
+	margin: 0px auto;
+	max-height: 30px;
 	/*max-width: 150px;*/
 	max-width: 450px;
 	text-align: left;
@@ -189,17 +190,17 @@ li {
 ul {
     max-width : 450px;
     list-style-type: none;
-    /*padding: 0;*/
+    padding: 0;
 }
 
 li {
-    max-height : 12px;
-    border-bottom : 2px double red;
+    max-height : 10px;
+    border-bottom : 1px double red;
     text-align:left;
 }
 
 li div {
-    height:12px;
+    height:10px;
     display:table-cell;
     vertical-align : middle;
 }
