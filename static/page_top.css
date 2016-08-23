@@ -148,8 +148,8 @@ body {
 	margin: 4px auto;
 	/*height: 25px;
 	max-width: 150px;*/
-	overflow: hidden;
 	max-width: 450px;
+	text-align: left;
 }
 
 /*
@@ -189,16 +189,17 @@ li {
 ul {
     max-width : 450px;
     list-style-type: none;
+    padding: 0;
 }
 
 li {
-    min-height : 10px;
+    max-height : 12px;
     border-bottom : 2px double red;
     text-align:left;
 }
 
 li div {
-    height:10px;
+    height:12px;
     display:table-cell;
     vertical-align : middle;
 }
