@@ -180,6 +180,7 @@ body {
 	position: absolute; 
 	frameBorder:'0'; 
 	visibility:hidden;
+        border:0 none;
 }
 
 h4 {
