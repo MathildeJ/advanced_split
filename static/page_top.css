@@ -228,7 +228,7 @@ h4 {
   margin: 0px;
   padding: 0px;
   margin-bottom: 0px;
-  background-color: linear-gradient(to bottom right, red, yellow);
+  background: linear-gradient(to bottom right, red, yellow);
 }
  
 ul {
