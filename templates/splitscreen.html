@@ -191,7 +191,9 @@ function update_feed(text){
 		var list_item = document.getElementById("i2");
 		item = true;
 	}
-	list_item.innerHTML = text;
+	if(text!==document.getElementById("i1").innerHTML && text!==document.getElementById("i2").innerHTML){
+		list_item.innerHTML = text;
+	}
 }
 
 function goodReaction(){
