@@ -86,7 +86,7 @@ body {
 #menu {
 	align-items: center; 
 	text-align: center;
-	height: 35px;
+	height: 40px;
 }
 
 #ignore {
@@ -218,7 +218,7 @@ li div {
 	max-height: 35px;
 }
 
-h2 {
+h4 {
   font: 400 40px/1.5 Helvetica, Verdana, sans-serif;
   margin: 0px;
   padding: 0px;
