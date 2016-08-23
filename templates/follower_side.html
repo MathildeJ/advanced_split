@@ -34,6 +34,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('exit_button').style.visibility="visible";
 			document.getElementById('form_wrapper').style.visibility = "visible";
 			document.getElementById('feed').style.visibility = "visible";
+			document.getElementById('ignore').style.visibility = "visible";
 			
 			sess = session;
 	     	})
@@ -44,7 +45,6 @@ window.addEventListener('DOMContentLoaded', function() {
 		})
 		.on('viewer_joined', function(session, event) {
 			update_feed("Someone joined your session!");
-			document.getElementById('ignore').style.visibility = "visible";
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
@@ -98,7 +98,7 @@ function ignoreFriend() {
 	yourFrame.style.width = "99%";
 	// change button to acknowledge friend
     	ignoreButton.innerHTML = "Acknowledge Friend";
-	document.getElementById('form_wrapper').style.left="-30%";
+	//document.getElementById('form_wrapper').style.left="-30%";
 	// update feed
 	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The follower is ignoring you!"}), '*');
     } else {
@@ -108,16 +108,24 @@ function ignoreFriend() {
     	yourFrame.style.width = "49%";
     	// we change the button to ignore friend 
     	ignoreButton.innerHTML = "Ignore Friend";
-	document.getElementById('form_wrapper').style.left="-32%";
+	//document.getElementById('form_wrapper').style.left="-32%";
 	// update
 	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The follower stopped ignoring you!"}), '*');
     }
 }
 
+var item = true;
 //update live feed
 function update_feed(text){
-	var feed = document.getElementById("feed");
-	feed.innerHTML = text;
+	var list = document.getElementById("list");
+	if(item){
+		var list_item = document.getElementById("i1");
+		item = false;
+	} else {
+		var list_item = document.getElementById("i2");
+		item = true;
+	}
+	list_item.innerHTML = text;
 }
 </script>
 
@@ -128,11 +136,14 @@ function update_feed(text){
 	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<div id="feed">
-		<div id="info_feed">
-   			<p>Nothing to say yet...</p> 
- 		</div>
+		<h4>News feed</h4>
+   		<!--<p style="line-height: 0.8; text-align: center; display: inline-block;">Nothing to say yet...</p>-->
+		<ul id="list">
+		  <li id="i1" class="list_item"></li>
+	 	  <li id="i2" class="list_item"></li>
+		</ul>
 	</div>
-	<div id="form_wrapper">
+	<div id="form_wrapper" style="left: -1%;">
 		<form id="nav" action="" method="post">
 			<label style="float:left">
 				<h3 id="title_bar">Nav bar :</h3>

@@ -41,6 +41,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('invite').style.visibility = "visible";
 			document.getElementById('form_wrapper').style.visibility = "visible";
 			document.getElementById('feed').style.visibility = "visible";
+			document.getElementById('ignore').style.visibility = "visible";
 			sess = session;	
 		})
 		.on('relocated', function(session, event) {
@@ -50,7 +51,6 @@ window.addEventListener('DOMContentLoaded', function() {
 		})
 		.on('viewer_joined', function(session, event) {
 			update_feed("Someone joined your session!");
-			document.getElementById('ignore').style.visibility = "visible";
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
