@@ -137,9 +137,9 @@ body {
 #feed {
 	position: relative;
 	float: right;
-	border: 2px dotted black;
+	border: 1px dotted red;
 	color: black;
-	padding: 3px 7px;
+	padding: 0;
 	/*
 	text-align: center;
 	text-decoration: none;
@@ -149,6 +149,7 @@ body {
 	/*height: 25px;
 	max-width: 150px;*/
 	overflow: hidden;
+	max-width: 450px;
 }
 
 /*
@@ -186,17 +187,17 @@ li {
 */
 
 ul {
-    width : 300px;
+    max-width : 450px;
     list-style-type: none;
 }
 
 li {
-    min-height : 30px;
-    border-bottom : 1px solid black;
+    min-height : 25px;
+    border-bottom : 2px double black;
 }
 
 li div {
-    height:30px;
+    height:25px;
     display:table-cell;
     vertical-align : middle;
 }
