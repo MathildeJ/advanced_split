@@ -67,8 +67,11 @@ window.addEventListener('DOMContentLoaded', function() {
  });
 
 // navigate to a new url
-function sendMess(){
+function navigate(){
 	var url = document.getElementById('url').value;
+	if(document.getElementById('url').placeholder){
+		url = document.getElementById('url').placeholder;
+	}
 	if(url.indexOf('https')==-1){
 		url = 'https://' + url;
 	}
@@ -240,7 +243,7 @@ function badReaction() {
 				<input id="url" type="text" name="url" placeholder="duckduckgo.com"/>
 			</label>
 			<label>
-			       <input type="button" class="button" id="submit_button" onclick=sendMess() value="Go!" />
+			       <input type="button" class="button" id="submit_button" onclick=navigate() value="Go!" />
 			</label>
 		</form>
 	</div>
