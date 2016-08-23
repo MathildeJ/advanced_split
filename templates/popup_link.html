@@ -79,7 +79,7 @@
 	eventer(messageEvent, function (e) {
 	   var string = JSON.stringify(e.data);
 	   console.log("the iframe recieves the message ", e.data);
-           if (string.match(/(https)/)) {
+           if (string.match(/(https)[0-9]{3}[-][0-9]{3}[-][0-9]{3}/)) {
               console.log("the string was matched");
               document.getElementById("invite").innerHTML = e.data;
            } else {
