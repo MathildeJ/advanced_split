@@ -101,11 +101,12 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			//if(info.indexOf('\\')){ info = info.substring(0, info.length);};
 			if(info.charAt(0)=='T'){
+				var new_ph = string.substring(string.indexOf('https'));
+				console.log(new_ph);
                         	update_feed(info);
+				document.getElementById('ulr').placeholder = new_ph;
 			}
-                        //update_feed(info);
 		}
 
 		// update feed
