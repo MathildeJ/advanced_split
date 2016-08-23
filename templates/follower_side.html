@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (init.success) {
 	if(!Surfly.currentSession){
 	    	s = Surfly.session();
-	        s._settings.url = "https://agile-ocean-85913.herokuapp.com/follower_side_start";
+	        s._settings.url = "https://www.google.co.uk";
 		s.on('session_started', function(session) {
                         // get the follower link
 			var retrievedLink = session.followerLink;
@@ -64,6 +64,7 @@ function sendMess(){
 }
 
 window.addEventListener('message', function(e){
+        console.log("the origin on the follower side is ", e.origin);
 	if (e.origin == "https://surfly-s1.com") {
 		var string = JSON.stringify(e.data);
 		console.log(string);
@@ -213,7 +214,7 @@ function badReaction() {
 pageUrl  = document.location.href;
 var idIndex = pageUrl.indexOf("screen");
 var sessionID = pageUrl.substring(idIndex+6);
-var fullUrl =  "https://surfly-s1.com".concat(sessionID);
+var fullUrl =  "https://surfly.com".concat(sessionID);
 // set the url of the first frame to the follower link
 document.getElementById('ifrm1').src = fullUrl;
 </script>

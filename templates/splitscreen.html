@@ -77,6 +77,7 @@ function sendMess(){
 // event listener
 window.addEventListener('message', function(e){
      var origin = event.origin || event.originalEvent.origin;
+     console.log("the origin of the mesages on splitscreen is ", origin);
      if (origin == "https://surfly-s1.com") {
         var string = JSON.stringify(e.data);
 
