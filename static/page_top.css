@@ -144,13 +144,16 @@ body {
 	/*
 	text-decoration: none;
 	display: inline-block;
-	font-size: 12px;*/
+	font-size: 12px;
 	margin: 0px auto;
 	height: 30px;
-	/*max-width: 150px;*/
-	max-width: 450px;
+	max-width: 450px;*/
 	text-align: left;
 	display: inline-block;
+
+ 	margin: 2em;
+ 	width: 10em;
+ 	padding: 5px;
 }
 
 /*
