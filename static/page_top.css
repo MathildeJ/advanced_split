@@ -42,7 +42,7 @@ body {
 	width: 400px;
 	/*position: relative;*/
 	position: fixed;
-	left: -10%;
+	left: -7%;
 	visibility: hidden; 
 	align-items: flex-start;
 	margin-right: 10px;
@@ -108,7 +108,8 @@ body {
 	margin-right: 5px;
         font-weight: bold;
 	border-radius: 8px;
-	height: 27px;
+	height: 27px;	
+	margin-left: 15px;
 }
 
 #invite {
@@ -127,7 +128,7 @@ body {
 	cursor: pointer;
 	margin-top: 3px;
 	margin-right: 5px;
-	margin-left: 10px;
+	margin-left: 5px;
         font-weight: bold;
 	border-radius: 8px;
 	height: 27px;
@@ -215,7 +216,7 @@ li div {
 #feed {
 	width: 450px;
 	position: relative;
-	/*float: right;*/
+	float: right;
 	visibility: hidden;
 	max-height: 45px;
 	text-align: center;
