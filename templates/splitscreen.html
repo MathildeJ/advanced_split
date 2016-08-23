@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			// update feed and send message to the other side
 			update_feed("You relocated to: " + event.url);
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: <a href='" + event.url +"'> " + event.url + "</a>"}), '*');
 		})
 		.on('viewer_joined', function(session, event) {
 			// update feed
@@ -70,7 +70,8 @@ window.addEventListener('DOMContentLoaded', function() {
 function navigate(){
 	var url = document.getElementById('url').value;
 	console.log(url);
-	if(!url && document.getElementById('url').placeholder){
+	if(url=="" && document.getElementById('url').placeholder){
+		console.log('ok');
 		url = document.getElementById('url').placeholder;
 	}
 	if(url.indexOf('https')==-1){
