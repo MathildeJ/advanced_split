@@ -214,23 +214,6 @@ function badReaction() {
 
 </script>
 
-<script type="application/javascript">
-
-function resizeIFrameToFitContent( iFrame ) {
-
-    iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
-    iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
-}
-
-window.addEventListener('DOMContentReady', function(e) {
-
-    var iFrame = document.getElementById( 'reaction' );
-    resizeIFrameToFitContent( iFrame );
-
-} );
-
-</script>
-
 <iframe src="usagelogs/default.aspx" id="iFrame1"></iframe>
 
 </head>
