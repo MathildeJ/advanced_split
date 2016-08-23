@@ -142,15 +142,15 @@ body {
 	color: black;
 	padding: 0px;
 	/*
-	text-align: center;
 	text-decoration: none;
-	display: inline-block;*/
-	font-size: 14px;
+	display: inline-block;
+	font-size: 12px;*/
 	margin: 0px auto;
-	max-height: 30px;
+	height: 30px;
 	/*max-width: 150px;*/
 	max-width: 450px;
 	text-align: left;
+	display: inline-block;
 }
 
 /*
@@ -194,13 +194,13 @@ ul {
 }
 
 li {
-    max-height : 10px;
+    max-height : 5px;
     border-bottom : 1px double red;
     text-align:left;
 }
 
 li div {
-    height:10px;
+    height:5px;
     display:table-cell;
     vertical-align : middle;
 }
