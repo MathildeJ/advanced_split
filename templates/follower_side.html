@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>follower side</title>
 
-<link href="../static/page_top.css" rel="stylesheet">
 <link href="../static/splitscreen.css" rel="stylesheet">
+<link href="../static/page_top.css" rel="stylesheet">
 
 <script>
 (function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
@@ -57,9 +57,15 @@ window.addEventListener('DOMContentLoaded', function() {
  });
 
 
-function sendMess(){
-        // relocate to the url entered in the form
+// navigate to a new url
+function navigate(){
 	var url = document.getElementById('url').value;
+	if(document.getElementById('url').placeholder){
+		url = document.getElementById('url').placeholder;
+	}
+	if(url.indexOf('https')==-1){
+		url = 'https://' + url;
+	}
 	sess.relocate(url);
 }
 
@@ -72,7 +78,7 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.charAt(0)=='T'){
-				var new_ph = info.substring(info.indexOf('https'));
+				var new_ph = info.substring(info.indexOf('https')+8);
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
 			}
@@ -82,7 +88,6 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
                         if(info.indexOf('!')!==-1){
-				console.log('ok: ' + info);
                         	update_feed(info);
 			}
 		}
@@ -193,7 +198,7 @@ function badReaction() {
 				<input id="url" type="text" name="url" placeholder="google.com"/>
 			</label>
 			<label>
-			       <input type="button" class="button" id="submit_button" onclick=sendMess() value="Go!" />
+			       <input type="button" class="button" id="submit_button" onclick=navigate() value="Go!" />
 			</label>
 		</form>
 	</div>

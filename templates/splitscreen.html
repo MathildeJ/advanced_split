@@ -102,8 +102,7 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.charAt(0)=='T'){
-				var new_ph = info.substring(info.indexOf('https'));
-				console.log(new_ph);
+				var new_ph = info.substring(info.indexOf('https')+8);
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
 			}
@@ -115,7 +114,6 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
                         if(info.indexOf('!')!==-1){
-				console.log('ok: ' + info);
                         	update_feed(info);
 			}
 		}
