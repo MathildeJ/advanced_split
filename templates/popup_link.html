@@ -82,8 +82,8 @@
               document.getElementById("invite").innerHTML = string;
               var linkText = document.createTextNode(string);
               var linkButton = document.createElement('BUTTON');
-              linkButton.append(linkText);
-              document.body.append(linkButton);
+              linkButton.appendChild(linkText);
+              document.body.appendChild(linkButton);
            } else {
               console.log("heroku updated and the string was not matched");
            }
