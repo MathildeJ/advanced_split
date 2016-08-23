@@ -126,11 +126,9 @@ function ignoreFriend() {
 
     if(ignoreButton.innerHTML=="Ignore Friend"){
 	// we hide our friend's iframe
-	//friendsFrame.style.visibility = "hidden";
-	yourFrame.style.visibility = "hidden";
+	friendsFrame.style.visibility = "hidden";
 	// we make our iframe the size of the screen
-	//yourFrame.style.width = "99%";
-	friendsFrame.style.width = "99%";
+	yourFrame.style.width = "99%";
 	// change button to acknowledge friend
     	ignoreButton.innerHTML = "Acknowledge Friend";
 
@@ -138,11 +136,9 @@ function ignoreFriend() {
 	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader is ignoring you!"}), '*');
     } else {
 	// we show our friend's iframe
-	//friendsFrame.style.visibility = "visible";
-	yourFrame.style.visibility = "visible";
+	friendsFrame.style.visibility = "visible";
     	// we shrink our frame
-    	//yourFrame.style.width = "49%";
-	friendsFrame.style.width = "49%";
+    	yourFrame.style.width = "49%";
     	// we change the button to ignore friend 
     	ignoreButton.innerHTML = "Ignore Friend";
 
