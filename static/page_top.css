@@ -140,7 +140,7 @@ body {
 #feed {
 	width: 45%;
 	position: fixed;
-	left: 30%;
+	left: 20%;
 	visibility: hidden;
 	max-height: 45px;
 }
@@ -207,5 +207,21 @@ li {
  
 li:last-child {
   border: none;
+}
+
+::-webkit-input-placeholder {
+   color: red;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: red;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: red;  
+}
+
+:-ms-input-placeholder {  
+   color: red;  
 }
 
