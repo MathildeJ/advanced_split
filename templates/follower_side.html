@@ -72,7 +72,7 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.charAt(0)=='T'){
-				var new_ph = info.substring(string.indexOf('https'));
+				var new_ph = info.substring(info.indexOf('https'));
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
 			}

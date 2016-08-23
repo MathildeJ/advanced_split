@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Splitscreen</title>
 
-<link href="../static/splitscreen.css" rel="stylesheet">
 <link href="../static/page_top.css" rel="stylesheet">
+<link href="../static/splitscreen.css" rel="stylesheet">
 
 <script>
 (function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
@@ -102,7 +102,8 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.charAt(0)=='T'){
-				var new_ph = info.substring(string.indexOf('https'));
+				var new_ph = info.substring(info.indexOf('https'));
+				console.log(new_ph);
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
 			}
