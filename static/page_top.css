@@ -210,7 +210,11 @@ li div {
 */
 
 #feed {
-	width: 200px;
+	width: 300px;
+	position: relative;
+	float: right;
+	visibility: hidden;
+	font-size: 12px;
 }
 
 h2 {
