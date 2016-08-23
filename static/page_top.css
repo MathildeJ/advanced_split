@@ -42,7 +42,7 @@ body {
 	width: 400px;
 	/*position: relative;*/
 	position: fixed;
-	left: -4%;
+	left: -3%;
 	visibility: hidden; 
 	align-items: flex-start;
 	margin-right: 10px;
@@ -228,7 +228,7 @@ h4 {
   margin: 0px;
   padding: 0px;
   margin-bottom: 0px;
-  color: linear-gradient(to bottom right, red, yellow);
+  background-color: linear-gradient(to bottom right, red, yellow);
 }
  
 ul {
