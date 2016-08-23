@@ -86,6 +86,7 @@ body {
 #menu {
 	align-items: center; 
 	text-align: center;
+	height: 35px;
 }
 
 #ignore {
@@ -105,7 +106,7 @@ body {
 	margin-right: 5px;
         font-weight: bold;
 	border-radius: 8px;
-	height: 35px;
+	height: 27px;
 }
 
 #invite {
