@@ -34,6 +34,8 @@ window.addEventListener('DOMContentLoaded', function() {
 			var pageUrl = document.location.href;
 			// append the page url to the session id
 			inviteLink = pageUrl.concat(sessionID);
+                        var popupWindow = document.getElementById("popupLink").contentWindow;
+                        popupWindow.postMessage(inviteLink, "*");
 
 			// make the elements linked to the session visible
 			document.getElementById("invite").style.visibility = 'visible';
