@@ -103,9 +103,8 @@ window.addEventListener('message', function(e){
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.charAt(0)=='T'){
 				var new_ph = string.substring(string.indexOf('https'));
-				console.log(new_ph);
                         	update_feed(info);
-				document.getElementById('ulr').placeholder = new_ph;
+				document.getElementById('url').placeholder = new_ph;
 			}
 		}
 
