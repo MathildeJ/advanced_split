@@ -137,7 +137,7 @@ body {
 #feed {
 	position: relative;
 	float: right;
-	border: 2px dotted red;
+	border: 2px double red;
 	color: black;
 	padding: 3px 7px;
 	text-align: center;
@@ -172,4 +172,10 @@ li {
     	float: left;
     	right: 50%;
     	margin: 0 5px;
+}
+
+#alignment {
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block; 
 }
