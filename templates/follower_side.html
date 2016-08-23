@@ -90,15 +90,15 @@ function exitSession(){
 
 // ignore friend button
 function ignoreFriend() {
-    var yourFrame = document.getElementById("ifrm2");
     var friendsFrame = document.getElementById("ifrm1");
+    var yourFrame = document.getElementById("ifrm2");
     var ignoreButton = document.getElementById("ignore");
 
     if(ignoreButton.innerHTML=="Ignore Friend"){
 	// we hide our friend's iframe
 	friendsFrame.style.visibility = "hidden";
 	// we make our iframe the size of the screen
-	yourFrame.style.width = "-99%";
+	yourFrame.style.width = "-149%";
 	// change button to acknowledge friend
     	ignoreButton.innerHTML = "Acknowledge Friend";
 
@@ -140,7 +140,6 @@ function update_feed(text){
 	<button id="ignore" style="margin-left: 50px;" onclick="ignoreFriend()">Ignore Friend</button>
 	<div id="feed">
 		<h4>News feed</h4>
-   		<!--<p style="line-height: 0.8; text-align: center; display: inline-block;">Nothing to say yet...</p>-->
 		<ul id="list">
 		  <li id="i1" class="list_item"></li>
 	 	  <li id="i2" class="list_item"></li>
