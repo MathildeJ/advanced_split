@@ -95,10 +95,7 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			//if(info.indexOf('\\')){ info = info.substring(0, info.length);};
-			if(info.indexOf('\\')){
-                        	update_feed(info);
-			}
+			if(info.indexOf('\\')){ info = info.substring(0, info.length);};
                         update_feed(info);
 		}
 
@@ -222,7 +219,7 @@ function badReaction() {
 	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<button id="goodReaction" class="reaction" onclick="goodReaction()"><img src="../static/redsmile.png"></button>
-        <button id="badReaction" class="reaction" onclick="badReaction()"><img src="../static/redsad.jpg"></button>
+        <button id="badReaction" class="reaction" onclick="badReaction()"><img src="../static/sad.jpg"></button>
 	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
 	<div id="feed">
 		<h4>News feed</h4>
