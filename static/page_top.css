@@ -42,7 +42,7 @@ body {
 	width: 400px;
 	/*position: relative;*/
 	position: fixed;
-	left: -7%;
+	left: -5%;
 	visibility: hidden; 
 	align-items: flex-start;
 	margin-right: 10px;
@@ -87,7 +87,7 @@ body {
 #menu {
 	align-items: center; 
 	text-align: center;
-	height: 50px;
+	height: 55px;
 }
 
 #ignore {
@@ -109,7 +109,7 @@ body {
         font-weight: bold;
 	border-radius: 8px;
 	height: 27px;	
-	margin-left: 15px;
+	margin-left: 25px;
 }
 
 #invite {
