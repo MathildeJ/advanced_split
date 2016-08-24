@@ -22,13 +22,14 @@ l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
 <script>
 var sess;
 var inviteLink;
+var lastUrl;
 var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true, set_to_smallest: false};
 window.addEventListener('DOMContentLoaded', function() {
   Surfly.init(settings, function(init) {
     if (init.success) {
       	if(!Surfly.currentSession){
 	      s = Surfly.session();
-	      s._settings.url = "https://www.google.com";
+	      s._settings.url = "https://www.duckduckgo.com";
 	      s.on('session_started', function(session) {
 		       // get the session id from the follower link
 			var followerLink = session.followerLink;
@@ -49,26 +50,36 @@ window.addEventListener('DOMContentLoaded', function() {
 
                         window.history.pushState('followerUrl',"", inviteLink);
                        
-			// make the elements linked to the session visible
-			document.getElementById('exit_button').style.visibility="visible";
+			// make the nav bar visible
 			document.getElementById('form_wrapper').style.visibility = "visible";
-			document.getElementById('feed').style.visibility = "visible";
-			document.getElementById('ignore').style.visibility = "visible";
-			document.getElementById('badReaction').style.visibility = "visible";
-			document.getElementById('goodReaction').style.visibility = "visible";
 
 			// store session
 			sess = session;	
 		})
 		.on('relocated', function(session, event) {
-			// update feed and send message to the other side
-			update_feed("You relocated to: <a href='" + event.url +"'> " + event.url + "</a>");
+			// send message to the other side
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: <a href='" + event.url +"' >" + event.url + "</a>"}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
+			// store current url
+			lastUrl = event.url;
 		})
 		.on('viewer_joined', function(session, event) {
 			// update feed
 			update_feed("Someone joined your session!");
+			// make menu elements visible
+			document.getElementById('feed').style.visibility = "visible";
+			document.getElementById('ignore').style.visibility = "visible";
+			document.getElementById('badReaction').style.visibility = "visible";
+			document.getElementById('goodReaction').style.visibility = "visible";
+			document.getElementById('exit_button').style.visibility="visible";
+			
+			// send current link to other side
+			if(lastUrl){
+				setTimeout(function(){
+					var frame = document.getElementById('ifrm1').contentWindow;
+					frame.postMessage(JSON.stringify({"command": "message", "data": "Current url: " + lastUrl}), '*');
+				}, 2000);
+			}
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
@@ -110,14 +121,13 @@ window.addEventListener('message', function(e){
 		}
 	
 		// update feed for the follower relocated
-		if(string.indexOf("Your friend relocated")!==-1){
+		if(string.indexOf("The follower relocated")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			if(info.charAt(0)=='T'){
-				var new_ph = info.substring(info.indexOf('https')+8, info.indexOf('>')-2);
+			if(info.charAt(0)==='T'){
+				var new_ph = info.substring(info.indexOf('https')+8);
 				//if(new_ph.indexOf('/')!==-1){ new_ph = new_ph.substring(0, new_ph.indexOf('/'));}
-                        	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
 			}
 		}
@@ -175,7 +185,7 @@ function ignoreFriend() {
     	ignoreButton.innerHTML = "Acknowledge Friend";
 
  	// update feed
-	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader is ignoring you!"}), '*');
+	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "Your friend is ignoring you!"}), '*');
     } else {
 	// we show our friend's iframe
 	friendsFrame.style.visibility = "visible";
@@ -185,25 +195,14 @@ function ignoreFriend() {
     	ignoreButton.innerHTML = "Ignore Friend";
 
 	// update feed 
-	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader stopped ignoring you!"}), '*');
+	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "Your friend stopped ignoring you!"}), '*');
     }
 }
 
-
-var item = true;
 //update live feed
 function update_feed(text){
-	var list = document.getElementById("list");
-	if(item){
-		var list_item = document.getElementById("i1");
-		item = false;
-	} else {
-		var list_item = document.getElementById("i2");
-		item = true;
-	}
-	if(text!==document.getElementById("i1").innerHTML && text!==document.getElementById("i2").innerHTML){
-		list_item.innerHTML = text;
-	}
+	var news = document.getElementById("news_feed");
+	news.innerHTML = text;
 }
 
 function goodReaction(){
@@ -231,11 +230,7 @@ function badReaction() {
 	<button id="goodReaction" class="reaction" onclick="goodReaction()"></button>
         <button id="badReaction" class="reaction" onclick="badReaction()"></button>
 	<div id="feed">
-		<h4>News feed</h4>
-		<ul id="list">
-		  <li id="i1" class="list_item"></li>
-	 	  <li id="i2" class="list_item"></li>
-		</ul>
+		<p id="news_feed"></p>
 	</div>
 	<div id="form_wrapper">
 		<form id="nav" action="" method="post">
@@ -263,6 +258,13 @@ $(document).ready(function(){
 	$('#url').focus(function() { 
   		$(this).val(''); 
 	});
+	$('#url').keypress(function(e){
+		if (e.keyCode == 13){
+			e.preventDefault();
+			$('#submit_button').click();
+		}
+	});
+
 });
 </script>
 </body>

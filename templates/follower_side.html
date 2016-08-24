@@ -35,19 +35,20 @@ window.addEventListener('DOMContentLoaded', function() {
 			// we send the link to the first frame (where a Surfly session is already started)
 			frame.postMessage(JSON.stringify({"command": "message", "data": retrievedLink}), '*');
 
-			document.getElementById('exit_button').style.visibility="visible";
-			document.getElementById('form_wrapper').style.visibility = "visible";
+			// make menu elements visible
 			document.getElementById('feed').style.visibility = "visible";
 			document.getElementById('ignore').style.visibility = "visible";
 			document.getElementById('badReaction').style.visibility = "visible";
 			document.getElementById('goodReaction').style.visibility = "visible";
+			document.getElementById('exit_button').style.visibility="visible";
+			document.getElementById('form_wrapper').style.visibility = "visible";
 			
+			// store session
 			sess = session;
 	     	})
 		.on('relocated', function(session, event) {
-			update_feed("You relocated to: <a href='" + event.url +"'> " + event.url + "</a>");
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: <a href='" + event.url +"' >" + event.url + "</a>"}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: " + event.url }), '*');
 		})
 		.on('viewer_joined', function(session, event) {
 			update_feed("Someone joined your session!");
@@ -64,9 +65,11 @@ window.addEventListener('DOMContentLoaded', function() {
 // navigate to a new url
 function navigate(){
 	var url = document.getElementById('url').value;
+	// if the input is empty, use the placeholder instead
 	if(url=="" && document.getElementById('url').placeholder){
 		url = document.getElementById('url').placeholder;
 	}
+	// add 'https' to the link if it's not already there
 	if(url.indexOf('https')==-1){
 		url = 'https://' + url;
 	}
@@ -80,14 +83,15 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			if(info.charAt(0)=='T'){
-				var new_ph = info.substring(info.indexOf('https')+8, info.indexOf('>')-2);
-                        	update_feed(info);
+			if(info.charAt(0)==='T'){
+				var new_ph = info.substring(info.indexOf('https')+8);
+				console.log(info + '  ' + new_ph);
+				//if(new_ph.indexOf('/')!==-1){ new_ph = new_ph.substring(0, new_ph.indexOf('/'));}
 				document.getElementById('url').placeholder = new_ph;
-			}
+			}	
 		}
 
-		if(string.indexOf('cobro_event') && (string.indexOf("The leader is ignoring you!")!==-1||string.indexOf("The leader stopped ignoring you!")!==-1)){
+		if(string.indexOf('cobro_event') && (string.indexOf("Your friend is ignoring you!")!==-1||string.indexOf("Your friend stopped ignoring you!")!==-1)){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
@@ -95,6 +99,18 @@ window.addEventListener('message', function(e){
                         	update_feed(info);
 			}
 		}
+
+		if(string.indexOf('cobro_event') && (string.indexOf("Current url")!==-1)){
+			var index = string.indexOf('data');
+			var indexEnd = string.indexOf('origin');	
+			var info = string.substring(index+9, indexEnd-5);
+			if(info.charAt(0)==='C'){
+				var url = info.substring(info.indexOf('https'));
+				console.log('lasturl: '+info);
+                       	 	sess.relocate(url);
+			}
+		}
+
 		var reactionFrame = document.getElementById('reaction');
 	        // if the data recieved is "good" set the source of reactionFrame to the happy image
 	        if (string.match(/(good)/)) {
@@ -105,7 +121,7 @@ window.addEventListener('message', function(e){
 		        setTimeout(function() {
 		         reactionFrame.style.visibility = "hidden";
 		        }, 3000);
-		       }
+		}
 	       // if the data recieved is "bad" the src of reactionFrame is the grumpy image
                if (string.match(/(bad)/)) {
 		        reactionFrame.src = "../static/grumpy.jpg";
@@ -115,7 +131,7 @@ window.addEventListener('message', function(e){
 		          setTimeout(function() {
 		           reactionFrame.style.visibility = "hidden";
 		          }, 3000);
-		        }
+		}
 	}
 })
 
@@ -138,7 +154,7 @@ function ignoreFriend() {
     	ignoreButton.innerHTML = "Acknowledge Friend";
 
 	// update feed
-	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The follower is ignoring you!"}), '*');
+	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "Your friend is ignoring you!"}), '*');
     } else {
 	// we show our friend's iframe
 	friendsFrame.style.visibility = "visible";
@@ -148,24 +164,14 @@ function ignoreFriend() {
     	ignoreButton.innerHTML = "Ignore Friend";
 
 	// update feed
-	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The follower stopped ignoring you!"}), '*');
+	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "Your friend stopped ignoring you!"}), '*');
     }
 }
 
-var item = true;
 //update live feed
 function update_feed(text){
-	var list = document.getElementById("list");
-	if(item){
-		var list_item = document.getElementById("i1");
-		item = false;
-	} else {
-		var list_item = document.getElementById("i2");
-		item = true;
-	}
-	if(text!==document.getElementById("i1").innerHTML && text!==document.getElementById("i2").innerHTML){
-		list_item.innerHTML = text;
-	}
+	var news = document.getElementById("news_feed");
+	news.innerHTML = text;
 }
 
 function goodReaction(){
@@ -177,7 +183,7 @@ function goodReaction(){
 
 function badReaction() {
   // sends a negative message to iframe 1 
-  frame  = document.getElementById("ifrm1").contentWindow;
+  frame = document.getElementById("ifrm1").contentWindow;
   frame.postMessage(JSON.stringify({"command": "message", "data": "bad"}), '*');
   update_feed("You sent negative vibes!");
 }
@@ -192,16 +198,12 @@ function badReaction() {
 	<button id="goodReaction" class="reaction" onclick="goodReaction()"></button>
         <button id="badReaction" class="reaction" onclick="badReaction()"></button>
 	<div id="feed">
-		<h4>News feed</h4>
-		<ul id="list">
-		  <li id="i1" class="list_item"></li>
-	 	  <li id="i2" class="list_item"></li>
-		</ul>
+		<p id="news_feed"></p>
 	</div>
 	<div id="form_wrapper" style="">
 		<form id="nav" action="" method="post">
 			<label style="float:left">
-				<input id="url" type="text" name="url" placeholder="google.com"/>
+				<input id="url" type="text" name="url" placeholder="duckduckgo.com"/>
 			</label>
 			<label>
 			       <input type="button" class="button" id="submit_button" onclick=navigate() value="Go!" />
@@ -233,6 +235,12 @@ $(document).ready(function(){
 	//$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
 	$('#url').focus(function() { 
   		$(this).val(''); 
+	});
+	$('#url').keypress(function(e){
+		if (e.keyCode == 13){
+			e.preventDefault();
+			$('#submit_button').click();
+		}
 	});
 });
 </script>
