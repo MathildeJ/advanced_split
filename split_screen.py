@@ -21,7 +21,7 @@ def index():
 def splitscreen():
    return render_template('splitscreen.html')
 
-@app.route('/splitscreen/<regex("[0-9]{3}[-][0-9]{3}[-][0-9]{3}"):session_id>/')
+@app.route('/<regex("[0-9]{3}[-][0-9]{3}[-][0-9]{3}"):session_id>/')
 """ the regex checks whether the url contains the session id """
 def index_session_id(session_id):
    return render_template('follower_side.html')
