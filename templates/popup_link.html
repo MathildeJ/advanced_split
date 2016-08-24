@@ -57,6 +57,18 @@
             <br>
         </div>
     </header>
+    
+<!--
+     get the email adress from the input element 
+     send the link in the mail
+     put restrictions on the email address
+-->
+  <script>
+       function sendEmail() {
+          var emailAddress = document.getElementById('enterEmail').value;
+          console.log("the input value was ", emailAddress);
+       }
+   </script>
 
     <script type="text/javascript">
     function selectText(containerid) {
@@ -87,15 +99,6 @@
 	}, false);
    </script>
  
-   <script>
-    // get the email adress from the input element 
-    // send the link in the mail
-    // put restrictions on the email address
-       function sendEmail() {
-          var emailAddress = document.getElementById('enterEmail').value;
-          console.log("the input value was ", value);
-       }
-   </script>
 
 </body>
 </html>
