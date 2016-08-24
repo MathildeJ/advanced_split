@@ -104,7 +104,7 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			if(info.charAt(0)==='T'){
+			if(info.charAt(0)==='C'){
 				var url = info.substring(info.indexOf('https'));
 				console.log('lasturl: '+info);
                        	 	sess.relocate(url);
