@@ -35,7 +35,12 @@ window.addEventListener('DOMContentLoaded', function() {
 			// we send the link to the first frame (where a Surfly session is already started)
 			frame.postMessage(JSON.stringify({"command": "message", "data": retrievedLink}), '*');
 
-			// make the nav bar visible
+			// make menu elements visible
+			document.getElementById('feed').style.visibility = "visible";
+			document.getElementById('ignore').style.visibility = "visible";
+			document.getElementById('badReaction').style.visibility = "visible";
+			document.getElementById('goodReaction').style.visibility = "visible";
+			document.getElementById('exit_button').style.visibility="visible";
 			document.getElementById('form_wrapper').style.visibility = "visible";
 			
 			// store session

@@ -59,7 +59,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		.on('viewer_joined', function(session, event) {
 			// update feed
 			update_feed("Someone joined your session!");
-			// make the menu elements visible
+			// make menu elements visible
 			document.getElementById('feed').style.visibility = "visible";
 			document.getElementById('ignore').style.visibility = "visible";
 			document.getElementById('badReaction').style.visibility = "visible";
@@ -249,11 +249,13 @@ $(document).ready(function(){
 	//$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
 	$('#url').focus(function() { 
   		$(this).val(''); 
-		$('#url').keypress(function(event){
-  			if(event.keyCode == 13){
-    				$('#submit_button').click();
-  			}
-		});
+	});
+	$('#url').keypress(function(event){
+		console.log('pressed a key');
+  		if(event.keyCode == 13){
+			console.log('ok');
+    			$('#submit_button').click();
+  		}
 	});
 
 });
