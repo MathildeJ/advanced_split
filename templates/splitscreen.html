@@ -36,6 +36,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			inviteLink = pageUrl.concat(sessionID);
                         var popupWindow = document.getElementById("popupLink").contentWindow;
                         popupWindow.postMessage(inviteLink, "*");
+                        document.getElementById('ifrm2').src="./popup_link";
 
 			// make the elements linked to the session visible
 			document.getElementById("invite").style.visibility = 'visible';
@@ -248,7 +249,7 @@ function badReaction() {
 <!-- the frame in which the leader link is opened -->
 <div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
 <!-- the frame in which the follower link will be opened -->
-<div class="box"><iframe id="ifrm2" src="./popup_link" height="700" width="49%" align='right'></iframe></div>
+<div class="box"><iframe id="ifrm2" src="" height="700" width="49%" align='right'></iframe></div>
 <!-- the frame in which the invite link is displayed -->
 <iframe id="popupLink" src="./popup_link" height="300" width="45%"></iframe>
 <!-- the reaction is seen in this iframe -->
