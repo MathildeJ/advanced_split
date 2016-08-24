@@ -35,6 +35,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			var followerLink = session.followerLink;
 			var linkIndex = followerLink.indexOf(".com");
 			var sessionID = followerLink.substring(linkIndex+4, linkIndex+16);
+                        console.log("the session id is ", sessionID);
 			// get the page url
 			var pageUrl = document.location.domain;
 			// append the page url to the session id
