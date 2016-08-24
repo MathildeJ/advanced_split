@@ -130,20 +130,30 @@ window.addEventListener('message', function(e){
 		    if (string.match(/(good)/)) {
 		        reactionFrame.src = "../static/happycow.jpg";
 			update_feed("You received a like!");
-		     }
+                        reactionFrame.style.visibility="visible";
+		        // the frame is hidden after 3 seconds 
+		        setTimeout(function() {
+		         reactionFrame.style.visibility = "hidden";
+		        }, 3000);
+		       }
 		     // if the data recieved is "bad" the src of reactionFrame is the grumpy image
 		     if (string.match(/(bad)/)) {
 		        reactionFrame.src = "../static/grumpy.jpg";
 			update_feed("You received a dislike!");
-		    }
-		    if (reactionFrame.src != "") {
+                        reactionFrame.style.visibility="visible";
+		        // the frame is hidden after 3 seconds 
+		          setTimeout(function() {
+		           reactionFrame.style.visibility = "hidden";
+		          }, 3000);
+		        }
+		    //if (reactionFrame.src != "") {
 		      // check that the src is not empty, and then show the frame
-		      reactionFrame.style.visibility="visible";
+		      //reactionFrame.style.visibility="visible";
 		      // the frame is hidden after 3 seconds 
-		      setTimeout(function() {
-		         reactionFrame.style.visibility = "hidden";
-		      }, 3000);
-		    }
+		     // setTimeout(function() {
+		     //    reactionFrame.style.visibility = "hidden";
+		     // }, 3000);
+		    //}
     	}
      }
 })
