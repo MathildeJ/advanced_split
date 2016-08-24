@@ -241,6 +241,11 @@ $(document).ready(function(){
 	$('#url').focus(function() { 
   		$(this).val(''); 
 	});
+	$('#url').keypress(function(key){
+  		if(key.keyCode == 13){
+    			$('#submit_button').click();
+  		}
+	});
 });
 </script>
 </body>

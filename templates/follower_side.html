@@ -21,13 +21,15 @@ l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
 
 <script>
 var sess;
+var lastLink;
 var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true, set_to_smallest: false, drawing_color: "green"};
 window.addEventListener('DOMContentLoaded', function() {
   Surfly.init(settings, function(init) {
     if (init.success) {
 	if(!Surfly.currentSession){
 	    	s = Surfly.session();
-	        s._settings.url = "https://www.duckduckgo.com";
+		console.log('last link? ' + lastLink);
+	        s._settings.url = lastLink ? lastLink : "https://www.duckduckgo.com";
 		s.on('session_started', function(session) {
                         // get the follower link
 			var retrievedLink = session.followerLink;
@@ -82,6 +84,7 @@ window.addEventListener('message', function(e){
 				var new_ph = info.substring(info.indexOf('https')+8, info.indexOf('>')-2);
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
+				lastLink = new_ph;
 			}
 		}
 
@@ -217,6 +220,11 @@ $(document).ready(function(){
 	//$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
 	$('#url').focus(function() { 
   		$(this).val(''); 
+	});
+	$('#url').keypress(function(key){
+  		if(key.keyCode == 13){
+    			$('#submit_button').click();
+  		}
 	});
 });
 </script>
