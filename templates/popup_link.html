@@ -64,12 +64,6 @@
      send the link in the mail
      put restrictions on the email address
 -->
-  <script>
-  function sendLink() {
-     var emailAddress = document.getElementById('enterEmail').value;
-     console.log("the input value was ", emailAddress);
-  }
-  </script>
 
     <script type="text/javascript">
     function selectText(containerid) {
@@ -87,6 +81,7 @@
    </script>
 
    <script>
+        var link;
 	var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
 	var eventer = window[eventMethod];
 	var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
@@ -94,10 +89,17 @@
 	eventer(messageEvent, function (e) {
 	   var string = JSON.stringify(e.data);
            if (string.match(/(splitscreen)/g)) {
-              var link = string.substring(1, string.length - 1);
+              link = string.substring(1, string.length - 1);
               document.getElementById("invite").innerHTML = link;
            }
 	}, false);
+
+     function sendLink() {
+       // get the email address from the form
+       var emailAddress = document.getElementById('enterEmail').value;
+       console.log("the input value was ", emailAddress, "and the link is ", link);
+       document.createTextNode("You have been invited to start a splitscreen session!, please use the ", link , "to join your friend");
+     }
    </script>
  
 
