@@ -3,7 +3,7 @@
     height: 700px; 
 }*/
 
-.resizable{
+#resizable{
   position: fixed;
   top: 60px;
   left: 10px;
@@ -28,18 +28,11 @@
 }
 
 #ifrm2{
-  display: block;
+  display: inline-block;
   border-top: blue 3px solid;
   border-right: blue 3px solid;
   border-left: blue 3px solid;
   border-bottom: blue 3px solid;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
 }
 
 .ui-resizable-ghost { 
