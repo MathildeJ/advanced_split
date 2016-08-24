@@ -1,8 +1,7 @@
 /*.box{
     width: 300px; 
-    height: 700px; 
-}*/
-/*
+}
+
 #resizable{
   position: fixed;
   top: 60px;
@@ -31,10 +30,10 @@
 
 #ifrm2{
   display: inline-block;
-  border-top: blue 3px solid;
-  border-right: blue 3px solid;
-  border-left: blue 3px solid;
-  border-bottom: blue 3px solid;
+  border-top: green 3px solid;
+  border-right: green 3px solid;
+  border-left: green 3px solid;
+  border-bottom: green 3px solid;
 }
 
 .ui-resizable-ghost { 

@@ -35,19 +35,15 @@ window.addEventListener('DOMContentLoaded', function() {
 			// we send the link to the first frame (where a Surfly session is already started)
 			frame.postMessage(JSON.stringify({"command": "message", "data": retrievedLink}), '*');
 
-			document.getElementById('exit_button').style.visibility="visible";
+			// make the nav bar visible
 			document.getElementById('form_wrapper').style.visibility = "visible";
-			document.getElementById('feed').style.visibility = "visible";
-			document.getElementById('ignore').style.visibility = "visible";
-			document.getElementById('badReaction').style.visibility = "visible";
-			document.getElementById('goodReaction').style.visibility = "visible";
 			
+			// store session
 			sess = session;
 	     	})
 		.on('relocated', function(session, event) {
-			update_feed("You relocated to: <a href='" + event.url +"'> " + event.url + "</a>");
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: <a href='" + event.url +"' >" + event.url + "</a>"}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: " + event.url }), '*');
 		})
 		.on('viewer_joined', function(session, event) {
 			update_feed("Someone joined your session!");
@@ -64,9 +60,11 @@ window.addEventListener('DOMContentLoaded', function() {
 // navigate to a new url
 function navigate(){
 	var url = document.getElementById('url').value;
+	// if the input is empty, use the placeholder instead
 	if(url=="" && document.getElementById('url').placeholder){
 		url = document.getElementById('url').placeholder;
 	}
+	// add 'https' to the link if it's not already there
 	if(url.indexOf('https')==-1){
 		url = 'https://' + url;
 	}
@@ -152,20 +150,10 @@ function ignoreFriend() {
     }
 }
 
-var item = true;
 //update live feed
 function update_feed(text){
-	var list = document.getElementById("list");
-	if(item){
-		var list_item = document.getElementById("i1");
-		item = false;
-	} else {
-		var list_item = document.getElementById("i2");
-		item = true;
-	}
-	if(text!==document.getElementById("i1").innerHTML && text!==document.getElementById("i2").innerHTML){
-		list_item.innerHTML = text;
-	}
+	var news = document.getElementById("news_feed");
+	news.innerHTML = text;
 }
 
 function goodReaction(){
@@ -192,11 +180,7 @@ function badReaction() {
 	<button id="goodReaction" class="reaction" onclick="goodReaction()"></button>
         <button id="badReaction" class="reaction" onclick="badReaction()"></button>
 	<div id="feed">
-		<h4>News feed</h4>
-		<ul id="list">
-		  <li id="i1" class="list_item"></li>
-	 	  <li id="i2" class="list_item"></li>
-		</ul>
+		<p id="news_feed"></p>
 	</div>
 	<div id="form_wrapper" style="">
 		<form id="nav" action="" method="post">
