@@ -30,6 +30,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	    	s = Surfly.session();
 		console.log('last link? ' + lastLink);
 	        s._settings.url = lastLink ? lastLink : "https://www.duckduckgo.com";
+		console.log('ph? ' + document.getElementById('url').placeholder);
 		s.on('session_started', function(session) {
                         // get the follower link
 			var retrievedLink = session.followerLink;
@@ -222,7 +223,7 @@ $(document).ready(function(){
   		$(this).val(''); 
 	});
 	$('#url').keypress(function(key){
-  		if(key.keyCode == 13){
+  		if(key.which == 13){
     			$('#submit_button').click();
   		}
 	});
