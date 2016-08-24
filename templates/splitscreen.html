@@ -246,7 +246,7 @@ function badReaction() {
 
 <!-- the two iframes -->
 <!-- the frame in which the leader link is opened -->
-<div id="resizable" class="resizable"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
+<div id="resizable" class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
 <!-- the frame in which the follower link will be opened -->
 <div class="box"><iframe id="ifrm2" src="./popup_link" height="700" width="49%" align='right'></iframe></div>
 <!-- the frame in which the invite link is displayed -->
@@ -256,7 +256,7 @@ function badReaction() {
 
 <script>
 $(document).ready(function(){
-	$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
+	//$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
 	$('#url').focus(function() { 
   		$(this).val(''); 
 	});
