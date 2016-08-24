@@ -23,7 +23,7 @@ l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
 var sess;
 var inviteLink;
 var lastUrl;
-var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true, set_to_smallest: false, drawing_color: "red"};
+var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true, set_to_smallest: false};
 window.addEventListener('DOMContentLoaded', function() {
   Surfly.init(settings, function(init) {
     if (init.success) {
@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		.on('relocated', function(session, event) {
 			// send message to the other side
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "Your friend relocated to: " + event.url}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
 			// store current url
 			lastUrl = event.url;
 		})
@@ -113,7 +113,7 @@ window.addEventListener('message', function(e){
 		}
 	
 		// update feed for the follower relocated
-		if(string.indexOf("Your friend relocated")!==-1){
+		if(string.indexOf("The follower relocated")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
