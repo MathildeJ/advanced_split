@@ -101,7 +101,6 @@ window.addEventListener('message', function(e){
      var origin = event.origin || event.originalEvent.origin;
      if (origin == "https://surfly.com") {
         var string = JSON.stringify(e.data);
-	console.log(string);
 	if(string.indexOf('cobro_event')){
 		// the 2nd follower link
 		if (string.match(/[0-9]{3}[-][0-9]{3}[-][0-9]{3}/)) {
@@ -120,7 +119,7 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			//console.log('relo:' + info);
-			if(info.charAt(0)=='T'){
+			if(info.charAt(0)==='T'){
 				var new_ph = info.substring(info.indexOf('https')+8);
 				//console.log(new_ph);
 				//if(new_ph.indexOf('/')!==-1){ new_ph = new_ph.substring(0, new_ph.indexOf('/'));}
