@@ -172,14 +172,14 @@ function goodReaction(){
   // sends a positive message to iframe 1
   frame2 = document.getElementById("ifrm1").contentWindow;
   frame2.postMessage(JSON.stringify({"command": "message", "data": "good"}), '*');
-  update_feed("You like your friend!");
+  update_feed("You sent positive vibes!");
 }
 
 function badReaction() {
   // sends a negative message to iframe 1 
   frame  = document.getElementById("ifrm1").contentWindow;
   frame.postMessage(JSON.stringify({"command": "message", "data": "bad"}), '*');
-  update_feed("You hate your friend!");
+  update_feed("You sent negative vibes!");
 }
 </script>
 
