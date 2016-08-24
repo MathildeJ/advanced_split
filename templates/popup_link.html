@@ -94,12 +94,12 @@
            }
 	}, false);
 
-     function sendLink() {
-       // get the email address from the form
-       var emailAddress = document.getElementById('enterEmail').value;
-       console.log("the input value was ", emailAddress, "and the link is ", link);
-       document.createTextNode("You have been invited to start a splitscreen session!, please use the ", link , "to join your friend");
-     }
+        function sendLink() {
+          // get the email address from the form
+          var emailAddress = document.getElementById('enterEmail').value;
+          console.log("the input value was ", emailAddress, "and the link is ", link);
+          var emailTetx = document.createTextNode("You have been invited to start a splitscreen session!, please use the ", link , "to join your friend");
+        }
    </script>
  
 
