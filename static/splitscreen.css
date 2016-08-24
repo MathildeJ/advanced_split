@@ -7,18 +7,20 @@
   position: fixed;
   top: 55px;
   left: 8px;
-  bottom: 10px;
-  width: 48%;
+  bottom: 15px;
+  width: 47%;
   min-width: 300px;
+  min-height: 300px;
 }
 
 #resizable2{
   position: fixed;
   top: 55px;
   right: 8px;
-  bottom: 10px;
-  width: 48%;
+  bottom: 15px;
+  width: 47%;
   min-width: 300px;
+  min-height: 300px;
 }
 
 #ifrm1{
