@@ -36,9 +36,9 @@ window.addEventListener('DOMContentLoaded', function() {
 			inviteLink = pageUrl.concat(sessionID);
                         // set a timeout so that the message is not sent before the page is ready 
                         setTimeout(function() {
-                          var popupWindow = document.getElementById("popupLink").contentWindow;
+                          // send the message to iframe 2
+                          var popupWindow = document.getElementById("ifrm2").contentWindow;
 		          popupWindow.postMessage(inviteLink, "*");
-                          popupWindow.postMessage(JSON.stringify({"command": "message", "data": "The invite link is: " + inviteLink}), '*');
                          // document.getElementById('ifrm2').src="./popup_link";
                           console.log("the message was sent");
 		        }, 5000);
