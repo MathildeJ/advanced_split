@@ -1,5 +1,5 @@
 .box{
-    width: 49%; 
+    width: 350px; 
     height: 700px; 
     border-top: red 3px solid;
     border-right: red 3px solid;
@@ -8,7 +8,8 @@
 }
 
 #ifrm1{
-  display: inline-block;
+  display: block;
+  width: 100%;
   /*border-top: red 3px solid;
   border-right: red 3px solid;
   border-left: red 3px solid;
