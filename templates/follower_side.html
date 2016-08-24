@@ -83,6 +83,7 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
+			console.log('relo' + info);
 			if(info.charAt(0)=='T'){
 				var new_ph = info.substring(info.indexOf('https')+8);
                         	update_feed(info);
@@ -200,7 +201,7 @@ function badReaction() {
 	<div id="form_wrapper" style="">
 		<form id="nav" action="" method="post">
 			<label style="float:left">
-				<input id="url" type="text" name="url" placeholder="google.com"/>
+				<input id="url" type="text" name="url" placeholder="duckduckgo.com"/>
 			</label>
 			<label>
 			       <input type="button" class="button" id="submit_button" onclick=navigate() value="Go!" />

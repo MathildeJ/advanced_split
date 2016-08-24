@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (init.success) {
       	if(!Surfly.currentSession){
 	      s = Surfly.session();
-	      s._settings.url = "https://www.google.com";
+	      s._settings.url = "https://www.duckduckgo.com";
 	      s.on('session_started', function(session) {
 		       // get the session id from the follower link
 			var followerLink = session.followerLink;
@@ -65,12 +65,12 @@ window.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('badReaction').style.visibility = "visible";
 			document.getElementById('goodReaction').style.visibility = "visible";
 			document.getElementById('exit_button').style.visibility="visible";
-			
+			/*
 			// send current link to other side
 			var frame = document.getElementById('ifrm2').contentWindow;
 			if(lastUrl){
 				frame.postMessage(JSON.stringify({"command": "message", "data": "Current url: " + lastUrl}), '*');
-			}
+			}*/
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
@@ -99,6 +99,7 @@ window.addEventListener('message', function(e){
      var origin = event.origin || event.originalEvent.origin;
      if (origin == "https://surfly.com") {
         var string = JSON.stringify(e.data);
+	console.log(string);
 	if(string.indexOf('cobro_event')){
 		// the 2nd follower link
 		if (string.match(/[0-9]{3}[-][0-9]{3}[-][0-9]{3}/)) {
@@ -117,13 +118,14 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			console.log('relo:' + info);
+			/*
 			if(info.charAt(0)=='T'){
 				var new_ph = info.substring(info.indexOf('https')+8);
 				console.log(new_ph);
 				//if(new_ph.indexOf('/')!==-1){ new_ph = new_ph.substring(0, new_ph.indexOf('/'));}
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
-			}
+			}*/
 		}
 
 		// update feed if the follower ignores you
