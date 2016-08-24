@@ -68,10 +68,13 @@ window.addEventListener('DOMContentLoaded', function() {
 			
 			// send current link to other side
 			if(lastUrl){
+				var frame = document.getElementById('ifrm1').contentWindow;
+				frame.postMessage(JSON.stringify({"command": "message", "data": "Current url: " + lastUrl}), '*');
+				/*
 				setTimeout(function(){
 					var frame = document.getElementById('ifrm1').contentWindow;
 					frame.postMessage(JSON.stringify({"command": "message", "data": "Current url: " + lastUrl}), '*');
-				}, 2000);
+				}, 2000);*/
 			}
 		})
 		.on('session_ended', function(session) {
