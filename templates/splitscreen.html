@@ -41,6 +41,13 @@ window.addEventListener('DOMContentLoaded', function() {
                         // send the message to iframe 2
                         var popupWindow = document.getElementById("ifrm2").contentWindow;
 		        popupWindow.postMessage(inviteLink, "*");
+                        //function processAjaxData(response, urlPath){
+                        //   document.getElementById("content").innerHTML = response.html;
+                        //   document.title = response.pageTitle;
+                        //   window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
+                        //}
+
+                        window.history.pushState('followerUrl',"", '/sessionID');
                        
 			// make the elements linked to the session visible
 			document.getElementById('exit_button').style.visibility="visible";
