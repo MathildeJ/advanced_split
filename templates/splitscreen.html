@@ -35,7 +35,11 @@ window.addEventListener('DOMContentLoaded', function() {
 			// append the page url to the session id
 			inviteLink = pageUrl.concat(sessionID);
                         var popupWindow = document.getElementById("popupLink").contentWindow;
-                        popupWindow.postMessage(inviteLink, "*");
+                        // set a timeout so that the message is not sent before the page is ready 
+                        setTimeout(function() {
+		          popupWindow.postMessage(inviteLink, "*");
+		        }, 9000);
+                        
                         document.getElementById('ifrm2').src="./popup_link";
 
 			// make the elements linked to the session visible
@@ -92,7 +96,7 @@ window.addEventListener('message', function(e){
 			document.getElementById('ifrm2').src = flink;
 		}
 	
-		// update feed
+		// update feed for the follower relocated
 		if(string.indexOf("The follower relocated")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
@@ -104,7 +108,7 @@ window.addEventListener('message', function(e){
                         //update_feed(info);
 		}
 
-		// update feed
+		// update feed if the follower ignores you
 		if(string.indexOf("The follower is ignoring you!")!==-1||string.indexOf("The follower stopped ignoring you!")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
@@ -224,7 +228,7 @@ function badReaction() {
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<button id="goodReaction" class="reaction" onclick="goodReaction()"><img src="../static/redsmile.png"></button>
         <button id="badReaction" class="reaction" onclick="badReaction()"><img src="../static/sad.jpg"></button>
-	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
+        <button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
 	<div id="feed">
 		<h4>News feed</h4>
 		<ul id="list">
