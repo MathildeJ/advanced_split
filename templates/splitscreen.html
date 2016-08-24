@@ -103,7 +103,7 @@ window.addEventListener('message', function(e){
 		}
 	
 		// update feed for the follower relocated
-		if(string.indexOf("The follower relocated")!==-1){
+		if(string.indexOf("Your friend relocated")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
@@ -116,7 +116,7 @@ window.addEventListener('message', function(e){
 		}
 
 		// update feed if the follower ignores you
-		if(string.indexOf("The follower is ignoring you!")!==-1||string.indexOf("The follower stopped ignoring you!")!==-1){
+		if(string.indexOf("Your friend is ignoring you!")!==-1||string.indexOf("Your friend stopped ignoring you!")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
@@ -129,20 +129,22 @@ window.addEventListener('message', function(e){
 		    if (string.match(/(good)/)) {
 		        reactionFrame.src = "../static/happycow.jpg";
 			update_feed("You received a like!");
-		     }
+                        reactionFrame.style.visibility="visible";
+		        // the frame is hidden after 3 seconds 
+		        setTimeout(function() {
+		         reactionFrame.style.visibility = "hidden";
+		        }, 3000);
+		       }
 		     // if the data recieved is "bad" the src of reactionFrame is the grumpy image
 		     if (string.match(/(bad)/)) {
 		        reactionFrame.src = "../static/grumpy.jpg";
 			update_feed("You received a dislike!");
-		    }
-		    if (reactionFrame.src != "") {
-		      // check that the src is not empty, and then show the frame
-		      reactionFrame.style.visibility="visible";
-		      // the frame is hidden after 3 seconds 
-		      setTimeout(function() {
-		         reactionFrame.style.visibility = "hidden";
-		      }, 3000);
-		    }
+                        reactionFrame.style.visibility="visible";
+		        // the frame is hidden after 3 seconds 
+		          setTimeout(function() {
+		           reactionFrame.style.visibility = "hidden";
+		          }, 3000);
+		        }
     	}
      }
 })
@@ -201,14 +203,14 @@ function goodReaction(){
   // send a positive message to iframe1 
   frame2 = document.getElementById("ifrm1").contentWindow;
   frame2.postMessage(JSON.stringify({"command": "message", "data": "good"}), '*');
-  update_feed("You like your friend!");
+  update_feed("You sent positive vibes!");
 }
 
 function badReaction() {
   // send a negative message to iframe1
   frame  = document.getElementById("ifrm1").contentWindow;
   frame.postMessage(JSON.stringify({"command": "message", "data": "bad"}), '*');
-  update_feed("You hate your friend!");
+  update_feed("You sent negative vibes!");
 }
 
 </script>
