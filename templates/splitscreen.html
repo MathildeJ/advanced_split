@@ -71,8 +71,7 @@ window.addEventListener('DOMContentLoaded', function() {
 				setTimeout(function(){
 					var frame = document.getElementById('ifrm1').contentWindow;
 					frame.postMessage(JSON.stringify({"command": "message", "data": "Current url: " + lastUrl}), '*');
-				}, 4000);
-				console.log('ok lasturl sent message');
+				}, 2000);
 			}
 		})
 		.on('session_ended', function(session) {
