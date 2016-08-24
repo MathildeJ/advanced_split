@@ -8,6 +8,10 @@
 <link href="../static/splitscreen.css" rel="stylesheet">
 <link href="../static/page_top.css" rel="stylesheet">
 
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
 <script>
 (function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
 l=u.createElement(r);y=u.getElementsByTagName(r)[0];l.async=1;
@@ -221,6 +225,15 @@ var sessionID = pageUrl.substring(idIndex+6);
 var fullUrl =  "https://surfly.com".concat(sessionID);
 // set the url of the first frame to the follower link
 document.getElementById('ifrm1').src = fullUrl;
+</script>
+
+<script>
+$(document).ready(function(){
+	//$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
+	$('#url').focus(function() { 
+  		$(this).val(''); 
+	});
+});
 </script>
 
 
