@@ -91,7 +91,7 @@ window.addEventListener('message', function(e){
 			}
 		}
 
-		if(string.indexOf('cobro_event') && (string.indexOf("The leader is ignoring you!")!==-1||string.indexOf("The leader stopped ignoring you!")!==-1)){
+		if(string.indexOf('cobro_event') && (string.indexOf("Your friend is ignoring you!")!==-1||string.indexOf("Your friend stopped ignoring you!")!==-1)){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
@@ -151,7 +151,7 @@ function ignoreFriend() {
     	ignoreButton.innerHTML = "Acknowledge Friend";
 
 	// update feed
-	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The follower is ignoring you!"}), '*');
+	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "Your friend is ignoring you!"}), '*');
     } else {
 	// we show our friend's iframe
 	friendsFrame.style.visibility = "visible";
@@ -161,7 +161,7 @@ function ignoreFriend() {
     	ignoreButton.innerHTML = "Ignore Friend";
 
 	// update feed
-	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The follower stopped ignoring you!"}), '*');
+	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "Your friend stopped ignoring you!"}), '*');
     }
 }
 
@@ -232,11 +232,6 @@ $(document).ready(function(){
 	//$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
 	$('#url').focus(function() { 
   		$(this).val(''); 
-	});
-	$('#url').keypress(function(key){
-  		if(key.which == 13){
-    			$('#submit_button').click();
-  		}
 	});
 });
 </script>

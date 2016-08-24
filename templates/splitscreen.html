@@ -116,6 +116,7 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
+			console.log('relo:' + info);
 			if(info.charAt(0)=='T'){
 				var new_ph = info.substring(info.indexOf('https')+8);
 				console.log(new_ph);
@@ -178,7 +179,7 @@ function ignoreFriend() {
     	ignoreButton.innerHTML = "Acknowledge Friend";
 
  	// update feed
-	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader is ignoring you!"}), '*');
+	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "Your friend is ignoring you!"}), '*');
     } else {
 	// we show our friend's iframe
 	friendsFrame.style.visibility = "visible";
@@ -188,7 +189,7 @@ function ignoreFriend() {
     	ignoreButton.innerHTML = "Ignore Friend";
 
 	// update feed 
-	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "The leader stopped ignoring you!"}), '*');
+	friendsFrame.contentWindow.postMessage(JSON.stringify({"command": "message", "data": "Your friend stopped ignoring you!"}), '*');
     }
 }
 
@@ -250,13 +251,6 @@ $(document).ready(function(){
 	//$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
 	$('#url').focus(function() { 
   		$(this).val(''); 
-	});
-	$('#url').keypress(function(event){
-		console.log('pressed a key');
-  		if(event.keyCode == 13){
-			console.log('ok');
-    			$('#submit_button').click();
-  		}
 	});
 
 });
