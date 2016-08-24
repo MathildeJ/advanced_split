@@ -21,7 +21,7 @@ l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
 
 <script>
 var sess;
-var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true};
+var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true, set_to_smallest: false};
 window.addEventListener('DOMContentLoaded', function() {
   Surfly.init(settings, function(init) {
     if (init.success) {
@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		.on('relocated', function(session, event) {
 			update_feed("You relocated to: <a href='" + event.url +"'> " + event.url + "</a>");
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: <a href='" + event.url +"'> " + event.url + "</a>"}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: <a href='" + event.url +"' target='_blank'>" + event.url + "</a>"}), '*');
 		})
 		.on('viewer_joined', function(session, event) {
 			update_feed("Someone joined your session!");
@@ -87,6 +87,7 @@ window.addEventListener('message', function(e){
 				document.getElementById('url').placeholder = new_ph;
 			}
 		}
+
 		if(string.indexOf('cobro_event') && (string.indexOf("The leader is ignoring you!")!==-1||string.indexOf("The leader stopped ignoring you!")!==-1)){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
