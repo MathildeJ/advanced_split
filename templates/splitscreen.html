@@ -44,9 +44,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			inviteLink = pageUrl.concat(sessionID);
 
 			// make the elements linked to the session visible
-			document.getElementById("invite").style.visibility = 'visible';
 			document.getElementById('exit_button').style.visibility="visible";
-			document.getElementById('invite').style.visibility = "visible";
 			document.getElementById('form_wrapper').style.visibility = "visible";
 			document.getElementById('feed').style.visibility = "visible";
 			document.getElementById('ignore').style.visibility = "visible";
@@ -185,14 +183,6 @@ function ignoreFriend() {
     }
 }
 
-function inviteFriend(){
-  // we hide the invite button
-  document.getElementById("invite").style.visibility = "hidden";
-  // we display a popup with the invite link
-  var popupWindow = document.getElementById("popupLink").contentWindow;
-  popupWindow.postMessage(inviteLink, "*");
-  document.getElementById("popupLink").style.visibility="visible";
-}
 
 //close popup
 function closeIFrame(){
@@ -239,7 +229,6 @@ function badReaction() {
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<button id="goodReaction" class="reaction" onclick="goodReaction()"></button>
         <button id="badReaction" class="reaction" onclick="badReaction()"></button>
-	<button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
 	<div id="feed">
 		<h4>News feed</h4>
 		<ul id="list">
@@ -261,7 +250,7 @@ function badReaction() {
 
 <!-- the two iframes -->
 <!-- the frame in which the leader link is opened -->
-<div id="resizable"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
+<div id="resizable" class="resizable"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
 <!-- the frame in which the follower link will be opened -->
 <div class="box"><iframe id="ifrm2" src="./popup_link" height="700" width="49%" align='right'></iframe></div>
 <!-- the frame in which the invite link is displayed -->
@@ -271,7 +260,7 @@ function badReaction() {
 
 <script>
 $(document).ready(function(){
-	$('#resizable').resizable({ghost: true});
+	$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
 	$('#url').focus(function() { 
   		$(this).val(''); 
 	});
