@@ -40,10 +40,29 @@
 
 <body>
 
+		<form id="nav" action="" method="post">
+			<label style="float:left">
+				<input id="url" type="text" name="url" placeholder="google.com"/>
+			</label>
+			<label>
+			       <input type="button" class="button" id="submit_button" onclick=navigate() value="Go!" />
+			</label>
+		</form>
+
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h2 class="mainText">Send the link below to share with a friend!</h2>
+            <h2 class="mainText">Share link!</h2>
             <div id="invite" style="color:white" onclick="selectText('invite')">Invite link</div>
+            <h2 class="mainText">Send link in Email</h2>
+            <!-- form to enter the email address of a friend -->
+            <form method="post">
+              <label>
+                 <input id="enterEmail" type="text" name="enterEmail" placeholder="enter email"/>
+              </label>
+              <label>
+                 <input type="button" id="sendEmail" value="send email!"/>
+              </label>
+            </form>
             <br>
         </div>
     </header>
@@ -75,6 +94,14 @@
               document.getElementById("invite").innerHTML = link;
            }
 	}, false);
+   </script>
+ 
+   <script>
+    // get the email adress from the input element 
+    // send the link in the mail
+       function sendEmail() {
+          console.log("send the email");
+       }
    </script>
 
 </body>
