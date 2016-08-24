@@ -7,8 +7,10 @@
 
 <link href="../static/page_top.css" rel="stylesheet">
 <link href="../static/splitscreen.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-<!--<link type="text/javascript" href="../static/frame.js"></script>-->
+<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<link type="text/javascript" href="../static/frame.js"></script>-->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
 <script>
 (function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
@@ -225,12 +227,6 @@ function badReaction() {
 
 </script>
 
-<script>
-$(document).ready(function(){
-	$('#resizeable').resizable({ghost: true});
-});
-</script>
-
 </head>
 
 <body>
@@ -261,13 +257,20 @@ $(document).ready(function(){
 
 <!-- the two iframes -->
 <!-- the frame in which the leader link is opened -->
-<div id="resizeable" class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
+<div id="resizable" class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
 <!-- the frame in which the follower link will be opened -->
 <div class="box"><iframe id="ifrm2" src="./popup_link" height="700" width="49%" align='right'></iframe></div>
 <!-- the frame in which the invite link is displayed -->
 <iframe id="popupLink" src="./popup_link" height="300" width="45%" style="top: 30%; left: 35%; display: block; position: absolute; visibility:hidden"></iframe>
 <!-- the reaction is seen in this iframe -->
 <div class="box"><iframe align='left' id="reaction" src=""></iframe></div>
+
+<script>
+$(document).ready(function(){
+	$('#resizable').resizable({ghost: true});
+});
+</script>
+
 </body>
 
 </html>
