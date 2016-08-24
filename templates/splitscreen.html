@@ -37,17 +37,16 @@ window.addEventListener('DOMContentLoaded', function() {
 			var sessionID = followerLink.substring(linkIndex+4, linkIndex+16);
 			// get the page url
 			var pageUrl = document.location.href;
+                        console.log("the full page url is ", pageUrl);
+                        //var urlIndex = pageUrl.indexOf(".com");
+                        //var urlEnd = pageUrl.indexOf("screen");
+                        console.log("the domain is ", window.location.origin);
 			// append the page url to the session id
                 	inviteLink = pageUrl.concat(sessionID);
                         // send the message to iframe 2
                         var popupWindow = document.getElementById("ifrm2").contentWindow;
 		        popupWindow.postMessage(inviteLink, "*");
-                        //function processAjaxData(response, urlPath){
-                        //   document.getElementById("content").innerHTML = response.html;
-                        //   document.title = response.pageTitle;
-                        //   window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
-                        //}
-
+                        // change the url of the window to display the follower link 
                         window.history.pushState('followerUrl',"", inviteLink);
                        
 			// make the nav bar visible
