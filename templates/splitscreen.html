@@ -11,7 +11,62 @@
 <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<style>
+#resizable1{
+  position: fixed;
+  top: 55px;
+  left: 5px;
+  bottom: 25px;
+  width: 45%;
+  min-width: 200px;
+  min-height: 200px;
+}
 
+#resizable2{
+  position: fixed;
+  top: 55px;
+  right: 5px;
+  bottom: 25px;
+  width: 45%;
+  min-width: 200px;
+  min-height: 200px;
+}
+
+#ifrm1{
+  display: block;
+  border-top: red 3px solid;
+  border-right: red 3px solid;
+  border-left: red 3px solid;
+  border-bottom: red 3px solid;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+
+}
+
+#ifrm2{
+  display: block;
+  border-top: green 3px solid;
+  border-right: green 3px solid;
+  border-left: green 3px solid;
+  border-bottom: green 3px solid;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.ui-resizable-ghost { 
+  border: 2px dotted gray; 
+}
+</style>
 <script>
 (function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
 l=u.createElement(r);y=u.getElementsByTagName(r)[0];l.async=1;
