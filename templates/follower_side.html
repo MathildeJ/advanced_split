@@ -21,16 +21,13 @@ l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
 
 <script>
 var sess;
-var lastLink;
 var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true, set_to_smallest: false, drawing_color: "green"};
 window.addEventListener('DOMContentLoaded', function() {
   Surfly.init(settings, function(init) {
     if (init.success) {
 	if(!Surfly.currentSession){
 	    	s = Surfly.session();
-		console.log('last link? ' + lastLink);
-	        s._settings.url = lastLink ? lastLink : "https://www.duckduckgo.com";
-		console.log('ph? ' + document.getElementById('url').placeholder);
+	        s._settings.url = "https://www.duckduckgo.com";
 		s.on('session_started', function(session) {
                         // get the follower link
 			var retrievedLink = session.followerLink;
