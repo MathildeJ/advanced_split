@@ -271,9 +271,10 @@ function badReaction() {
 
 <script>
 $(document).ready(function(){
-	$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true, animate: true,
-        animateEasing: 'swing',
-        animateDuration: 500,});
+	$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
+	$('#url').focus(function() { 
+  		$(this).val(''); 
+	});
 });
 </script>
 
