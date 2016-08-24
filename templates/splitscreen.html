@@ -22,6 +22,7 @@ l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
 <script>
 var sess;
 var inviteLink;
+var testLink;
 var lastUrl;
 var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true, set_to_smallest: false};
 window.addEventListener('DOMContentLoaded', function() {
@@ -33,14 +34,17 @@ window.addEventListener('DOMContentLoaded', function() {
 	      s.on('session_started', function(session) {
 		       // get the session id from the follower link
 			var followerLink = session.followerLink;
+                        console.log("the follower link is ", followerLink);
 			var linkIndex = followerLink.indexOf(".com");
 			var sessionID = followerLink.substring(linkIndex+4, linkIndex+16);
                         console.log("the session id is ", sessionID);
 			// get the page url
-			var pageUrl = document.location.domain;
+			var pageUrl = document.location.href;
+                        var pageDomain = document.location.domain;
 			// append the page url to the session id
                 	inviteLink = pageUrl.concat(sessionID);
-                        console.log("the new invite link is ", inviteLink);
+                        testLink = pageUrl.concat(sessionID);
+                        console.log("the new invite link is ", testLink);
                         // send the message to iframe 2
                         var popupWindow = document.getElementById("ifrm2").contentWindow;
 		        popupWindow.postMessage(inviteLink, "*");
