@@ -66,6 +66,7 @@
 
     <script>
         function exitPopup() {
+        // calls the closeIFrame function on the parent 
            parent.closeIFrame();
         }
     </script>
@@ -80,7 +81,9 @@
            if (string.match(/(splitscreen)/g)) {
               console.log("the string was matched", string);
               document.getElementById("invite").innerHTML = string;
-           } 
+           } else {
+              console.log("the other messages recieved are ", string);
+           }
 	}, false);
    </script>
 
