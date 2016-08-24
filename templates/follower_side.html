@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	     	})
 		.on('relocated', function(session, event) {
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: " + event.url }), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "Your friend relocated to: " + event.url }), '*');
 		})
 		.on('viewer_joined', function(session, event) {
 			update_feed("Someone joined your session!");
@@ -79,12 +79,12 @@ function navigate(){
 window.addEventListener('message', function(e){
 	if (e.origin == "https://surfly.com") {
 		var string = JSON.stringify(e.data);
-		if(string.indexOf('cobro_event') && string.indexOf("The leader relocated")!==-1){
+		if(string.indexOf('cobro_event') && string.indexOf("Your friend relocated")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.charAt(0)=='T'){
-				var new_ph = info.substring(info.indexOf('https')+8, info.indexOf('>')-2);
+				var new_ph = info.substring(info.indexOf('https')+8);
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
 				lastLink = new_ph;

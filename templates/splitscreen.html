@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		.on('relocated', function(session, event) {
 			// send message to the other side
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "Your friend relocated to: " + event.url}), '*');
 			// store current url
 			lastUrl = event.url;
 		})
@@ -117,7 +117,8 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
 			if(info.charAt(0)=='T'){
-				var new_ph = info.substring(info.indexOf('https')+8, info.indexOf('>')-2);
+				var new_ph = info.substring(info.indexOf('https')+8);
+				console.log(new_ph);
 				//if(new_ph.indexOf('/')!==-1){ new_ph = new_ph.substring(0, new_ph.indexOf('/'));}
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
