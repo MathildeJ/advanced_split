@@ -42,6 +42,13 @@ window.addEventListener('DOMContentLoaded', function() {
                         // send the message to iframe 2
                         var popupWindow = document.getElementById("ifrm2").contentWindow;
 		        popupWindow.postMessage(inviteLink, "*");
+                        //function processAjaxData(response, urlPath){
+                        //   document.getElementById("content").innerHTML = response.html;
+                        //   document.title = response.pageTitle;
+                        //   window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
+                        //}
+
+                        window.history.pushState('followerUrl',"", inviteLink);
                        
 			// make the nav bar visible
 			document.getElementById('form_wrapper').style.visibility = "visible";
@@ -160,7 +167,7 @@ window.addEventListener('message', function(e){
 })
 
 function exitSession(){
-  sess.end('https://www.surfly.com');
+  sess.end('https://agile-badlands-71200.herokuapp.com');
 }
 
 // ignore/acknowledge friend button

@@ -42,11 +42,28 @@
 
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h3 class="mainText">Copy-paste the link below to share with a friend!</h3>
+            <h2 class="mainText">Share link!</h2>
             <div id="invite" style="color:white" onclick="selectText('invite')">Invite link</div>
+            <h2 class="mainText">Send link in Email</h2>
+            <!-- form to enter the email address of a friend -->
+            <!-- method="post" onsubmit="sendLink()" -->
+            <form>
+              <label>
+                 <input id="enterEmail" type="text" name="enterEmail" placeholder="enter email"/>
+              </label>
+              <label>
+                 <input type="button" id="sendEmail" value="send email!" onclick="sendLink()"/>
+              </label>
+            </form>
             <br>
         </div>
     </header>
+    
+<!--
+     get the email adress from the input element 
+     send the link in the mail
+     put restrictions on the email address
+-->
 
     <script type="text/javascript">
     function selectText(containerid) {
@@ -64,6 +81,7 @@
    </script>
 
    <script>
+        var link;
 	var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
 	var eventer = window[eventMethod];
 	var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
@@ -71,11 +89,19 @@
 	eventer(messageEvent, function (e) {
 	   var string = JSON.stringify(e.data);
            if (string.match(/(splitscreen)/g)) {
-              var link = string.substring(1, string.length - 1);
+              link = string.substring(1, string.length - 1);
               document.getElementById("invite").innerHTML = link;
            }
 	}, false);
+
+        function sendLink() {
+          // get the email address from the form
+          var emailAddress = document.getElementById('enterEmail').value;
+          console.log("the input value was ", emailAddress, "and the link is ", link);
+          var emailTetx = document.createTextNode("You have been invited to start a splitscreen session!, please use the ", link , "to join your friend");
+        }
    </script>
+ 
 
 </body>
 </html>
