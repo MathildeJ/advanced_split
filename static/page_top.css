@@ -41,8 +41,8 @@ body {
 	display: inline-block;
 	width: 450px;
 	position: fixed;
-	/*left: -8%;*/
- 	margin-left: 10px;
+	left: -6%;
+ 	/*margin-left: 10px;*/
 	visibility: hidden; 
 	align-items: flex-start;
 	margin-right: 10px;
