@@ -8,6 +8,10 @@
 <link href="../static/splitscreen.css" rel="stylesheet">
 <link href="../static/page_top.css" rel="stylesheet">
 
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
 <script>
 (function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
 l=u.createElement(r);y=u.getElementsByTagName(r)[0];l.async=1;
@@ -23,7 +27,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (init.success) {
 	if(!Surfly.currentSession){
 	    	s = Surfly.session();
-	        s._settings.url = "https://www.google.co.uk";
+	        s._settings.url = "https://www.duckduckgo.com";
 		s.on('session_started', function(session) {
                         // get the follower link
 			var retrievedLink = session.followerLink;
@@ -41,9 +45,9 @@ window.addEventListener('DOMContentLoaded', function() {
 			sess = session;
 	     	})
 		.on('relocated', function(session, event) {
-			update_feed("You relocated to: " + event.url);
+			update_feed("You relocated to: <a href='" + event.url +"'> " + event.url + "</a>");
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: " + event.url}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: <a href='" + event.url +"'> " + event.url + "</a>"}), '*');
 		})
 		.on('viewer_joined', function(session, event) {
 			update_feed("Someone joined your session!");
@@ -57,9 +61,15 @@ window.addEventListener('DOMContentLoaded', function() {
  });
 
 
-function sendMess(){
-        // relocate to the url entered in the form
+// navigate to a new url
+function navigate(){
 	var url = document.getElementById('url').value;
+	if(url=="" && document.getElementById('url').placeholder){
+		url = document.getElementById('url').placeholder;
+	}
+	if(url.indexOf('https')==-1){
+		url = 'https://' + url;
+	}
 	sess.relocate(url);
 }
 
@@ -70,10 +80,11 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			//if(info.indexOf('\\')){ info = info.substring(0, info.length);};
-                        //update_feed(info);
 			if(info.charAt(0)=='T'){
+				var new_ph = info.substring(info.indexOf('https')+8, info.indexOf('>')-2);
                         	update_feed(info);
+				console.log(new_ph);
+				document.getElementById('url').placeholder = new_ph;
 			}
 		}
 		if(string.indexOf('cobro_event') && (string.indexOf("The leader is ignoring you!")!==-1||string.indexOf("The leader stopped ignoring you!")!==-1)){
@@ -81,7 +92,6 @@ window.addEventListener('message', function(e){
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
                         if(info.indexOf('!')!==-1){
-				console.log('ok: ' + info);
                         	update_feed(info);
 			}
 		}
@@ -176,9 +186,9 @@ function badReaction() {
 <body>
 <div id="menu">
 	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
-	<button id="ignore" style="margin-left: 50px;" onclick="ignoreFriend()">Ignore Friend</button>
-	<button id="goodReaction" style="background: transparent; border: none;" class="reaction" onclick="goodReaction()"><img src="../static/smile.jpg"></button>
-        <button id="badReaction" style="background: transparent; border: none;" class="reaction" onclick="badReaction()"><img src="../static/sad.jpg"></button>
+	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
+	<button id="goodReaction" class="reaction" onclick="goodReaction()"></button>
+        <button id="badReaction" class="reaction" onclick="badReaction()"></button>
 	<div id="feed">
 		<h4>News feed</h4>
 		<ul id="list">
@@ -186,14 +196,13 @@ function badReaction() {
 	 	  <li id="i2" class="list_item"></li>
 		</ul>
 	</div>
-	<div id="form_wrapper">
+	<div id="form_wrapper" style="">
 		<form id="nav" action="" method="post">
 			<label style="float:left">
-				<h3 id="title_bar">Nav bar :</h3>
-				<input id="url" type="text" name="url"/>
+				<input id="url" type="text" name="url" placeholder="google.com"/>
 			</label>
 			<label>
-			       <input type="button" class="button" id="submit_button" onclick=sendMess() value="Go!" />
+			       <input type="button" class="button" id="submit_button" onclick=navigate() value="Go!" />
 			</label>
 		</form>
 	</div>
@@ -205,7 +214,7 @@ function badReaction() {
 <!-- the leader link is opened in this frame -->
 <div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='right'></iframe></div>
 <!-- the reaction is seen in this iframe -->
-<div class="box"><iframe height="700" width="49%" align='left' id="reaction" src="" style="display: block; position: absolute; frameBorder:'0'; visibility:hidden;"></iframe></div>
+<div class="box"><iframe align='left' id="reaction" src="" style="display: block; position: absolute; frameBorder:'0'; visibility:hidden;"></iframe></div>
 
 <script>
 // get the current url and the follower link
@@ -215,6 +224,15 @@ var sessionID = pageUrl.substring(idIndex+6);
 var fullUrl =  "https://surfly.com".concat(sessionID);
 // set the url of the first frame to the follower link
 document.getElementById('ifrm1').src = fullUrl;
+</script>
+
+<script>
+$(document).ready(function(){
+	//$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
+	$('#url').focus(function() { 
+  		$(this).val(''); 
+	});
+});
 </script>
 
 </body>

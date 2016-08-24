@@ -41,10 +41,11 @@ body {
 	display: inline-block;
 	width: 450px;
 	position: fixed;
-	left: -5%;
+	left: -8%;
 	visibility: hidden; 
 	align-items: flex-start;
 	margin-right: 10px;
+	margin-top: 3px;
 }
 
 #url{
@@ -138,33 +139,39 @@ body {
 }
 
 #feed {
-	width: 30%;
+	width: 50%;
 	position: fixed;
-	left: 35%;
+	left: 25%;
 	visibility: hidden;
-	max-height: 45px;
+	max-height: 48px;
 }
 
 #badReaction {
        position: relative;
        visibility: hidden;
        float: right;
-       margin-top: 0px;
+       margin-top: 5px;
        margin-right: 5px;
-       height: 20px;
+       height: 27px;
+       width: 27px;
        background: transparent;
        border: none;
+       background-image:url('./thumb_down.png');
+       background-size: cover;
 }
 
 #goodReaction {
        position: relative;
-	visibility: hidden;
+       visibility: hidden;
        float: right;
-       margin-top: 0px;
+       margin-top: 5px;
        margin-right: 5px;
-       height: 20px;
+       height: 27px;
+       width: 27px;
        background: transparent;
-       border: none;       
+       border: none;  
+       background-image:url('./thumb_up.png');
+       background-size:cover;     
 }
 
 #popupLink {
@@ -202,7 +209,7 @@ ul {
 li {
   margin-top: 2px;
   font-family: Helvetica, Verdana, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   border-bottom: 2px double #ccc;
 }
  
