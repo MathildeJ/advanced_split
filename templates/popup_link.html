@@ -46,12 +46,12 @@
             <div id="invite" style="color:white" onclick="selectText('invite')">Invite link</div>
             <h2 class="mainText">Send link in Email</h2>
             <!-- form to enter the email address of a friend -->
-            <form method="post">
+            <form method="post" onsubmit="sendEmail()">
               <label>
                  <input id="enterEmail" type="text" name="enterEmail" placeholder="enter email"/>
               </label>
               <label>
-                 <input type="button" id="sendEmail" value="send email!" onclick="sendEmail()"/>
+                 <input type="submit" id="sendEmail" value="send email!"/>
               </label>
             </form>
             <br>
@@ -64,11 +64,11 @@
      put restrictions on the email address
 -->
   <script>
-       function sendEmail() {
-          var emailAddress = document.getElementById('enterEmail').value;
-          console.log("the input value was ", emailAddress);
-       }
-   </script>
+  function sendEmail() {
+     var emailAddress = document.getElementById('enterEmail').value;
+     console.log("the input value was ", emailAddress);
+  }
+  </script>
 
     <script type="text/javascript">
     function selectText(containerid) {
