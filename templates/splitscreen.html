@@ -33,22 +33,13 @@ window.addEventListener('DOMContentLoaded', function() {
 			// get the page url
 			var pageUrl = document.location.href;
 			// append the page url to the session id
-			inviteLink = pageUrl.concat(sessionID);
-                        // set a timeout so that the message is not sent before the page is ready 
-                        setTimeout(function() {
-                          // send the message to iframe 2
-                          var popupWindow = document.getElementById("ifrm2").contentWindow;
-		          popupWindow.postMessage(inviteLink, "*");
-                         // document.getElementById('ifrm2').src="./popup_link";
-                          console.log("the message was sent");
-		        }, 5000);
-                        
-                        // document.getElementById('ifrm2').src="./popup_link";
-
+                	inviteLink = pageUrl.concat(sessionID);
+                        // send the message to iframe 2
+                        var popupWindow = document.getElementById("ifrm2").contentWindow;
+		        popupWindow.postMessage(inviteLink, "*");
+                       
 			// make the elements linked to the session visible
-			document.getElementById("invite").style.visibility = 'visible';
 			document.getElementById('exit_button').style.visibility="visible";
-			document.getElementById('invite').style.visibility = "visible";
 			document.getElementById('form_wrapper').style.visibility = "visible";
 			document.getElementById('feed').style.visibility = "visible";
 			document.getElementById('ignore').style.visibility = "visible";
@@ -242,8 +233,6 @@ function badReaction() {
 <div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='left'></iframe></div>
 <!-- the frame in which the follower link will be opened -->
 <div class="box"><iframe id="ifrm2" src="./popup_link" height="700" width="49%" align='right'></iframe></div>
-<!-- the frame in which the invite link is displayed -->
-<iframe id="popupLink" src="./popup_link" height="300" width="45%"></iframe>
 <!-- the reaction is seen in this iframe -->
 <div class="box"><iframe height="200" align='left' id="reaction" src=""></iframe></div>
 </body>
