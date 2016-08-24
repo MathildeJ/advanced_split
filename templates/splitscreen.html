@@ -177,20 +177,6 @@ function ignoreFriend() {
     }
 }
 
-function inviteFriend(){
-  // we hide the invite button
-  document.getElementById("invite").style.visibility = "hidden";
-  // we display a popup with the invite link
-  var popupWindow = document.getElementById("popupLink").contentWindow;
-  popupWindow.postMessage(inviteLink, "*");
-  document.getElementById("popupLink").style.visibility="visible";
-}
-
-//close popup
-function closeIFrame(){
-     document.getElementById("popupLink").style.visibility="hidden";
-}
-
 var item = true;
 //update live feed
 function update_feed(text){
@@ -231,7 +217,6 @@ function badReaction() {
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
 	<button id="goodReaction" class="reaction" onclick="goodReaction()"><img src="../static/redsmile.png"></button>
         <button id="badReaction" class="reaction" onclick="badReaction()"><img src="../static/sad.jpg"></button>
-        <button id="invite" class="button" onclick="inviteFriend()">Invite Friend</button>
 	<div id="feed">
 		<h4>News feed</h4>
 		<ul id="list">

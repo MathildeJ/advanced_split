@@ -45,7 +45,6 @@
             <h3 class="mainText">Copy-paste the link below to share with a friend!</h3>
             <div id="invite" style="color:white" onclick="selectText('invite')">Invite link</div>
             <br>
-            <button id="exitButton" class="btn btn-dark btn-lg" onclick="exitPopup()">Close</button> 
         </div>
     </header>
 
@@ -64,13 +63,6 @@
     }
    </script>
 
-    <script>
-        function exitPopup() {
-        // calls the closeIFrame function on the parent 
-           parent.closeIFrame();
-        }
-    </script>
-
    <script>
 	var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
 	var eventer = window[eventMethod];
@@ -79,10 +71,7 @@
 	eventer(messageEvent, function (e) {
 	   var string = JSON.stringify(e.data);
            if (string.match(/(splitscreen)/g)) {
-              console.log("the string was matched", string);
               document.getElementById("invite").innerHTML = string;
-           } else {
-              console.log("the other messages recieved are ", string);
            }
 	}, false);
    </script>
