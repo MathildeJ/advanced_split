@@ -69,7 +69,9 @@ window.addEventListener('DOMContentLoaded', function() {
 			// send current link to other side
 			var frame = document.getElementById('ifrm2').contentWindow;
 			if(lastUrl){
-				frame.postMessage(JSON.stringify({"command": "message", "data": "Current url: " + lastUrl}), '*');
+				setTimeout(function(){
+					frame.postMessage(JSON.stringify({"command": "message", "data": "Current url: " + lastUrl}), '*');
+				}, 2000);
 			}*/
 		})
 		.on('session_ended', function(session) {
@@ -117,15 +119,14 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			console.log('relo:' + info);
-			/*
+			//console.log('relo:' + info);
 			if(info.charAt(0)=='T'){
 				var new_ph = info.substring(info.indexOf('https')+8);
-				console.log(new_ph);
+				//console.log(new_ph);
 				//if(new_ph.indexOf('/')!==-1){ new_ph = new_ph.substring(0, new_ph.indexOf('/'));}
                         	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
-			}*/
+			}
 		}
 
 		// update feed if the follower ignores you
@@ -231,7 +232,7 @@ function badReaction() {
 	<div id="form_wrapper">
 		<form id="nav" action="" method="post">
 			<label style="float:left">
-				<input id="url" type="text" name="url" placeholder="duckduckgo.com"/>
+				<input id="url" type="text" name="url" placeholder="duckduckgo.com" autofocus="autofocus"/>
 			</label>
 			<label>
 			       <input type="button" class="button" id="submit_button" onclick=navigate() value="Go!" />
