@@ -46,7 +46,7 @@
             <div id="invite" style="color:white" onclick="selectText('invite')">Invite link</div>
             <h2 class="mainText">Send link in Email</h2>
             <!-- form to enter the email address of a friend -->
-            <form method="post" onsubmit="sendEmail()">
+            <form method="post" onsubmit="sendLink()">
               <label>
                  <input id="enterEmail" type="text" name="enterEmail" placeholder="enter email"/>
               </label>
@@ -64,7 +64,7 @@
      put restrictions on the email address
 -->
   <script>
-  function sendEmail() {
+  function sendLink() {
      var emailAddress = document.getElementById('enterEmail').value;
      console.log("the input value was ", emailAddress);
   }
