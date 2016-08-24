@@ -36,13 +36,10 @@ window.addEventListener('DOMContentLoaded', function() {
 			var linkIndex = followerLink.indexOf(".com");
 			var sessionID = followerLink.substring(linkIndex+4, linkIndex+16);
 			// get the page url
-			var pageUrl = document.location.href;
-                        console.log("the full page url is ", pageUrl);
-                        //var urlIndex = pageUrl.indexOf(".com");
-                        //var urlEnd = pageUrl.indexOf("screen");
-                        console.log("the domain is ", window.location.origin);
+			var pageUrl = document.location.domain;
 			// append the page url to the session id
                 	inviteLink = pageUrl.concat(sessionID);
+                        console.log("the new invite link is ", inviteLink);
                         // send the message to iframe 2
                         var popupWindow = document.getElementById("ifrm2").contentWindow;
 		        popupWindow.postMessage(inviteLink, "*");
