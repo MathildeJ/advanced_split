@@ -40,15 +40,6 @@
 
 <body>
 
-		<form id="nav" action="" method="post">
-			<label style="float:left">
-				<input id="url" type="text" name="url" placeholder="google.com"/>
-			</label>
-			<label>
-			       <input type="button" class="button" id="submit_button" onclick=navigate() value="Go!" />
-			</label>
-		</form>
-
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h2 class="mainText">Share link!</h2>
@@ -99,8 +90,10 @@
    <script>
     // get the email adress from the input element 
     // send the link in the mail
+    // put restrictions on the email address
        function sendEmail() {
-          console.log("send the email");
+          var emailAddress = document.getElementById('enterEmail').value;
+          console.log("the input value was ", value);
        }
    </script>
 
