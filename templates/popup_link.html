@@ -71,7 +71,8 @@
 	eventer(messageEvent, function (e) {
 	   var string = JSON.stringify(e.data);
            if (string.match(/(splitscreen)/g)) {
-              document.getElementById("invite").innerHTML = string;
+              var link = string.substring(1, string.length - 1);
+              document.getElementById("invite").innerHTML = link;
            }
 	}, false);
    </script>
