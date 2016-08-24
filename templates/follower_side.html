@@ -79,7 +79,6 @@ function navigate(){
 window.addEventListener('message', function(e){
 	if (e.origin == "https://surfly.com") {
 		var string = JSON.stringify(e.data);
-		console.log(string);
 		if(string.indexOf('cobro_event') && string.indexOf("The leader relocated")!==-1){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
@@ -105,9 +104,11 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			var url = info.substring(info.indexOf('https'));
-			console.log('lasturl: '+info);
-                        sess.relocate(url);
+			if(info.charAt(0)==='T'){
+				var url = info.substring(info.indexOf('https'));
+				console.log('lasturl: '+info);
+                       	 	sess.relocate(url);
+			}
 		}
 
 		var reactionFrame = document.getElementById('reaction');
