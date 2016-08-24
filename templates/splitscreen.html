@@ -69,9 +69,10 @@ window.addEventListener('DOMContentLoaded', function() {
 			// send current link to other side
 			if(lastUrl){
 				setTimeout(function(){
-					var frame = document.getElementById('ifrm2').contentWindow;
+					var frame = document.getElementById('ifrm1').contentWindow;
 					frame.postMessage(JSON.stringify({"command": "message", "data": "Current url: " + lastUrl}), '*');
 				}, 4000);
+				console.log('ok lasturl sent message');
 			}
 		})
 		.on('session_ended', function(session) {
@@ -251,13 +252,6 @@ $(document).ready(function(){
 	$('#url').focus(function() { 
   		$(this).val(''); 
 	});
-/*
-	$(document).keypress(function(e){
-		if (e.keyCode == 13){
-			alert('ok');
-		}
-	});
-*/
 	$('#url').keypress(function(e){
 		if (e.keyCode == 13){
 			e.preventDefault();
