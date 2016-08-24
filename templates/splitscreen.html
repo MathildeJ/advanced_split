@@ -258,8 +258,8 @@ function badReaction() {
 
 <script>
 $(document).ready(function(){
-	$('#resizable1').resizable({alsoResize : '#ifrm1', ghost: true});
-	$('#resizable2').resizable({alsoResize : '#ifrm2', ghost: true});
+	$('#resizable1').resizable({alsoResize : '#ifrm1, #ifrm2', ghost: true});
+	$('#resizable2').resizable({alsoResize : '#ifrm2, #ifrm1', ghost: true});
 
 	$('#url').focus(function() { 
   		$(this).val(''); 
