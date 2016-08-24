@@ -3,14 +3,17 @@ from flask import Flask, request, make_response, render_template
 from werkzeug.routing import BaseConverter
 app = Flask(__name__)
 
+"""
 class RegexConverter(BaseConverter):
-    """ copied from an example -> simplify/ adjust later """
+     copied from an example -> simplify/ adjust later 
     def __init__(self, url_map, *items):
         super(RegexConverter, self).__init__(url_map)
         self.regex = items[0]
 
 app.url_map.converters['regex'] = RegexConverter
 
+regex("[0-9]{3}[-][0-9]{3}[-][0-9]{3}"):>
+"""
 
 @app.route('/')
 def index():
@@ -22,7 +25,7 @@ def splitscreen():
 
 #@app.route('/<regex("[abcABC0-9]{4,6}"):uid>-<slug>/')
 
-@app.route('/splitscreen/<regex("[0-9]{3}[-][0-9]{3}[-][0-9]{3}"):>-<session_id>/')
+@app.route('/splitscreen/<session_id>')
 def index_session_id(session_id):
    return render_template('follower_side.html')
 
