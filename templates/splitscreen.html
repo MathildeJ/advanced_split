@@ -240,12 +240,13 @@ $(document).ready(function(){
 	//$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
 	$('#url').focus(function() { 
   		$(this).val(''); 
+		$('#url').keypress(function(event){
+  			if(event.keyCode == 13){
+    				$('#submit_button').click();
+  			}
+		});
 	});
-	$('#url').keypress(function(key){
-  		if(key.keyCode == 13){
-    			$('#submit_button').click();
-  		}
-	});
+
 });
 </script>
 </body>
