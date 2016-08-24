@@ -20,15 +20,15 @@ def index():
 def splitscreen():
    return render_template('splitscreen.html')
 
-
+"""
 @app.route('/splitscreen/<regex("[0-9]{3}[-][0-9]{3}[-][0-9]{3}"):str>-<session_id>/')
 def index_session_id(session_id):
    return render_template('follower_side.html')
+"""
 
-
-@app.route('/splitscreen/<regex("(abc)"):str>-<session_id>/')
-def regex_url_test(session_id):
-   return render_template('splitscreen.html')
+@app.route('/splitscreen/<session_id>)
+def original_session_id(session_id):
+   return render_template('follower_side.html')
 
 @app.route('/start_page')
 def first_frame():
