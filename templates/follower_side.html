@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		.on('relocated', function(session, event) {
 			update_feed("You relocated to: <a href='" + event.url +"'> " + event.url + "</a>");
 			var frame = document.getElementById('ifrm2').contentWindow;
-			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: <a href='" + event.url +"' target='_blank'>" + event.url + "</a>"}), '*');
+			frame.postMessage(JSON.stringify({"command": "message", "data": "The follower relocated to: <a target=\"_tab\" href='" + event.url +"' >" + event.url + "</a>"}), '*');
 		})
 		.on('viewer_joined', function(session, event) {
 			update_feed("Someone joined your session!");
