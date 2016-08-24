@@ -7,13 +7,14 @@
   position: fixed;
   top: 60px;
   left: 10px;
+  bottom: 25px;
   width: 49%;
   min-width: 200px;
 }
 
 #ifrm1{
-/*
-  display: block;
+
+  display: block;/*
   border-top: red 3px solid;
   border-right: red 3px solid;
   border-left: red 3px solid;
