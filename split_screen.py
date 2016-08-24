@@ -26,9 +26,17 @@ def index_session_id(session_id):
    return render_template('follower_side.html')
 """
 
-@app.route('/splitscreen/<session_id>)
+@app.route('/splitscreen/<session_id>')
 def original_session_id(session_id):
    return render_template('follower_side.html')
+
+@app.route('/<regex("[abcABC0-9]{4,6}"):uid>-<slug>/')
+def example(uid, slug):
+    return "uid: %s, slug: %s" % (uid, slug)
+
+"""
+http://localhost:5000/abc0-foo/
+"""
 
 @app.route('/start_page')
 def first_frame():
