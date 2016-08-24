@@ -19,7 +19,7 @@ def index():
 def splitscreen():
    return render_template('splitscreen.html')
 
-@app.route('/splitscreen/<regex("[0-9]{3}[-][0-9]{3}[-][0-9]{3}")/>')
+@app.route('/splitscreen/<regex:("[0-9]{3}[-][0-9]{3}[-][0-9]{3}")/>')
 def index_session_id(session_id):
    return render_template('follower_side.html')
 
