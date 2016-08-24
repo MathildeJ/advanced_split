@@ -65,14 +65,14 @@ window.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('badReaction').style.visibility = "visible";
 			document.getElementById('goodReaction').style.visibility = "visible";
 			document.getElementById('exit_button').style.visibility="visible";
-			/*
+			
 			// send current link to other side
 			var frame = document.getElementById('ifrm2').contentWindow;
 			if(lastUrl){
 				setTimeout(function(){
 					frame.postMessage(JSON.stringify({"command": "message", "data": "Current url: " + lastUrl}), '*');
 				}, 2000);
-			}*/
+			}
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
@@ -231,7 +231,7 @@ function badReaction() {
 				<input id="url" type="text" name="url" placeholder="duckduckgo.com"/>
 			</label>
 			<label>
-			       <input type="submit" class="button" id="submit_button" onclick=navigate() value="Go!" />
+			       <input type="button" class="button" id="submit_button" onclick=navigate() value="Go!" />
 			</label>
 		</form>
 	</div>
@@ -250,6 +250,11 @@ $(document).ready(function(){
 	//$('#resizable').resizable({alsoResize : '#ifrm1', ghost: true});
 	$('#url').focus(function() { 
   		$(this).val(''); 
+	});
+	$(document).keypress(function(e){
+		if (e.keyCode == 13){
+			navigate();
+		}
 	});
 
 });
