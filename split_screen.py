@@ -4,7 +4,7 @@ from werkzeug.routing import Rule, Map, BaseConverter, ValidationError
 app = Flask(__name__)
 
 class RegexConverter(BaseConverter):
-    """ Using a converter so we can use a regex to parse the follower link url """
+    #Using a converter so we can use a regex to parse the follower link url
     def __init__(self, url_map, *items):
         super(RegexConverter, self).__init__(url_map)
         self.regex = items[0]
@@ -22,7 +22,7 @@ def splitscreen():
    return render_template('splitscreen.html')
 
 @app.route('/<regex("[0-9]{3}[-][0-9]{3}[-][0-9]{3}"):session_id>/')
-""" the regex checks whether the url contains the session id """
+#the regex checks whether the url contains the session id
 def index_session_id(session_id):
    return render_template('follower_side.html')
 
