@@ -42,8 +42,8 @@ body {
 	width: 450px;
 	position: fixed;
 	/*left: -6%;*/
-	top: 0;
-    	left: 0;
+	top: 3px;
+    	left: -10px;
 	visibility: hidden; 
 	align-items: flex-start;
 	margin-right: 10px;
