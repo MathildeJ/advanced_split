@@ -95,25 +95,27 @@ window.addEventListener('message', function(e){
                         	update_feed(info);
 			}
 		}
-			var reactionFrame = document.getElementById('reaction');
-		    // if the data recieved is "good" set the source of reactionFrame to the happy image
-		    if (string.match(/(good)/)) {
+		var reactionFrame = document.getElementById('reaction');
+	        // if the data recieved is "good" set the source of reactionFrame to the happy image
+	        if (string.match(/(good)/)) {
 		        reactionFrame.src = "../static/happycow.jpg";
-			update_feed("Your friend likes you!");
-		     }
-		     // if the data recieved is "bad" the src of reactionFrame is the grumpy image
-		     if (string.match(/(bad)/)) {
-		        reactionFrame.src = "../static/grumpy.jpg";
-			update_feed("Your friend hates you!");
-		    }
-		    if (reactionFrame.src != "") {
-		      // check that the src is not empty, and then show the frame
-		      reactionFrame.style.visibility="visible";
-		      // the frame is hidden after 3 seconds 
-		      setTimeout(function() {
+			update_feed("You received a like!");
+                        reactionFrame.style.visibility="visible";
+		        // the frame is hidden after 3 seconds 
+		        setTimeout(function() {
 		         reactionFrame.style.visibility = "hidden";
-		      }, 3000);
-		    }
+		        }, 3000);
+		       }
+	       // if the data recieved is "bad" the src of reactionFrame is the grumpy image
+               if (string.match(/(bad)/)) {
+		        reactionFrame.src = "../static/grumpy.jpg";
+			update_feed("You received a dislike!");
+                        reactionFrame.style.visibility="visible";
+		        // the frame is hidden after 3 seconds 
+		          setTimeout(function() {
+		           reactionFrame.style.visibility = "hidden";
+		          }, 3000);
+		        }
 	}
 })
 
@@ -214,7 +216,7 @@ function badReaction() {
 <!-- the leader link is opened in this frame -->
 <div class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='right'></iframe></div>
 <!-- the reaction is seen in this iframe -->
-<div class="box"><iframe align='left' id="reaction" src="" style="display: block; position: absolute; frameBorder:'0'; visibility:hidden;"></iframe></div>
+<div class="box"><iframe align='left' id="reaction" src=""></iframe></div>
 
 <script>
 // get the current url and the follower link
