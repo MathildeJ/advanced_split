@@ -118,12 +118,9 @@ window.addEventListener('message', function(e){
 			var index = string.indexOf('data');
 			var indexEnd = string.indexOf('origin');	
 			var info = string.substring(index+9, indexEnd-5);
-			//console.log('relo:' + info);
 			if(info.charAt(0)==='T'){
 				var new_ph = info.substring(info.indexOf('https')+8);
-				//console.log(new_ph);
 				//if(new_ph.indexOf('/')!==-1){ new_ph = new_ph.substring(0, new_ph.indexOf('/'));}
-                        	update_feed(info);
 				document.getElementById('url').placeholder = new_ph;
 			}
 		}
@@ -231,10 +228,10 @@ function badReaction() {
 	<div id="form_wrapper">
 		<form id="nav" action="" method="post">
 			<label style="float:left">
-				<input id="url" type="text" name="url" placeholder="duckduckgo.com" autofocus="autofocus"/>
+				<input id="url" type="text" name="url" placeholder="duckduckgo.com"/>
 			</label>
 			<label>
-			       <input type="button" class="button" id="submit_button" onclick=navigate() value="Go!" />
+			       <input type="submit" class="button" id="submit_button" onclick=navigate() value="Go!" />
 			</label>
 		</form>
 	</div>
