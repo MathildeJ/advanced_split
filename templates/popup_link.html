@@ -46,13 +46,13 @@
             <div id="invite" style="color:white" onclick="selectText('invite')">Invite link</div>
             <h2 class="mainText">Send link in Email</h2>
             <!-- form to enter the email address of a friend -->
-            <!-- method="post" -->
-            <form onsubmit="sendLink()">
+            <!-- method="post" onsubmit="sendLink()" -->
+            <form>
               <label>
                  <input id="enterEmail" type="text" name="enterEmail" placeholder="enter email"/>
               </label>
               <label>
-                 <input type="submit" id="sendEmail" value="send email!"/>
+                 <input type="button" id="sendEmail" value="send email!" onclick="sendLink()"/>
               </label>
             </form>
             <br>
