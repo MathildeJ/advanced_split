@@ -22,6 +22,7 @@ l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
 <script>
 var sess;
 var inviteLink;
+var lastUrl;
 var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true, set_to_smallest: false, drawing_color: "red"};
 window.addEventListener('DOMContentLoaded', function() {
   Surfly.init(settings, function(init) {
@@ -52,6 +53,8 @@ window.addEventListener('DOMContentLoaded', function() {
 			// send message to the other side
 			var frame = document.getElementById('ifrm2').contentWindow;
 			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
+			// store current url
+			lastUrl = event.url;
 		})
 		.on('viewer_joined', function(session, event) {
 			// update feed
@@ -62,6 +65,12 @@ window.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('badReaction').style.visibility = "visible";
 			document.getElementById('goodReaction').style.visibility = "visible";
 			document.getElementById('exit_button').style.visibility="visible";
+			
+			// send current link to other side
+			var frame = document.getElementById('ifrm2').contentWindow;
+			if(lastUrl){
+				frame.postMessage(JSON.stringify({"command": "message", "data": "Current url: " + lastUrl}), '*');
+			}
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";

@@ -94,6 +94,15 @@ window.addEventListener('message', function(e){
                         	update_feed(info);
 			}
 		}
+
+		if(string.indexOf('cobro_event') && (string.indexOf("Current url")!==-1){
+			var index = string.indexOf('data');
+			var indexEnd = string.indexOf('origin');	
+			var info = string.substring(index+9, indexEnd-5);
+			console.log('lasturl: '+info);
+                        //sess.relocate(info);
+		}
+
 		var reactionFrame = document.getElementById('reaction');
 	        // if the data recieved is "good" set the source of reactionFrame to the happy image
 	        if (string.match(/(good)/)) {
@@ -104,7 +113,7 @@ window.addEventListener('message', function(e){
 		        setTimeout(function() {
 		         reactionFrame.style.visibility = "hidden";
 		        }, 3000);
-		       }
+		}
 	       // if the data recieved is "bad" the src of reactionFrame is the grumpy image
                if (string.match(/(bad)/)) {
 		        reactionFrame.src = "../static/grumpy.jpg";
@@ -114,7 +123,7 @@ window.addEventListener('message', function(e){
 		          setTimeout(function() {
 		           reactionFrame.style.visibility = "hidden";
 		          }, 3000);
-		        }
+		}
 	}
 })
 
