@@ -38,6 +38,7 @@ window.addEventListener('DOMContentLoaded', function() {
                         setTimeout(function() {
                           var popupWindow = document.getElementById("popupLink").contentWindow;
 		          popupWindow.postMessage(inviteLink, "*");
+                          popupWindow.postMessage(JSON.stringify({"command": "message", "data": "The invite link is: " + inviteLink}), '*');
                          // document.getElementById('ifrm2').src="./popup_link";
                           console.log("the message was sent");
 		        }, 5000);
