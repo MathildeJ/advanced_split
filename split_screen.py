@@ -25,6 +25,11 @@ def splitscreen():
 def index_session_id(session_id):
    return render_template('follower_side.html')
 
+
+@app.route('/splitscreen/<regex("(abc)"):str>-<session_id>/')
+def regex_url_test(session_id):
+   return render_template('splitscreen.html')
+
 @app.route('/start_page')
 def first_frame():
    return render_template('start_page.html')
