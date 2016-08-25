@@ -217,6 +217,24 @@ function badReaction() {
 
 </script>
 
+<script>
+
+function resizeIFrameToFitContent( iFrame ) {
+
+    iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
+    iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+}
+
+window.addEventListener('DOMContentReady', function(e) {
+
+    var iFrame = document.getElementById( 'reaction' );
+    resizeIFrameToFitContent( iFrame );
+
+    }
+} );
+
+</script>
+
 </head>
 
 <body>
