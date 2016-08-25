@@ -22,6 +22,7 @@ l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
 <script>
 var sess;
 var inviteLink;
+var testLink;
 var lastUrl;
 var settings = {widgetkey:'b84defc4621441ecae5eb10bdec1cb5a', block_until_agent_joins: false, ui_off: true, set_to_smallest: false};
 window.addEventListener('DOMContentLoaded', function() {
@@ -35,19 +36,14 @@ window.addEventListener('DOMContentLoaded', function() {
 			var followerLink = session.followerLink;
 			var linkIndex = followerLink.indexOf(".com");
 			var sessionID = followerLink.substring(linkIndex+4, linkIndex+16);
-			// get the page url
-			var pageUrl = document.location.href;
-			// append the page url to the session id
-                	inviteLink = pageUrl.concat(sessionID);
+			// get the page origin
+                        var pageDomain = document.location.origin;
+			// append the page domain to the session id
+                        inviteLink = pageDomain.concat(sessionID);
                         // send the message to iframe 2
                         var popupWindow = document.getElementById("ifrm2").contentWindow;
 		        popupWindow.postMessage(inviteLink, "*");
-                        //function processAjaxData(response, urlPath){
-                        //   document.getElementById("content").innerHTML = response.html;
-                        //   document.title = response.pageTitle;
-                        //   window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
-                        //}
-
+                        // change the url of the window to display the follower link 
                         window.history.pushState('followerUrl',"", inviteLink);
                        
 			// make the nav bar visible
@@ -218,6 +214,24 @@ function badReaction() {
   frame.postMessage(JSON.stringify({"command": "message", "data": "bad"}), '*');
   update_feed("You sent negative vibes!");
 }
+
+</script>
+
+<script>
+
+function resizeIFrameToFitContent( iFrame ) {
+
+    iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
+    iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+}
+
+window.addEventListener('DOMContentReady', function(e) {
+
+    var iFrame = document.getElementById( 'reaction' );
+    resizeIFrameToFitContent( iFrame );
+
+    }
+} );
 
 </script>
 

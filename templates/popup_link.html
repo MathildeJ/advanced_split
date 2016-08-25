@@ -88,7 +88,7 @@
 	// Listen to message from child IFrame window
 	eventer(messageEvent, function (e) {
 	   var string = JSON.stringify(e.data);
-           if (string.match(/(splitscreen)/g)) {
+           if (string.match(/[0-9]{3}[-][0-9]{3}[-][0-9]{3}/g)) {
               link = string.substring(1, string.length - 1);
               document.getElementById("invite").innerHTML = link;
            }
