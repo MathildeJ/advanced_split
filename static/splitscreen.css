@@ -1,64 +1,16 @@
-/*.box{
-    width: 300px; 
-}
-*/
-
-#container_resize { 
-  width: 99%; 
-  height: 700px; 
-}
-
-#resizable1{
-  position: fixed;
-  top: 55px;
-  left: 5px;
-  bottom: 20px;
-  width: 49%;
-}
-
-#resizable2{
-  position: fixed;
-  top: 55px;
-  right: 5px;
-  bottom: 20px;
-  width: 49%;
-}
-
 #ifrm1{
-  /*display: inline-block;*/
+  display: inline-block;
   border-top: red 3px solid;
   border-right: red 3px solid;
   border-left: red 3px solid;
   border-bottom: red 3px solid;
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-
 }
 
 #ifrm2{
-  /*display: inline-block;*/
+  display: inline-block;
   border-top: green 3px solid;
   border-right: green 3px solid;
   border-left: green 3px solid;
   border-bottom: green 3px solid;
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
 }
 
-.ui-resizable-ghost { 
-  border: 2px dotted gray; 
-}
-
- .ui-resizable-helper { border: 2px dotted #00F; }
