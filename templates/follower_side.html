@@ -238,6 +238,7 @@ document.getElementById('ifrm1').src = fullUrl;
 <script>
 $(document).ready(function(){
 	$('#resizable1').resizable({alsoResize : '#resizable2', helper: "ui-resizable-helper"});
+	$('#resizable2').resizable();
 	$('#url').focus(function() { 
   		$(this).val(''); 
 	});
