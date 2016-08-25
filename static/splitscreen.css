@@ -6,21 +6,21 @@
 #resizable1{
   position: fixed;
   top: 55px;
-  left: 5px;
+  left: 10px;
   bottom: 20px;
-  width: 47%;
-  min-width: 200px;
-  min-height: 200px;
+  width: 45%;
+  min-width: 15%;
+  min-height: 20%;
 }
 
 #resizable2{
   position: fixed;
   top: 55px;
-  right: 5px;
+  right: 10px;
   bottom: 20px;
-  width: 47%;
-  min-width: 200px;
-  min-height: 200px;
+  width: 45%;
+  min-width: 15%;
+  min-height: 20%;
 }
 
 #ifrm1{
