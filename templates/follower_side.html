@@ -211,7 +211,7 @@ function badReaction() {
 		</form>
 	</div>
 </div>
-
+<div id="container_resize">
 	<!-- the iframes -->
 	<!-- the frame in which the leader link is opened -->
 	<div id="resizable2" class="box"><iframe id="ifrm2" src="" height="700" width="49%" align='left'></iframe></div>
@@ -221,6 +221,7 @@ function badReaction() {
 	<div id="resizable1" class="box"><iframe id="ifrm1" src="" height="700" width="49%" align='right'></iframe></div> 
 	<!-- test resizable 
 	<div id="resizable2" class="box"><iframe id="ifrm2" src="./popup_link"></iframe></div> -->
+</div>
 <!-- the reaction is seen in this iframe -->
 <div class="box"><iframe align='left' id="reaction" src="" height="300" width="300" style="display: block; position: absolute; frameBorder:'0'; visibility:hidden; border:0 none;"></iframe></div>
 
@@ -237,8 +238,8 @@ document.getElementById('ifrm1').src = fullUrl;
 
 <script>
 $(document).ready(function(){
-	$('#resizable1').resizable({alsoResize : '#resizable2', helper: "ui-resizable-helper"});
-	$('#resizable2').resizable();
+	$('#resizable1').resizable({alsoResize : '#ifrm1, #resizable2', helper: "ui-resizable-helper", containment: '#container_resize'});
+	$('#resizable2').resizable({alsoResize : '#ifrm2'});
 	$('#url').focus(function() { 
   		$(this).val(''); 
 	});
