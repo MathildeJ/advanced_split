@@ -59,12 +59,6 @@
         </div>
     </header>
     
-<!--
-     get the email adress from the input element 
-     send the link in the mail
-     put restrictions on the email address
--->
-
     <script type="text/javascript">
     function selectText(containerid) {
         // function to select the link text on click 
@@ -88,6 +82,7 @@
 	// Listen to message from child IFrame window
 	eventer(messageEvent, function (e) {
 	   var string = JSON.stringify(e.data);
+           // check to see if the string contains the session id 
            if (string.match(/[0-9]{3}[-][0-9]{3}[-][0-9]{3}/g)) {
               link = string.substring(1, string.length - 1);
               document.getElementById("invite").innerHTML = link;
