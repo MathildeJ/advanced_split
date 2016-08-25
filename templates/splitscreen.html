@@ -3,12 +3,15 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- title -->
 <title>Splitscreen</title>
 
+<!-- stylesheets -->
 <link href="../static/page_top.css" rel="stylesheet">
 <link href="../static/splitscreen.css" rel="stylesheet">
-
 <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="stylesheet" />
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
@@ -40,7 +43,7 @@ window.addEventListener('DOMContentLoaded', function() {
                         var pageDomain = document.location.origin;
 			// append the page domain to the session id
                         inviteLink = pageDomain.concat(sessionID);
-                        // send the message to iframe 2
+                        // send the invite link to iframe 2 so we can display it there
                         var popupWindow = document.getElementById("ifrm2").contentWindow;
 		        popupWindow.postMessage(inviteLink, "*");
                         // change the url of the window to display the follower link 
@@ -53,7 +56,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			sess = session;	
 		})
 		.on('relocated', function(session, event) {
-			// send message to the other side
+			// send message to the follower side
 			var frame = document.getElementById('ifrm2').contentWindow;
 			frame.postMessage(JSON.stringify({"command": "message", "data": "The leader relocated to: " + event.url}), '*');
 			// store current url
@@ -79,6 +82,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		})
 		.on('session_ended', function(session) {
 			document.getElementById('exit_button').style.visibility="hidden";
+                // we start the session at the given url in iframe 1
 		}).startLeader('#ifrm1');
 	} 
      }
@@ -88,7 +92,6 @@ window.addEventListener('DOMContentLoaded', function() {
 // navigate to a new url
 function navigate(){
 	var url = document.getElementById('url').value;
-	console.log(url);
 	if(url=="" && document.getElementById('url').placeholder){
 		console.log('ok');
 		url = document.getElementById('url').placeholder;
@@ -217,26 +220,10 @@ function badReaction() {
 
 </script>
 
-<script>
-
-function resizeIFrameToFitContent( iFrame ) {
-
-    iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
-    iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
-}
-
-window.addEventListener('DOMContentReady', function(e) {
-
-    var iFrame = document.getElementById( 'reaction' );
-    resizeIFrameToFitContent( iFrame );
-
-});
-
-</script>
-
 </head>
 
 <body>
+
 <div id="menu">
 	<button class="button" id="exit_button" onclick="exitSession()">Exit</button>
 	<button id="ignore" onclick="ignoreFriend()">Ignore Friend</button>
