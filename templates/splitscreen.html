@@ -260,7 +260,7 @@ function badReaction() {
 
 <script>
 $(document).ready(function(){
-	$('#resizable1').resizable({alsoResize : '#ifrm1', ghost: true, containment: "#container_resize"});
+	$('#resizable1').resizable({alsoResize : '#ifrm1', helper: "ui-resizable-helper", containment: "#container_resize"});
 	$('#resizable2').resizable({alsoResize : '#ifrm2', ghost: true, containment: "#container_resize"});
 
 	$('#url').focus(function() { 
