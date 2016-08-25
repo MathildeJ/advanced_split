@@ -13,7 +13,7 @@
   top: 55px;
   left: 5px;
   bottom: 20px;
-  width: 50%;
+  width: 48%;
 }
 
 #resizable2{
@@ -21,7 +21,7 @@
   top: 55px;
   right: 5px;
   bottom: 20px;
-  width: 50%;
+  width: 48%;
 }
 
 #ifrm1{
@@ -43,7 +43,7 @@
 
 #ifrm2{
   /*display: inline-block;*/
-  border-top: yellow 3px solid;
+  border-top: green 3px solid;
   border-right: green 3px solid;
   border-left: green 3px solid;
   border-bottom: green 3px solid;
