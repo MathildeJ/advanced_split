@@ -12,32 +12,12 @@
 
     <!-- Custom CSS -->
     <link href="../static/stylish-portfolio.css" rel="stylesheet">
+    <link href="../static/popup_link.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
-    <!-- AJAX import -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <style>
-      body {
-         background-image: url('../static/ride.jpg');
-      }
-      
-      #exitButton {
-         background-color: white;
-      }
-    
-      .mainText {
-         color: white;
-      }       
-        
-      a {
-        color: white;
-      }
- 
-    </style>
 
 </head>
 
@@ -50,24 +30,43 @@
              <p>
              <label>
                  <h2 class="mainText">Share link!</h2>
-                 <input id="inviteLink" type="text" name="inviteLink" placeholder="invite link" onClick="this.select();"/>
+                 <input id="inviteLink" type="text" name="inviteLink" placeholder="invite link"/>
+             </label>
+             </p>
+             <p>
+             <label>
+                  <input id="copyLink" class="button" type="button" value="copy link"/>
+             </p>
              </label>
              </p>
              <p>
 	     <label>
                  <h2 class="mainText">Send link in Email</h2>
-                 <input id="enterEmail" type="text" name="emailAddress" placeholder="enter email address"/>
+                 <input id="enterEmail" type="email" name="emailAddress" placeholder="enter email address"/>
               </label>
               </p>
               <p>
               <label>
-                 <input type="submit" id="sendEmail" value="send email!"/>
+                 <input type="submit" class="button" id="sendEmail" value="send email!"/>
               </label>
               </p>
             </form>
             <br>
         </div>
     </header>
+
+    <script>
+
+	var copyText = document.querySelector('#copyLink');
+	copyText.addEventListener('click', function () {
+	  var copiedLink = document.querySelector('#inviteLink');
+	  // select the contents
+	  inviteLink.select();
+	   
+	  document.execCommand('copy');
+	}, false);
+
+    </script>
 
     <script>
         var link;
