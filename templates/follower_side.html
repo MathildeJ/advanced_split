@@ -244,6 +244,7 @@ function badReaction() {
 pageUrl  = document.location.href;
 var idIndex = pageUrl.indexOf(".com");
 var sessionID = pageUrl.substring(idIndex+4);
+console.log("the sessionID is ", sessionID);
 var fullUrl =  "https://surfly.com".concat(sessionID);
 // set the url of the first frame to the follower link
 document.getElementById('ifrm1').src = fullUrl;
